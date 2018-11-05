@@ -2,7 +2,7 @@
 /** */
 namespace App\Entity\Admin;
 
-use App\Component\SonataUserInterface;
+use App\Component\Model\AdminUserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use KunicMarko\SonataAnnotationBundle\Annotation\Admin;
 use KunicMarko\SonataAnnotationBundle\Annotation\FormField;
@@ -10,9 +10,9 @@ use KunicMarko\SonataAnnotationBundle\Annotation\ListField;
 use Sylius\Component\User\Model\User;
 
 /**
- * Class SonataUser
+ * Class AdminUser
  *
- * @ORM\Entity(repositoryClass="App\Repository\Admin\SonataUserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Admin\AdminUserRepository")
  * @ORM\Table(name="app_admin_user")
  *
  * @Admin(
@@ -20,7 +20,7 @@ use Sylius\Component\User\Model\User;
  *     icon="<i class='fa fa-user'></i>",
  * )
  */
-class SonataUser extends User implements SonataUserInterface
+class AdminUser extends User implements AdminUserInterface
 {
     /**
      * @var string
@@ -52,7 +52,7 @@ class SonataUser extends User implements SonataUserInterface
     public function __construct()
     {
         parent::__construct();
-        $this->roles = [SonataUserInterface::DEFAULT_ADMIN_ROLE];
+        $this->roles = [AdminUserInterface::DEFAULT_ROLE];
     }
 
     /**

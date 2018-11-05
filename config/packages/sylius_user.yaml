@@ -1,14 +1,13 @@
 sylius_user:
     driver: doctrine/orm
     resources:
-        sonata:
+        admin:
             user:
                 classes:
-                    model: App\Entity\Admin\SonataUser
-                    repository: Sylius\Bundle\UserBundle\Doctrine\ORM\UserRepository
-                    # TODO:
-                    form: Sylius\Bundle\CoreBundle\Form\Type\User\AdminUserType
-                    interface: Sylius\Component\User\Model\UserInterface
+                    model: 'App\Entity\Admin\AdminUser'
+                    repository: App\Repository\Admin\AdminUserRepository
+                    form: App\Form\Type\User\AdminUserType
+                    interface: App\Component\Model\AdminUserInterface
                     controller: Sylius\Bundle\UserBundle\Controller\UserController
                     factory: Sylius\Component\Resource\Factory\Factory
                 templates: 'SyliusUserBundle:User'
@@ -24,28 +23,28 @@ sylius_user:
                     token:
                         length: 16
                         field_name: emailVerificationToken
-#        shop:
-#            user:
-#                classes:
-#                    model: Sylius\Component\Core\Model\ShopUser
-#                    repository: Sylius\Bundle\CoreBundle\Doctrine\ORM\UserRepository
-#                    form: Sylius\Bundle\CoreBundle\Form\Type\User\ShopUserType
-#                    interface: Sylius\Component\User\Model\UserInterface
-#                    controller: Sylius\Bundle\UserBundle\Controller\UserController
-#                    factory: Sylius\Component\Resource\Factory\Factory
-#                templates: 'SyliusUserBundle:User'
-#                resetting:
-#                    token:
-#                        ttl: P1D
-#                        length: 16
-#                        field_name: passwordResetToken
-#                    pin:
-#                        length: 4
-#                        field_name: passwordResetToken
-#                verification:
-#                    token:
-#                        length: 16
-#                        field_name: emailVerificationToken
+        shop:
+            user:
+                classes:
+                    model: App\Entity\Client\ShopUser
+                    repository: App\Repository\Client\UserRepository
+                    form: App\Form\Type\User\ShopUserType
+                    interface: App\Component\Model\ShopUserInterface
+                    controller: Sylius\Bundle\UserBundle\Controller\UserController
+                    factory: Sylius\Component\Resource\Factory\Factory
+                templates: 'SyliusUserBundle:User'
+                resetting:
+                    token:
+                        ttl: P1D
+                        length: 16
+                        field_name: passwordResetToken
+                    pin:
+                        length: 4
+                        field_name: passwordResetToken
+                verification:
+                    token:
+                        length: 16
+                        field_name: emailVerificationToken
         oauth:
             user:
                 classes:

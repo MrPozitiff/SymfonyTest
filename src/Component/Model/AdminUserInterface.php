@@ -1,16 +1,16 @@
 <?php
 /** */
-namespace App\Component;
+namespace App\Component\Model;
 
 use Sylius\Component\User\Model\UserInterface as BaseUserInterface;
 
 /**
  * Interface SonataUserInterface
  */
-interface SonataUserInterface extends BaseUserInterface
+interface AdminUserInterface extends BaseUserInterface
 {
     const ROLE_DEFAULT = 'ROLE_USER';
-    const DEFAULT_ADMIN_ROLE = 'ROLE_SONATA_ADMIN';
+
     /**
      * @return string
      */

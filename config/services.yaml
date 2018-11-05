@@ -1,30 +1,74 @@
-parameters:
-    sonata_sylius_user.user.class: App\Entity\Admin\SonataUser
-    locale: 'en'
-    app_locales:
-        - 'en'
-        - 'zh'
+imports:
+    - { resource: 'parameters.yaml' }
 
 services:
-    # default configuration for services in *this* file
     _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-        public: false       # Allows optimizing the container by removing unused services; this also means
-                            # fetching services directly from the container via $container->get() won't work.
-                            # The best practice is to be explicit about your dependencies anyway.
+        autowire: true
+        autoconfigure: true
+        public: false
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
         exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
-    # controllers are imported separately to make sure services can be injected
-    # as action arguments even if you don't extend any base controller class
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\Form\EventSubscriber\:
+        resource: '../src/Form/EventSubscriber'
+        autowire: false
+        autoconfigure: false
+
+    app.admin_user_provider.email_based:
+        class: Sylius\Bundle\UserBundle\Provider\EmailProvider
+        arguments:
+            - '%sylius.model.admin_user.class%'
+            - '%sylius.repository.admin_user.class%'
+            - '@sylius.canonicalizer'
+
+    app.shop_user_provider.email_based:
+        class: Sylius\Bundle\UserBundle\Provider\EmailProvider
+        arguments:
+            - '%sylius.model.shop_user.class%'
+            - '@sylius.repository.shop_user'
+            - '@sylius.canonicalizer'
+
+    App\OAuth\UserProvider:
+        arguments:
+            - "%sylius.model.shop_user.class%"
+            - "@sylius.factory.customer"
+            - "@sylius.factory.shop_user"
+            - "@sylius.repository.shop_user"
+            - "@sylius.factory.oauth_user"
+            - "@sylius.repository.oauth_user"
+            - "@sylius.manager.shop_user"
+            - "@sylius.canonicalizer"
+            - "@sylius.repository.customer"
+
+    App\Form\Type\Customer\CustomerGuestType:
+        arguments:
+            - '%sylius.model.customer.class%'
+            - '@sylius.repository.customer'
+            - '@sylius.factory.customer'
+
+    App\Form\Type\Customer\CustomerRegistrationType:
+        arguments:
+            - '%sylius.model.customer.class%'
+
+    App\Form\Type\Customer\CustomerSimpleRegistrationType:
+        arguments:
+            - '%sylius.model.customer.class%'
+            - '@sylius.repository.customer'
+
+    App\Form\Type\User\AdminUserType:
+        arguments:
+            - '%sylius.model.admin_user.class%'
+
+    App\Form\Type\User\ShopUserRegistrationType:
+        arguments:
+            - '%sylius.model.shop_user.class%'
+
+    App\Form\Type\User\ShopUserType:
+        arguments:
+            - '%sylius.model.shop_user.class%'

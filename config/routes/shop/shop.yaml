@@ -1,0 +1,11 @@
+app_shop_homepage:
+    path: /
+    controller: App\Controller\Shop\ShopController:indexAction
+
+app_shop_user_security:
+    resource: 'shop_user/security.yaml'
+    prefix: /client
+
+app_shop_user_oauth:
+    resource: 'shop_user/oauth.yaml'
+    prefix: /client/oauth

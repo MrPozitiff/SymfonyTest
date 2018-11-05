@@ -10,7 +10,7 @@
         <img src="{{ asset(paths.logo) }}" class="ui fluid image" id="logo">
         {% endif %}
 
-        {% if error %}
+        {% if error is defined %}
             <div class="ui left aligned basic segment">
                 {{ messages.error(error.message) }}
             </div>

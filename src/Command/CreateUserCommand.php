@@ -2,7 +2,7 @@
 /** */
 namespace App\Command;
 
-use App\Component\SonataUserInterface;
+use App\Component\Model\AdminUserInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -37,7 +37,7 @@ EOT
         $userManager = $this->get('sylius.manager.sonata_user');
         $userRepository = $this->get('sylius.repository.sonata_user');
         $userFactory = $this->get('sylius.factory.sonata_user');
-        /** @var SonataUserInterface $user */
+        /** @var AdminUserInterface $user */
         $user = $userFactory->createNew();
         if ($input->getOption('no-interaction')) {
             $exists = null !== $userRepository->findOneByEmail('librinfo@example.com');

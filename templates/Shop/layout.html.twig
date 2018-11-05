@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+    {% include 'Shop/Blocks/_header.html.twig' %}
+    {% block body %}<h1>Here must be content</h1>{% endblock %}
+    {% include 'Shop/Blocks/_footer.html.twig' %}
+    {% block javascripts %}{% endblock %}
+</body>
+</html>

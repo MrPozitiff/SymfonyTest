@@ -1,24 +1,28 @@
 admin_area:
     resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
     prefix: /admin
+    options:
+        i18n: false
 
 _sonata_admin:
     resource: .
     type: sonata_admin
     prefix: /admin
+    options:
+        i18n: false
 
-sonata_admin_login:
-    path: /admin/login
-    defaults:
-        _controller: sylius.controller.user_security:loginAction
-        _sylius:
-            template: Admin/Security/login.html.twig
-            permission: true
-
-sonata_admin_login_check:
-    path: /admin/login-check
-    defaults:
-        _controller: sylius.controller.user_security:checkAction
-
-sonata_admin_logout:
-    path: /admin/logout
+#sonata_admin_login:
+#    path: /admin/login
+#    defaults:
+#        _controller: sylius.controller.user_security:loginAction
+#        _sylius:
+#            template: Admin/Security/login.html.twig
+#            permission: true
+#
+#sonata_admin_login_check:
+#    path: /admin/login-check
+#    defaults:
+#        _controller: sylius.controller.user_security:checkAction
+#
+#sonata_admin_logout:
+#    path: /admin/logout

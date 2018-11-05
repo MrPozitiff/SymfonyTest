@@ -1,0 +1,5 @@
+parameters:
+    locale: 'en'
+    app_locales:
+        - 'en'
+        - 'zh'

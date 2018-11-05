@@ -1,0 +1,83 @@
+app_shop_user_login:
+    path: /login
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.user_security:loginAction
+        _sylius:
+            template: Shop/Security/Client/login.html.twig
+#            logged_in_route: app_partner_account_dashboard
+
+app_shop_user_login_check:
+    path: /login-check
+    methods: [POST]
+    defaults:
+        _controller: sylius.controller.user_security:checkAction
+
+app_shop_user_logout:
+    path: /logout
+    methods: [GET]
+
+app_shop_user_request_verification_token:
+    path: /verify
+    methods: [POST]
+    defaults:
+        _controller: sylius.controller.shop_user:requestVerificationTokenAction
+
+app_shop_user_verification:
+    path: /verify/{token}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.shop_user:verifyAction
+#        _sylius:
+#            redirect: sylius_shop_account_dashboard
+    options:
+        i18n: false
+
+
+app_shop_user_register:
+    path: /register
+    methods: [GET, POST]
+    defaults:
+        _controller: sylius.controller.customer:createAction
+#        _sylius:
+#            template: "@SyliusShop/register.html.twig"
+#            form: Sylius\Bundle\CoreBundle\Form\Type\Customer\CustomerRegistrationType
+#            event: register
+#            redirect:
+#                route: sylius_shop_account_dashboard
+#            flash: sylius.customer.register
+
+app_shop_user_register_after_checkout:
+    path: /register-after-checkout/{tokenValue}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.customer:createAction
+#        _sylius:
+#            form: Sylius\Bundle\CoreBundle\Form\Type\Customer\CustomerRegistrationType
+#            factory:
+#                method: ['expr:service("sylius.factory.customer_after_checkout")', 'createAfterCheckout']
+#                arguments:
+#                    - 'expr:service("sylius.repository.order").findOneByTokenValue($tokenValue)'
+#            template: "@SyliusShop/register.html.twig"
+#            event: register
+#            redirect:
+#                route: sylius_shop_account_dashboard
+#            flash: sylius.customer.register
+
+app_shop_user_request_password_reset_token:
+    path: /forgotten-password
+    methods: [GET, POST]
+    defaults:
+        _controller: sylius.controller.shop_user:requestPasswordResetTokenAction
+#        _sylius:
+#            template: "@SyliusShop/Account/requestPasswordReset.html.twig"
+#            redirect: sylius_shop_login
+
+app_shop_user_password_reset:
+    path: /forgotten-password/{token}
+    methods: [GET, POST]
+    defaults:
+        _controller: sylius.controller.shop_user:resetPasswordAction
+#        _sylius:
+#            template: "@SyliusShop/Account/resetPassword.html.twig"
+#            redirect: sylius_shop_login

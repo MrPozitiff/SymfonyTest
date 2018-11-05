@@ -1,0 +1,2 @@
+app_shop:
+    resource: 'shop/shop.yaml'

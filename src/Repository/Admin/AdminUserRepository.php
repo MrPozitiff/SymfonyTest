@@ -7,6 +7,6 @@ use Sylius\Bundle\UserBundle\Doctrine\ORM\UserRepository;
 /**
  * Class SonataUserRepository
  */
-class SonataUserRepository extends UserRepository
+class AdminUserRepository extends UserRepository
 {
 }

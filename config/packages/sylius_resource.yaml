@@ -1,0 +1,7 @@
+sylius_resource:
+    resources:
+        sylius.customer:
+            classes:
+                model: App\Entity\Client\Customer
+                interface: App\Component\Model\CustomerInterface
+                repository: App\Repository\Client\CustomerRepository

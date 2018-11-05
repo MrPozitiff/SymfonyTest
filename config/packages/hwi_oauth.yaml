@@ -1,0 +1,9 @@
+hwi_oauth:
+    firewall_names: [shop]
+    resource_owners:
+        wechat:
+            type:          oauth2
+            class:         'App\OAuth\WechatResourceOwner'
+            client_id:     '%env(WECHAT_APP_ID)%'
+            client_secret: '%env(WEHACHT_APP_SECRET)%'
+            scope:         "authorization,snsapi_userinfo"
