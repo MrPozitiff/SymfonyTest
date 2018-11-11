@@ -1,0 +1,20 @@
+{% if categories|length > 0 %}
+    <div class="catalog">
+        <div class="catalog-btn">
+            <svg>
+                <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#catalog"></use>
+            </svg>
+            <span>Categories</span>
+        </div>
+        <ul class="catalog-list">
+            {% for category in categories %}
+            <li class="catalog-list__item">
+                <a href="{{ path('app_shop_category_level_index', {'slug': category.slug, '_locale': category.currentLocale}) }}" class="item">
+                    <span>{{ category.name }}</span>
+                    <span class="catalog-list__count">({{ category.statistics.totalProductsCount }})</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

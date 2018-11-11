@@ -1,0 +1,24 @@
+vich_uploader:
+    db_driver: orm
+    storage: gaufrette
+    mappings:
+        product_image:
+            uri_prefix: /uploads/img/products
+            upload_destination: product_image_fs
+            delete_on_remove: true
+            delete_on_update: true
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+
+        category_image:
+            uri_prefix: /uploads/img/categories
+            upload_destination: product_image_fs
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            delete_on_remove: true
+            delete_on_update: true
+
+        partner_image:
+            uri_prefix: /uploads/img/partners
+            upload_destination: product_image_fs
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            delete_on_remove: true
+            delete_on_update: true

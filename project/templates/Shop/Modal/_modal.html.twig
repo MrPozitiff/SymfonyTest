@@ -1,0 +1,391 @@
+<div class="callback-btn modal" data-modal="#callaback-pop-up">
+    <svg>
+        <use xlink:href="/images/sprite.svg#phone"></use>
+    </svg>
+</div>
+<div class="pop-up" id="callaback-pop-up">
+    <form class="pop-up__inner callback-pop-up">
+        <div class="contacts-form__title">
+            <svg>
+                <use xlink:href="/images/sprite.svg#pencil"></use>
+            </svg>
+            <span>Callback</span>
+        </div>
+        <div class="pop-up__caption">
+            If you believe you have a valid product key and are still receiving an error, please contact Support.
+        </div>
+        <div class="form-group">
+            <label for="name" class="form-label">
+                Name
+            </label>
+            <input type="text" class="form-field" id="name">
+        </div>
+        <div class="form-group">
+            <label for="phone" class="form-label">
+                Phone
+            </label>
+            <input type="tel" class="form-field" id="phone">
+        </div>
+        <div class="center">
+            <button class="btn btn--blue">
+                Submit my Message
+            </button>
+        </div>
+        <div class="pop-up__close pop-up__close-handler">
+            <svg>
+                <use xlink:href="/images/sprite.svg#cross"></use>
+            </svg>
+        </div>
+    </form>
+    <div class="pop-up__overlay"></div>
+</div>
+<div class="pop-up" id="feedback-pop-up">
+    <form class="pop-up__inner callback-pop-up">
+        <div class="contacts-form__title">
+            <svg>
+                <use xlink:href="/images/sprite.svg#pencil"></use>
+            </svg>
+            <span>Leave a Review</span>
+        </div>
+        <div class="pop-up__caption">
+            If you believe you have a valid product key and are still receiving an error, please contact Support.
+        </div>
+        <div class="form-group">
+            <label for="rev-name" class="form-label">Name</label>
+            <input type="text" class="form-field" id="rev-name">
+        </div>
+        <div class="form-group">
+            <label for="rev-mail" class="form-label">Email</label>
+            <input type="text" class="form-field" id="rev-mail">
+        </div>
+        <div class="form-group">
+            <label for="rev-comment" class="form-label">Your Comment</label>
+            <textarea type="text" class="form-area" id="rev-comment"></textarea>
+        </div>
+        <div class="center">
+            <button class="btn btn--blue">
+                Submit my Message
+            </button>
+        </div>
+        <div class="pop-up__close pop-up__close-handler">
+            <svg>
+                <use xlink:href="/images/sprite.svg#cross"></use>
+            </svg>
+        </div>
+    </form>
+    <div class="pop-up__overlay"></div>
+</div>
+<div class="pop-up" id="track-form">
+    <form class="pop-up__inner track-form">
+        <div class="contacts-form__title">
+            <img src="images/stars.svg" alt="">
+            <span>Track Your Order</span>
+        </div>
+        <div class="pop-up__caption">
+            If you believe you have a valid product key and are still receiving an error, please contact Support.
+        </div>
+        <div class="form-group">
+            <label for="order" class="form-label">Order number</label>
+            <input type="text" class="form-field" id="order">
+        </div>
+        <div class="center">
+            <button class="btn btn--blue">
+                Track my order
+            </button>
+        </div>
+        <div class="pop-up__close pop-up__close-handler">
+            <svg>
+                <use xlink:href="/images/sprite.svg#cross"></use>
+            </svg>
+        </div>
+    </form>
+    <div class="pop-up__overlay"></div>
+</div>
+<div class="pop-up" id="track-error">
+    <form class="pop-up__inner track-confirm">
+        <div class="contacts-form__title">
+            <img src="images/emoji.svg" alt="">
+            <span>We can’t seem to find your order.</span>
+            <div class="pop-up__caption">
+                Want to try again?
+            </div>
+        </div>
+        <div class="track-inner">
+            <div class="form-group">
+                <label for="order" class="form-label">Order number</label>
+                <input type="text" class="form-field" id="order">
+            </div>
+            <div class="center">
+                <button class="btn btn--blue">
+                    Track my order
+                </button>
+            </div>
+        </div>
+        <div class="pop-up__close pop-up__close-handler">
+            <svg>
+                <use xlink:href="/images/sprite.svg#cross"></use>
+            </svg>
+        </div>
+    </form>
+    <div class="pop-up__overlay"></div>
+</div>
+<div class="pop-up" id="track-confirm">
+    <form class="pop-up__inner track-confirm">
+        <div class="contacts-form__title">
+            <img src="images/check.svg" alt="">
+            <span>Code was sent to this
+                    phone number:</span>
+            <div class="pop-up__caption" id="track-phone">
+                + 68 188 1032 4646
+            </div>
+        </div>
+        <div class="track-inner">
+            <div class="form-group">
+                <label for="order-confirm" class="form-label">Enter your code here</label>
+                <input type="text" class="form-field" id="order-confirm">
+            </div>
+            <div class="center">
+                <button class="btn btn--blue">
+                    Confirm
+                </button>
+                <div class="page-link">
+                    <span>Didn’t get it? </span>
+                    <a href="#" id="resend-track">Send again</a>
+                </div>
+            </div>
+        </div>
+        <div class="pop-up__close pop-up__close-handler">
+            <svg>
+                <use xlink:href="/images/sprite.svg#cross"></use>
+            </svg>
+        </div>
+    </form>
+    <div class="pop-up__overlay"></div>
+</div>
+<div class="pop-up" id="success">
+    <form class="pop-up__inner success-pop-up">
+        <div class="contacts-form__title">
+            <img src="images/check.svg" width="93" height="93" alt="">
+            <span>Thank You!</span>
+        </div>
+        <div class="pop-up__caption">
+            If you believe you have a valid product key and are still receiving an error, please contact Support.
+        </div>
+        <div class="pop-up__close pop-up__close-handler">
+            <svg>
+                <use xlink:href="/images/sprite.svg#cross"></use>
+            </svg>
+        </div>
+    </form>
+    <div class="pop-up__overlay"></div>
+</div>
+<div class="pop-up" id="success-2">
+    <form class="pop-up__inner success-pop-up">
+        <div class="contacts-form__title">
+            <img src="images/check.svg" width="93" height="93" alt="">
+            <span>Thank You!</span>
+        </div>
+        <div class="pop-up__caption">
+            If you believe you have a valid product key and are still receiving an error, please contact Support.
+        </div>
+        <div class="row row--between">
+            <div class="btn pop-up__close-handler">
+                Back to Shopping
+            </div>
+            <a href="" class="btn btn--blue">
+                Order Status
+            </a>
+        </div>
+        <div class="pop-up__close pop-up__close-handler">
+            <svg>
+                <use xlink:href="/images/sprite.svg#cross"></use>
+            </svg>
+        </div>
+    </form>
+    <div class="pop-up__overlay"></div>
+</div>
+<div class="pop-up" id="cart-pop-up">
+    <div class="pop-up__inner cart-pop-up">
+        <div class="cart-pop-up__inner scrollable">
+            <div class="contacts-form__title">
+                Shopping Cart
+            </div>
+            <div class="row cart-pop-up__item">
+                <div class="checkout-cart-item__thumb">
+                    <img src="data/checkout-1.jpg" width="100" height="60" alt="">
+                </div>
+                <div class="checkout-cart-item__inner">
+                    <a href="" class="checkout-cart-item__title">
+                        Skiing Vacation
+                    </a>
+                    <div class="row options-row">
+                        <div class="cart-pop-up__price">
+                            $ 229.99
+                        </div>
+                        <div class="package-btn">
+                            <svg>
+                                <use xlink:href="/images/sprite.svg#gift"></use>
+                            </svg>
+                            Add packaging
+                        </div>
+                        <div class="quantity cart-pop-up__item-option">
+                            <div class="services-item__label">
+                                Quantity:
+                            </div>
+                            <div class="quantity__btn dec">
+                                <svg>
+                                    <use xlink:href="/images/sprite.svg#minus"></use>
+                                </svg>
+                            </div>
+                            <input type="number" class="quantity__field" value="1">
+                            <div class="quantity__btn inc">
+                                <svg>
+                                    <use xlink:href="/images/sprite.svg#plus"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="cart-pop-up__item-total cart-pop-up__item-option">
+                            <div class="services-item__label">
+                                Total price:
+                            </div>
+                            $ 229.99
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row cart-pop-up__item">
+                <div class="checkout-cart-item__thumb">
+                    <img src="data/checkout-1.jpg" width="100" height="60" alt="">
+                </div>
+                <div class="checkout-cart-item__inner">
+                    <a href="" class="checkout-cart-item__title">
+                        Skiing Vacation
+                    </a>
+                    <div class="row options-row">
+                        <div class="cart-pop-up__price">
+                            $ 229.99
+                        </div>
+                        <div class="package-btn">
+                            <svg>
+                                <use xlink:href="/images/sprite.svg#gift"></use>
+                            </svg>
+                            Add packaging
+                        </div>
+                        <div class="quantity cart-pop-up__item-option">
+                            <div class="services-item__label">
+                                Quantity:
+                            </div>
+                            <div class="quantity__btn dec">
+                                <svg>
+                                    <use xlink:href="/images/sprite.svg#minus"></use>
+                                </svg>
+                            </div>
+                            <input type="number" class="quantity__field" value="1">
+                            <div class="quantity__btn inc">
+                                <svg>
+                                    <use xlink:href="/images/sprite.svg#plus"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="cart-pop-up__item-total cart-pop-up__item-option">
+                            <div class="services-item__label">
+                                Total price:
+                            </div>
+                            $ 229.99
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cart-pop-up__total row row--between">
+            <div class="continue-btn btn btn--line">
+                Continue Shopping
+            </div>
+            <div class="row price-row">
+                <div class="cart-pop-up__total-price">
+                    $ 229.99
+                </div>
+                <a href="" class="btn btn--blue checkout-btn">
+                    Checkout
+                </a>
+            </div>
+        </div>
+        <div class="pop-up__close pop-up__close-handler">
+            <svg>
+                <use xlink:href="/images/sprite.svg#cross"></use>
+            </svg>
+        </div>
+    </div>
+    <div class="pop-up__overlay"></div>
+</div>
+<div class="pop-up" id="order-status">
+    <div class="pop-up__inner order-status">
+        <div class="contacts-form__title">
+            <span>Order #125643</span>
+            <div class="order-status__title">
+                Skiing Vacation
+            </div>
+            <div class="pop-up__caption">
+                quantity: <span>1</span>
+            </div>
+        </div>
+        <div class="order-status-list">
+            <div class="order-status-item">
+                <div class="order-status-item__date">
+                    May 12, 2018
+                </div>
+                <div class="order-status-item__inner row">
+                    <div class="order-status-item__time">
+                        20:50
+                    </div>
+                    <div class="order-status-item__content">
+                        <div class="order-status-item__label">
+                            Приблизительное время доставки:
+                        </div>
+                        13 июня, вторая половина дня
+                    </div>
+                </div>
+            </div>
+            <div class="order-status-item done">
+                <div class="order-status-item__date">
+                    May 11, 2018
+                </div>
+                <div class="order-status-item__inner row">
+                    <div class="order-status-item__time">
+                        20:50
+                    </div>
+                    <div class="order-status-item__content">
+                        Товар отправлен с курьером
+                    </div>
+                </div>
+                <div class="order-status-item__inner row">
+                    <div class="order-status-item__time">
+                        20:50
+                    </div>
+                    <div class="order-status-item__content">
+                        Товар упакован и ждет курьера
+                    </div>
+                </div>
+            </div>
+            <div class="order-status-item done">
+                <div class="order-status-item__date">
+                    May 12, 2018
+                </div>
+                <div class="order-status-item__inner row">
+                    <div class="order-status-item__time">
+                        20:50
+                    </div>
+                    <div class="order-status-item__content">
+                        Оплата принята
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pop-up__close pop-up__close-handler">
+            <svg>
+                <use xlink:href="/images/sprite.svg#cross"></use>
+            </svg>
+        </div>
+    </div>
+    <div class="pop-up__overlay"></div>
+</div>

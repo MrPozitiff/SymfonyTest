@@ -1,0 +1,27 @@
+sylius_resource:
+    resources:
+        app.customer:
+            classes:
+                model: App\Entity\Client\Customer
+                interface: App\Component\Model\CustomerInterface
+                repository: App\Repository\Client\CustomerRepository
+        app.category:
+            classes:
+                model: App\Entity\Shop\Category
+                interface: App\Component\Model\CategoryInterface
+                repository: App\Repository\Shop\CategoryRepository
+        app.category_image:
+            classes:
+                model: App\Entity\Shop\CategoryImage
+                interface: App\Component\Model\ImageInterface
+                form: App\Form\Type\Shop\CategoryImageType
+        app.product:
+            classes:
+                model: App\Entity\Shop\Product
+                interface: App\Component\Model\ProductInterface
+                repository: App\Repository\Shop\ProductRepository
+        app.product_image:
+            classes:
+                model: App\Entity\Shop\ProductImage
+                interface: App\Component\Model\ImageInterface
+                form: App\Form\Type\Shop\ProductImageType

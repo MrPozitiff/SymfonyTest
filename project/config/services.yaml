@@ -1,0 +1,88 @@
+imports:
+    - { resource: 'parameters.yaml' }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    App\Form\EventSubscriber\:
+        resource: '../src/Form/EventSubscriber'
+        autowire: false
+        autoconfigure: false
+
+    app.admin_user_provider.email_based:
+        class: Sylius\Bundle\UserBundle\Provider\EmailProvider
+        arguments:
+            - '%sylius.model.admin_user.class%'
+            - '%sylius.repository.admin_user.class%'
+            - '@sylius.canonicalizer'
+
+    app.shop_user_provider.email_based:
+        class: Sylius\Bundle\UserBundle\Provider\EmailProvider
+        arguments:
+            - '%sylius.model.shop_user.class%'
+            - '@sylius.repository.shop_user'
+            - '@sylius.canonicalizer'
+
+    App\OAuth\UserProvider:
+        arguments:
+            - "%sylius.model.shop_user.class%"
+            - "@app.factory.customer"
+            - "@sylius.factory.shop_user"
+            - "@sylius.repository.shop_user"
+            - "@sylius.factory.oauth_user"
+            - "@sylius.repository.oauth_user"
+            - "@sylius.manager.shop_user"
+            - "@sylius.canonicalizer"
+            - "@app.repository.customer"
+
+    App\Form\Type\Customer\CustomerGuestType:
+        arguments:
+            - '%app.model.customer.class%'
+            - '@app.repository.customer'
+            - '@app.factory.customer'
+
+    App\Form\Type\Customer\CustomerRegistrationType:
+        arguments:
+            - '%app.model.customer.class%'
+
+    App\Form\Type\Customer\CustomerSimpleRegistrationType:
+        arguments:
+            - '%app.model.customer.class%'
+            - '@app.repository.customer'
+
+    App\Form\Type\User\AdminUserType:
+        arguments:
+            - '%sylius.model.admin_user.class%'
+
+    App\Form\Type\User\ShopUserRegistrationType:
+        arguments:
+            - '%sylius.model.shop_user.class%'
+
+    App\Form\Type\User\ShopUserType:
+        arguments:
+            - '%sylius.model.shop_user.class%'
+
+    App\EventListener\CategoryStatisticsListener:
+        arguments:
+            - '@app.repository.category'
+
+    App\Form\Type\Shop\CategoryImageType:
+        arguments:
+            - '%app.model.category_image.class%'
+        tags: ['form.type']
+
+    App\Form\Type\Shop\ProductImageType:
+        arguments:
+            - '%app.model.product_image.class%'
+        tags: ['form.type']

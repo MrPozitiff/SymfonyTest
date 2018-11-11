@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="{{ app.request.locale|slice(0, 2) }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{% block title %}{{ 'template.title'|trans({'%current%': 'Home'}) }}{% endblock %}</title>
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    {% block metatags %}
+    {% endblock %}
+
+    {% block stylesheets %}
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        {% include 'Shop/Fragment/_stylesheets.html.twig' with {'path': 'assets/shop/css/index.css'} %}
+
+    {% endblock %}
+
+</head>
+<body class="pushable">
+    <div class="wrapper home">
+        <header class="header">
+            {% block top %}
+            <div class="header-top">
+                <div class="page-inner">
+                    <div class="header-left">
+                        <a href="{{ path('app_shop_homepage') }}" class="logo">
+                            <img src="{{ asset('assets/shop/images/logo.svg') }}" width="165" alt="{{ 'template.site_name'|trans }}">
+                        </a>
+                        {{ shop_get_static_pages() }}
+                        <div class="track-link modal" data-modal="#track-form">
+                            Track your Order
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        {{ shop_get_locale_switcher(app.request.locale) }}
+                        {{ include('Shop/Fragment/_security.html.twig') }}
+                    </div>
+                    <div class="burger">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+            {% block header %}
+            <div class="header-bot">
+                <div class="page-inner">
+                    {{ render(url('app_shop_category_childs_by_slug', {'slug': 'root', 'template': 'Shop/Category/_categoryMenu.html.twig'})) }}
+                    <div class="feedback-btn modal" data-modal="#feedback-pop-up">
+                        <svg>
+                            <use xlink:href="{{ asset('/assets/app/images/sprite.svg') }}#star"></use>
+                        </svg>
+                        <span>Leave Feedback</span>
+                    </div>
+                    <a href="mailto:info.zigifts.com" class="header-contact">
+                        <div class="header-contact__thumb">
+                            <svg>
+                                <use xlink:href="{{ asset('/assets/app/images/sprite.svg') }}#envelop"></use>
+                            </svg>
+                        </div>
+                        <div class="header-contact__inner">
+                            <div class="header-contact__title">
+                                Email
+                            </div>
+                            <div class="header-contact__content">
+                                info.zigifts.com
+                            </div>
+                        </div>
+                    </a>
+                    <a href="tel:+8618810324646" class="header-contact">
+                        <div class="header-contact__thumb">
+                            <svg>
+                                <use xlink:href="{{ asset('/assets/app/images/sprite.svg') }}#phone"></use>
+                            </svg>
+                        </div>
+                        <div class="header-contact__inner">
+                            <div class="header-contact__title">
+                                Phone
+                            </div>
+                            <div class="header-contact__content">
+                                + 86 188 1032 4646
+                            </div>
+                        </div>
+                    </a>
+                    <div class="cart-btn">
+                        <svg>
+                            <use xlink:href="{{ asset('/assets/app/images/sprite.svg') }}#cart"></use>
+                        </svg>
+                        <div class="cart-btn__marker">
+                            10
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+        </header>
+
+    {% block content %}{% endblock %}
+
+    {% block footer %}
+        {% include 'Shop/Blocks/_footer.html.twig' %}
+    {% endblock %}
+    </div>
+
+{% block javascripts %}
+    {% include 'Shop/Fragment/_javascripts.html.twig' with {'path': 'assets/shop/js/app.js'} %}
+{% endblock %}
+
+{% block modal %}
+    {% include 'Shop/Modal/_modal.html.twig' %}
+{% endblock %}
+</body>
+</html>

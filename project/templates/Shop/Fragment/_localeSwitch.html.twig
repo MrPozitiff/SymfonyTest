@@ -1,0 +1,12 @@
+{% if locales|length > 1 %}
+    <ul class="lang-switch">
+        {% for locale in locales %}
+            <li class="lang-switch__item">
+                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': locale})) }}"
+                   {% if locale is same as(active) %}class="active"{% endif %}>
+                    {{ locale|locale_name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

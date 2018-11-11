@@ -1,0 +1,16 @@
+framework:
+    default_locale: '%locale%'
+    translator:
+        default_path: '%kernel.project_dir%/translations'
+        fallbacks:
+            - '%locale%'
+
+knp_doctrine_behaviors:
+    translatable:   true
+
+
+a2lix_translation_form:
+    locale_provider: default
+    locales: '%app_locales%'
+    default_locale: '%locale%'
+    templating: "@A2lixTranslationForm/bootstrap_4_layout.html.twig"

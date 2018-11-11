@@ -1,0 +1,14 @@
+framework:
+    templating:
+        engines:
+            twig
+    translator:
+        fallbacks: ["%locale%"]
+    secret: '%env(APP_SECRET)%'
+    default_locale: '%locale%'
+    session:
+        handler_id: ~
+    php_errors:
+        log: true
+    form: true
+    csrf_protection: true
