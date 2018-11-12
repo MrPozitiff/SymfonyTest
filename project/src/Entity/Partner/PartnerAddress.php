@@ -5,12 +5,27 @@ namespace App\Entity\Partner;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
+use KunicMarko\SonataAnnotationBundle\Annotation\Admin;
 
 /**
  * Class Address
  *
  * @ORM\Entity()
  * @ORM\Table(name="app_partner_partner_address")
+ *
+ *
+ * @Admin(
+ *     icon="<i class='fa fa-user'></i>",
+ *     group="Partner",
+ *     label="Partner Address"
+ * )
+ *
+ * @method null|string getProvince()
+ * @method null|string getCity()
+ * @method null|string getCityArea()
+ * @method null|string getStreet()
+ * @method null|string getHouse()
+ * @method null|string getOffice()
  */
 class PartnerAddress
 {
@@ -32,18 +47,6 @@ class PartnerAddress
      */
     protected $postcode;
 
-    /*
-     * @Admin\FormField(
-     *     type="A2lix\TranslationFormBundle\Form\Type\TranslationsType",
-     *     options={
-     *          "fields"={
-     *              "description"={
-     *                  "field_type"="Symfony\Component\Form\Extension\Core\Type\TextareaType"
-     *              }
-     *          }
-     *     }
-     * )
-     */
     /**
      * @var Collection|PartnerAddressTranslation[]
      */
@@ -82,5 +85,21 @@ class PartnerAddress
     public function __call($method, $arguments)
     {
         return $this->proxyCurrentLocaleTranslation($method, $arguments);
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): ?string
+    {
+        $address[] = $this->getOffice();
+        $address[] = $this->getHouse();
+        $address[] = $this->getStreet();
+        $address[] = $this->getCityArea();
+        $address[] = $this->getCity();
+        $address[] = $this->getProvince();
+        $address[] = $this->postcode;
+
+        return implode(', ', array_filter($address));
     }
 }

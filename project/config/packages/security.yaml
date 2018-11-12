@@ -75,22 +75,24 @@ security:
             oauth:
                 resource_owners:
                     wechat: hwi_oauth_wechat
-                login_path: app_shop_user_login
+                login_path: app_shop_user_auth
                 use_forward: false
-                failure_path: app_shop_user_login
+                failure_path: app_shop_user_auth
                 oauth_user_provider:
                     service: App\OAuth\UserProvider
             form_login:
                 success_handler: sylius.authentication.success_handler
                 failure_handler: sylius.authentication.failure_handler
                 provider: app_shop_user_provider
-                login_path: app_shop_user_login
+                login_path: app_shop_user_auth
                 check_path: app_shop_user_login_check
-                failure_path: app_shop_user_login
+                failure_path: app_shop_user_auth
                 default_target_path: app_shop_homepage # TODO: change for account
                 use_forward: false
                 use_referer: true
                 csrf_token_generator: security.csrf.token_manager
+                csrf_parameter: _csrf_shop_security_token
+                csrf_token_id: shop_authenticate
             remember_me:
                 secret: "%env(APP_SECRET)%"
                 name: APP_SHOP_REMEMBER_ME
@@ -98,7 +100,7 @@ security:
                 remember_me_parameter: _remember_me
             logout:
                 path: app_shop_user_logout
-                target: app_shop_user_login
+                target: app_shop_user_auth
                 invalidate_session: false
             anonymous: true
 

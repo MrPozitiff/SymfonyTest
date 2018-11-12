@@ -5,7 +5,7 @@
         {#<a href="{{ path('app_shop_user_account_dashboard') }}" class="item">{{ 'sylius.ui.my_account'|trans }}</a>#}
             <a href="{{ path('app_shop_user_logout') }}" class="item sylius-logout-button">{{ 'app.header.logout'|trans }}</a>
     {% else %}
-            <a href="{{ path('app_shop_user_login') }}" class="log-in">{{ 'app.header.login'|trans }}</a>
-            <a href="{{ path('app_shop_user_register') }}" class="registration">{{ 'app.header.register'|trans }}</a>
+            <a href="{{ path('app_shop_user_auth') }}#login-tab" class="log-in">{{ 'app.header.login'|trans }}</a>
+            <a href="{{ path('app_shop_user_auth') }}#singup-tab" class="registration">{{ 'app.header.register'|trans }}</a>
     {% endif %}
 </div>

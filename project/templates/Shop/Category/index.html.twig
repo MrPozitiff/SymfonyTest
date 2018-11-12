@@ -1,0 +1,49 @@
+{% extends 'Shop/layout.html.twig' %}
+
+{% set category = shop_get_category_by_url(app.request.attributes.get('urlPath')) %}
+
+{% block title %}{{ 'template.title'|trans({'%current%': category.name}) }}{% endblock %}
+
+{% block content %}
+    <div class="page category-page">
+        <svg class="decor-item decor-item-1">
+            <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#decor-1"></use>
+        </svg>
+        <svg class="decor-item decor-item-2">
+            <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#decor-2"></use>
+        </svg>
+        <svg class="decor-item decor-item-3">
+            <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#decor-3"></use>
+        </svg>
+        <svg class="decor-item decor-item-4">
+            <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#decor-2"></use>
+        </svg>
+        <svg class="decor-item decor-item-5">
+            <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#decor-3"></use>
+        </svg>
+        <svg class="decor-item decor-item-6">
+            <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#decor-1"></use>
+        </svg>
+        <div class="page-inner">
+            {{ render(url('app_shop_parts_breadcrumbs')) }}
+            <div class="page-title">
+                <span>{{ category.name }}</span>
+                <svg>
+                    <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#wave"></use>
+                </svg>
+            </div>
+            {% include 'Shop/Category/_index_grid_list.html.twig' %}
+        </div>
+        <div class="text-caption">
+            <div class="text-caption__inner">
+                <div class="page-title">
+                    <span>Welcome to ziGIFTS</span>
+                    <svg>
+                        <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#wave"></use>
+                    </svg>
+                </div>
+                <div class="text-caption__content scrollable">{{ category.description|raw }}</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

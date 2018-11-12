@@ -1,0 +1,7 @@
+{% for product in products %}
+    {% include 'Shop/Product/_grid_item.html.twig' with {
+        'url': product.url,
+        'image': product.images[0],
+        'name': product.name,
+        'minPrice': 'template.grid.price'|trans({'%price%': product.price})} %}
+{% endfor %}

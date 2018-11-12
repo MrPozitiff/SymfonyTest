@@ -3,3 +3,4 @@ parameters:
     app_locales:
         - 'en'
         - 'zh'
+    block_items_count: 10

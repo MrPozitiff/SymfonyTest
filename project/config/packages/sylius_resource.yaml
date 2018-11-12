@@ -5,6 +5,7 @@ sylius_resource:
                 model: App\Entity\Client\Customer
                 interface: App\Component\Model\CustomerInterface
                 repository: App\Repository\Client\CustomerRepository
+                form: App\Form\Type\Customer\CustomerType
         app.category:
             classes:
                 model: App\Entity\Shop\Category
@@ -25,3 +26,10 @@ sylius_resource:
                 model: App\Entity\Shop\ProductImage
                 interface: App\Component\Model\ImageInterface
                 form: App\Form\Type\Shop\ProductImageType
+        app.partner:
+            classes:
+                model: App\Entity\Partner\Partner
+        app.partner_image:
+            classes:
+                model: App\Entity\Partner\PartnerImage
+                form: App\Form\Type\Partner\PartnerImageType

@@ -19,6 +19,6 @@ RUN apt-get update && \
     mv composer.phar /usr/local/bin/composer && \
     rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN docker-php-ext-install bcmath zip pdo_mysql xml intl
+RUN docker-php-ext-install bcmath zip pdo_mysql xml intl gd
 
 EXPOSE 9000

@@ -1,0 +1,31 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\EventListener\UserRegistrationListener:
+        arguments:
+            $tokenGenerator: '@sylius.shop_user.token_generator.email_verification'
+            $userLogin: '@sylius.security.user_login'
+            $firewallContextName: 'shop'
+        tags:
+            - { name: 'kernel.event_listener', event: 'sylius.customer.post_register', method: 'handleUserVerification' }
+
+    App\EventListener\PasswordUpdaterListener:
+        tags:
+            - { name: kernel.event_listener', event: 'sylius.user.pre_password_reset', method: 'genericEventUpdater' }
+            - { name: kernel.event_listener', event: 'sylius.user.pre_password_change', method: 'genericEventUpdater' }
+            - { name: kernel.event_listener', event: 'sylius.admin_user.pre_update', method: 'genericEventUpdater' }
+            - { name: kernel.event_listener', event: 'sylius.customer.pre_update', method: 'customerUpdateEvent' }
+            - { name: doctrine.event_listener', event: 'prePersist', lazy: 'true' }
+            - { name: doctrine.event_listener', event: 'preUpdate', lazy: 'true' }
+
+    App\EventListener\CanonicalizerListener:
+        tags:
+            - { name: doctrine.event_listener', event: 'prePersist', lazy: 'true' }
+            - { name: doctrine.event_listener', event: 'preUpdate', lazy: 'true' }
+
+    App\EventListener\DefaultUsernameORMListener:
+        tags:
+            - { name: doctrine.event_listener', event: 'onFlush', lazy: 'true' }

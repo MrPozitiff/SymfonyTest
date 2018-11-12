@@ -1,0 +1,51 @@
+{% extends 'Shop/layout.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <div class="page about-page">
+        <div class="page-inner">
+            {% include 'Shop/Fragment/_breadcrumbs.html.twig' with {'breacrumps': [
+                {'title': 'Home', 'url': path('app_shop_homepage')},
+                {'title': 'About Us'}
+            ]} %}
+            <div class="page-title">
+                <span>About Us</span>
+                <svg>
+                    <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#wave"></use>
+                </svg>
+            </div>
+            <div class="about-block">
+                <div class="about-block__thumb">
+                    <img src="{{ asset('assets/shop/data/gift.svg') }}" width="399" height="365" alt="">
+                </div>
+                <div class="about-block__inner">
+                    <div class="about-block__title">
+                        Welcome to ziGIFTS
+                    </div>
+                    <div class="about-block__caption content-area">
+                        <p>
+                            To impress the banal presents is very simple, but a good gift is quite expensive and not everyone
+                        </p>
+                        <p>
+                            can afford. Asking the culprit to celebrate directly incorrectly, handing the envelope with the money - it means to show its indifference. How to be? Sale of gift certificates is your salvation! It is such a present that will deliver a lot of positive emotions to the recipient, delight and will charge positive.
+                        </p>
+                        <p>
+                            Banal presents is very simple, but a good gift is quite expensive and not everyone can afford. Asking the culprit to celebrate directly incorrectly, handing the envelope with the money - it means to show its indifference. How to be? Sale of gift certificates is your salvation! It is such a present that will deliver a lot of positive emotions to the recipient, delight and will charge positive.
+                        </p>
+                        <p>
+                            The online impression site offers more than a hundred different certificates. To simplify the search for the perfect presentation, we made our site as simple and intuitive as possible.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-section">
+            <div class="page-inner">
+                <div class="about-video">
+                    <iframe width="1019" height="573" src="https://www.youtube.com/embed/nFtgFb1XCF8" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

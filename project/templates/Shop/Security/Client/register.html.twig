@@ -1,0 +1,107 @@
+<div class="tab" id="singup-tab">
+    <form class="reg-form" action="{{ path('app_shop_user_register') }}" id="reg-form">
+        {#{{ dump(form) }}#}
+        <div class="form-row">
+            <div class="form-column">
+                <div class="form-group">
+                    <label for="reg-name" class="form-label">
+                        Name
+                        <span class="form-info">
+                                                <svg>
+                                                    <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#info"></use>
+                                                </svg>
+                                                <span class="form-info__caption">
+                                                        We’d like to be aquainted with you
+                                                </span>
+                                            </span>
+                    </label>
+                    {{ form_widget(form.firstName, {'attr': {'class': 'form-field'}}) }}
+                    {#<input type="text" class="form-field" id="reg-name">#}
+                </div>
+                <div class="form-group">
+                    <label for="reg-name" class="form-label">
+                        Name
+                        <span class="form-info">
+                                                <svg>
+                                                    <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#info"></use>
+                                                </svg>
+                                                <span class="form-info__caption">
+                                                        We’d like to be aquainted with you
+                                                </span>
+                                            </span>
+                    </label>
+                    {{ form_widget(form.lastName, {'attr': {'class': 'form-field'}}) }}
+                    {#<input type="text" class="form-field" id="reg-name">#}
+                </div>
+                <div class="form-group">
+                    <label for="reg-phone" class="form-label">
+                        Phone number
+                        <span class="form-info">
+                                                <svg>
+                                                    <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#info"></use>
+                                                </svg>
+                                                <span class="form-info__caption">
+                                                        We’d like to be aquainted with you
+                                                </span>
+                                            </span>
+                    </label>
+                    {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-field'}}) }}
+                    {#<input type="tel" class="form-field" id="reg-phone">#}
+                </div>
+                <div class="form-group">
+                    <label for="reg-mail" class="form-label">
+                        Email
+                        <span class="form-info">
+                                                <svg>
+                                                    <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#info"></use>
+                                                </svg>
+                                                <span class="form-info__caption">
+                                                        We’d like to be aquainted with you
+                                                </span>
+                                            </span>
+                    </label>
+                    {{ form_widget(form.email, {'attr': {'class': 'form-field'}}) }}
+                    {#<input type="email" class="form-field" id="reg-mail">#}
+                </div>
+            </div>
+            <div class="form-column">
+                <div class="form-group">
+                    <label for="reg-pass" class="form-label">
+                        Password
+                    </label>
+                    {{ form_widget(form.user.plainPassword.first, {'attr': {'class': 'form-field'}}) }}
+                    {#<input type="password" class="form-field" id="reg-pass">#}
+                </div>
+                <div class="form-group">
+                    <label for="reg-pass-confirm" class="form-label">
+                        Confirm password
+                    </label>
+                    {{ form_widget(form.user.plainPassword.second, {'attr': {'class': 'form-field'}}) }}
+                    {#<input type="password" class="form-field" id="reg-pass-confirm">#}
+                </div>
+                <div class="form-group">
+                    <label class="custom-checkbox">
+                        {{ form_widget(form.subscribedToNewsletter) }}
+                        {#<input type="checkbox">#}
+                        <span class="custom-checkbox__box"></span>
+                        <span class="custom-checkbox__label">
+                                                Sign up for the newsletter
+                                        </span>
+                    </label>
+                </div>
+                {{ form_widget(form._token) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn--blue">{{ 'template.security.user.button_register'|trans }}</button>
+        </div>
+    </form>
+    <div class="authorization-social">
+        <div class="authorization-social__separator">
+            <span>{{ 'template.security.user.social_register_title'|trans }}</span>
+        </div>
+        <a href="{{ path('hwi_oauth_wechat') }}" class="authorization-social__btn">
+            <img src="{{ asset('assets/shop/images/wechatpay.png') }}" width="99" height="26" alt="">
+        </a>
+    </div>
+</div>

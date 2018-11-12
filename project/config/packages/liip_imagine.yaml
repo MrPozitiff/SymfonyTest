@@ -1,14 +1,79 @@
-#liip_imagine:
-#    # valid drivers options include "gd" or "gmagick" or "imagick"
+liip_imagine:
 #    driver: "gd"
-#
-#    # define your filter sets under this option
-#    filter_sets:
-#
-#        # an example thumbnail transformation definition
-#        # https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html#create-thumbnails
-#        squared_thumbnail:
-#
+    resolvers:
+        default:
+            web_path:
+                web_root: '%kernel.project_dir%/public'
+                cache_prefix: 'cache/images'
+    loaders:
+        default:
+            filesystem:
+                data_root:
+                    - '%kernel.project_dir%/public/uploads/img'
+        stream.image_fs:
+            stream:
+                wrapper: gaufrette://root_fs/
+
+    filter_sets:
+        admin_thumbnail:
+            quality: 75
+            filters:
+                thumbnail: { size: [120, 90], mode: outbound }
+        index_slider:
+            data_loader: stream.image_fs
+            filters:
+                thumbnail:
+                    size: [842, 349]
+                    mode: outbound
+                    allow_upscale: true
+        index_trumbnail:
+            data_loader: stream.image_fs
+            quality: 85
+            filters:
+                thumbnail:
+                    size: [265,175]
+                    mode: outbound
+        category_trumbnail:
+            data_loader: stream.image_fs
+            quality: 85
+            filters:
+                thumbnail:
+                    size: [366,241]
+                    mode: outbound
+        category_products_trumbnail:
+            data_loader: stream.image_fs
+            quality: 85
+            filters:
+                thumbnail:
+                    size: [570,395]
+                    mode: outbound
+        products_index_slider:
+            data_loader: stream.image_fs
+            quality: 85
+            filters:
+                thumbnail:
+                    size: [345,228]
+                    mode: outbound
+        products_index_slider_nav_item:
+            data_loader: stream.image_fs
+            quality: 85
+            filters:
+                thumbnail:
+                    size: [58,40]
+                    mode: outbound
+        product_show_slider:
+            data_loader: stream.image_fs
+            filters:
+                thumbnail:
+                    size: [1140,520]
+                    mode: outbound
+        product_show_slider_nav_item:
+            data_loader: stream.image_fs
+            filters:
+                thumbnail:
+                    size: [121,80]
+                    mode: outbound
+
 #            # set your image quality defaults
 #            jpeg_quality:          85
 #            png_compression_level: 8

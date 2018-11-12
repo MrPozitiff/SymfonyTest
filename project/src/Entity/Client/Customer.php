@@ -5,10 +5,10 @@ namespace App\Entity\Client;
 use App\Component\Model\AddressInterface;
 use App\Component\Model\CustomerInterface;
 use App\Component\Model\ShopUserInterface;
+use App\Entity\Traits\TimestampableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Sylius\Component\Customer\Model\Customer as BaseCustomer;
 use Sylius\Component\User\Model\UserInterface as BaseUserInterface;
 use Webmozart\Assert\Assert;
 
@@ -17,42 +17,237 @@ use Webmozart\Assert\Assert;
  *
  * @ORM\Entity()
  * @ORM\Table(name="app_client_customer")
+ * @ORM\HasLifecycleCallbacks()
  */
-class Customer extends BaseCustomer implements CustomerInterface
+class Customer implements CustomerInterface
 {
+    use TimestampableTrait;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=false, unique=true)
+     */
+    private $emailCanonical;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $lastName;
+
+    /**
+     * @var \DateTimeInterface|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $birthday;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $phoneNumber;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $subscribedToNewsletter = false;
+
 //    /**
 //     * @var Collection|OrderInterface[]
 //     */
-//    protected $orders;
+//    private $orders;
 
     /**
      * @var AddressInterface
      *
      * @ORM\OneToOne(targetEntity="App\Entity\Client\Address")
      */
-    protected $defaultAddress;
+    private $defaultAddress;
 
     /**
      * @var Collection|AddressInterface[]
      *
      * @ORM\OneToMany(targetEntity="App\Entity\Client\Address", mappedBy="customer")
      */
-    protected $addresses;
+    private $addresses;
 
     /**
      * @var ShopUserInterface
      *
-     * @ORM\OneToOne(targetEntity="App\Entity\Client\ShopUser", inversedBy="customer")
+     * @ORM\OneToOne(targetEntity="App\Entity\Client\ShopUser", inversedBy="customer", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
-    protected $user;
+    private $user;
 
     public function __construct()
     {
-        parent::__construct();
-
 //        $this->orders = new ArrayCollection();
         $this->addresses = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (string) $this->getEmail();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmail(?string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmailCanonical(): ?string
+    {
+        return $this->emailCanonical;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmailCanonical(?string $emailCanonical): void
+    {
+        $this->emailCanonical = $emailCanonical;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFullName(): string
+    {
+        return trim(sprintf('%s %s', $this->firstName, $this->lastName));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFirstName(?string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastName(?string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setBirthday(?\DateTimeInterface $birthday): void
+    {
+        $this->birthday = $birthday;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPhoneNumber(?string $phoneNumber): void
+    {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isSubscribedToNewsletter(): bool
+    {
+        return $this->subscribedToNewsletter;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setSubscribedToNewsletter(bool $subscribedToNewsletter): void
+    {
+        $this->subscribedToNewsletter = $subscribedToNewsletter;
     }
 
 //    /**

@@ -1,0 +1,19 @@
+{% extends 'Shop/layout.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <div class="page error-page">
+
+        <div class="error">
+            <div class="error-inner">
+                <div class="error-thumb">
+                    <img src="{{ asset('assets/shop/images/error.svg') }}" width="661" alt="">
+                </div>
+                <div class="error-title">{{ 'template.error.subtitle'|trans }}</div>
+                <div class="error-caption">{{ 'template.error.body'|trans }}</div>
+                <a href="{{ path('app_shop_homepage') }}" class="btn btn--blue">{{ 'template.error.back_to_home_button'|trans }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

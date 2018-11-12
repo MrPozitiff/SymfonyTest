@@ -10,22 +10,6 @@ trait MetaTranslatableMethodsTrait
     /**
      * @return null|string
      */
-    public function getMetaTitle(): ?string
-    {
-        return $this->translate()->getMetaTitle();
-    }
-
-    /**
-     * @param null|string $metaTitle
-     */
-    public function setMetaTitle(?string $metaTitle): void
-    {
-        $this->translate()->setMetaTitle($metaTitle);
-    }
-
-    /**
-     * @return null|string
-     */
     public function getMetaKeywords(): ?string
     {
         return $this->translate()->getMetaKeywords();

@@ -1,0 +1,47 @@
+<div class="filter">
+    <svg class="filter-close">
+        <use xlink:href="/images/sprite.svg#close"></use>
+    </svg>
+    <div class="filter__title">
+        Found offers - <span>1556</span>
+    </div>
+    <div class="filter-inner">
+        <div class="filter-item">
+            <div class="filter__label">
+                Location
+            </div>
+            <select name="locations" id="locations-select" class="filter__locations">
+                <option value="">Choose location</option>
+                <option value="London">London</option>
+                <option value="Kharkiv">Kharkiv</option>
+            </select>
+            <div class="active-locations">
+                <div class="active-locations__item">
+                    <span>London</span>
+                    <div class="active-locations__remove">
+                        <svg>
+                            <use xlink:href="/images/sprite.svg#close"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="active-locations__item">
+                    <span>Kharkiv</span>
+                    <div class="active-locations__remove">
+                        <svg>
+                            <use xlink:href="/images/sprite.svg#close"></use>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filter-item">
+            <div class="filter__label">
+                Price:
+            </div>
+            <div id="range" data-min="0" data-max="500"></div>
+        </div>
+        <button class="btn btn--line filter-btn">
+            Apply filters (<span>12</span> results)
+        </button>
+    </div>
+</div>

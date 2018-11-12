@@ -14,12 +14,12 @@ use Sylius\Component\Resource\Model\ToggleableInterface;
  * Interface ProductInterface
  */
 interface ProductInterface extends
-    ResourceInterface,
-    SlugAwareInterface,
+    SlugGeneratedResourceInterface,
     ToggleableInterface,
     TimestampableInterface,
     MetaInterface,
-    ImagesAwareInterface
+    ImagesAwareInterface,
+    UrlInterface
 {
     /**
      * @return null|float

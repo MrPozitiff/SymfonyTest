@@ -1,0 +1,64 @@
+{% extends 'Shop/layout.html.twig' %}
+
+{% set category = shop_get_category_by_url(app.request.attributes.get('urlPath')) %}
+
+{% block title %}{{ 'template.title'|trans({'%current%': category.name}) }}{% endblock %}
+
+{% block content %}
+    <div class="page services-page">
+        <div class="page-inner">
+            {{ render(url('app_shop_parts_breadcrumbs')) }}
+            <div class="services-block">
+                <div class="services-block__thumb">
+                    {% include 'Shop/Fragment/_img_trumbnail.html.twig' with {'image': category.images[0], 'filter': 'category_products_trumbnail'} %}
+                </div>
+                <div class="services-block__inner">
+                    <div class="services-block__title">{{ category.name }}</div>
+                    <div class="services-block__content">
+                        <div class="services-block__content-inner">
+                            <div class="services-block__caption">
+                                {{ category.description|raw }}
+                            </div>
+                        </div>
+                        <span class="services-block__more">{{ 'template.products_index.full_description_button'|trans }}</span>
+                    </div>
+                    <div class="services-block__info">
+                        <div class="services-price">
+                            <div class="services-price__label">{{ 'template.products_index.price_title'|trans }}</div>
+                            {{ 'template.products_index.price_from'|trans({'%price%': category.statistics.minProductPrice})|raw }}
+                        </div>
+                        <a href="" class="offers-link">
+                            <span>
+                                <svg>
+                                    <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#arrow"></use>
+                                </svg>
+                            </span>
+                            View offers
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="services-holder">
+            <div class="page-inner">
+                {% include 'Shop/Product/Parts/filters.html.twig' %}
+                <div class="services-inner">
+                    {% include 'Shop/Product/Parts/sorting.html.twig' %}
+                    <div class="services-list">
+                        {% include 'Shop/Product/Parts/item_list.html.twig' %}
+                    </div>
+                </div>
+            </div>
+            <div class="page-inner">
+                <a href="" class="services-more">
+                    <span>
+                        <svg>
+                            <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#arrow"></use>
+                        </svg>
+                    </span>
+                    See more
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

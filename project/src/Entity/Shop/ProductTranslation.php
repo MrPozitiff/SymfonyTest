@@ -3,7 +3,7 @@
 namespace App\Entity\Shop;
 
 use App\Entity\Traits\MetaTranslationTrait;
-use App\Entity\Traits\NameDescriptionTranslationTrait;
+use App\Entity\Traits\DescriptiveTranslationTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\Translatable\Translation;
 
@@ -16,7 +16,7 @@ use Knp\DoctrineBehaviors\Model\Translatable\Translation;
 class ProductTranslation
 {
     use MetaTranslationTrait,
-        NameDescriptionTranslationTrait,
+        DescriptiveTranslationTrait,
         Translation;
 
     /**

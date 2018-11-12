@@ -4,17 +4,17 @@ namespace App\Component\Repository;
 
 use App\Component\Model\CategoryInterface;
 use Doctrine\ORM\QueryBuilder;
+use Pagerfanta\Pagerfanta;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 interface CategoryRepositoryInterface extends RepositoryInterface
 {
     /**
      * @param string $parentSlug
-     * @param string|null $locale
      *
      * @return array|CategoryInterface[]
      */
-    public function findChildren(string $parentSlug, ?string $locale = null): array;
+    public function findChildren(string $parentSlug): array;
 
     /**
      * @return array|CategoryInterface[]
@@ -23,11 +23,10 @@ interface CategoryRepositoryInterface extends RepositoryInterface
 
     /**
      * @param string $slug
-     * @param string $locale
      *
      * @return CategoryInterface|null
      */
-    public function findOneBySlug(string $slug, string $locale): ?CategoryInterface;
+    public function findOneBySlug(string $slug): ?CategoryInterface;
 
     /**
      * @param string $name
@@ -49,6 +48,23 @@ interface CategoryRepositoryInterface extends RepositoryInterface
      * @return QueryBuilder
      */
     public function createListQueryBuilder(): QueryBuilder;
+
+    /**
+     * @param string $url
+     *
+     * @param bool $withChilds
+     *
+     * @return CategoryInterface|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByUrl(string $url, bool $withChilds = false): ?CategoryInterface;
+
+    /**
+     * @param string $url
+     *
+     * @return null|Pagerfanta
+     */
+    public function findChildrenByUrl(string $url): ?Pagerfanta;
 
     /**
      * @param CategoryInterface $category

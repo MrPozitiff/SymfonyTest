@@ -10862,6 +10862,34 @@ document.addEventListener("DOMContentLoaded", function () {
         return dd + '.' + mm + '.' + yyyy;
     }
     (0, _jquery2.default)('.js-datepicker').val(formatDate(new Date()));
+    (0, _jquery2.default)('.burger').on('click', function () {
+        (0, _jquery2.default)('.mobile-mnu').addClass('active');
+    });
+    (0, _jquery2.default)(document).on('click', function (e) {
+        if ((0, _jquery2.default)('.mobile-mnu').has(e.target).length === 0 && (0, _jquery2.default)('.burger').has(e.target).length === 0) {
+            (0, _jquery2.default)('.mobile-mnu').removeClass('active');
+        }
+    });
+    if ((0, _jquery2.default)(window).width() < 992) {
+        (0, _jquery2.default)('.mobile-mnu').append((0, _jquery2.default)('.header nav'));
+        (0, _jquery2.default)('.mobile-mnu').append((0, _jquery2.default)('.lang-switch'));
+        (0, _jquery2.default)('.mobile-mnu').append((0, _jquery2.default)('.header-account'));
+    } else {
+        (0, _jquery2.default)('.header-left').append((0, _jquery2.default)('.header nav'));
+        (0, _jquery2.default)('.header-right').append((0, _jquery2.default)('.lang-switch'));
+        (0, _jquery2.default)('.header-right').append((0, _jquery2.default)('.header-account'));
+    }
+    (0, _jquery2.default)(window).on('resize', function () {
+        if ((0, _jquery2.default)(window).width() < 992) {
+            (0, _jquery2.default)('.mobile-mnu').append((0, _jquery2.default)('.header nav'));
+            (0, _jquery2.default)('.mobile-mnu').append((0, _jquery2.default)('.lang-switch'));
+            (0, _jquery2.default)('.mobile-mnu').append((0, _jquery2.default)('.header-account'));
+        } else {
+            (0, _jquery2.default)('.header-left').append((0, _jquery2.default)('.header nav'));
+            (0, _jquery2.default)('.header-right').append((0, _jquery2.default)('.lang-switch'));
+            (0, _jquery2.default)('.header-right').append((0, _jquery2.default)('.header-account'));
+        }
+    });
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 

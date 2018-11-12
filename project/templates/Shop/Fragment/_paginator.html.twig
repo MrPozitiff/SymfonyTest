@@ -1,0 +1,50 @@
+<ul class="pagination">
+    {% if paginator.hasPreviousPage %}
+        <li>
+            <a href="{{ path }}?page={{ paginator.getPreviousPage }}" class="prev">
+                <div class="pagination__icon">
+                    <svg>
+                        <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#arrow"></use>
+                    </svg>
+                </div>
+                <span>{{ 'template.block.paginator.previous'|trans }}</span>
+            </a>
+        </li>
+    {% endif %}
+    <li>
+        <a href="{{ path }}?page=1"{% if 1 == paginator.currentPage %} class="current"{% endif %}>1</a>
+    </li>
+    {% if min > 2 %}
+        <li class="seperator">
+            <span>...</span>
+        </li>
+    {% endif %}
+    {% if min <= max %}
+        {% for page in min..max %}
+        <li>
+            <a href="{{ path }}?page={{ page }}"{% if page == paginator.currentPage %} class="current"{% endif %}>{{ page }}</a>
+        </li>
+        {% endfor %}
+    {% endif %}
+    {% if max < (pagesCount - 1) %}
+        <li class="seperator">
+            <span>...</span>
+        </li>
+    {% endif %}
+    <li>
+        <a href="{{ path }}?page={{ pagesCount }}"{% if pagesCount == paginator.currentPage %} class="current"{% endif %}>{{ pagesCount }}</a>
+    </li>
+    {% if paginator.hasNextPage %}
+        <li>
+            <a href="{{ path }}?page={{ paginator.getNextPage }}" class="next">
+                <span>{{ 'template.block.paginator.next'|trans }}</span>
+                <div class="pagination__icon">
+                    <svg>
+                        <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#arrow"></use>
+                    </svg>
+                </div>
+
+            </a>
+        </li>
+    {% endif %}
+</ul>

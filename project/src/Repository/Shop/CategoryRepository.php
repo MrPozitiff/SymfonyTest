@@ -5,19 +5,24 @@ namespace App\Repository\Shop;
 use App\Component\Model\CategoryInterface;
 use App\Component\Repository\CategoryRepositoryInterface;
 use Doctrine\ORM\QueryBuilder;
+use Pagerfanta\Pagerfanta;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 /**
  * Class CategoryRepository
+ * @method CategoryInterface|null find($id, $lockMode = null, $lockVersion = null)
+ * @method CategoryInterface|null findOneBy(array $criteria, array $orderBy = null)
+ * @method CategoryInterface[]    findAll()
+ * @method CategoryInterface[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class CategoryRepository extends EntityRepository implements CategoryRepositoryInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function findChildren(string $parentSlug, ?string $locale = null): array
+    public function findChildren(string $parentSlug): array
     {
-        return $this->createTranslationBasedQueryBuilder($locale)
+        return $this->createQueryBuilder('o')
             ->addSelect('child')
             ->innerJoin('o.parent', 'parent')
             ->leftJoin('o.children', 'child')
@@ -32,18 +37,52 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
     /**
      * {@inheritdoc}
      */
-    public function findOneBySlug(string $slug, string $locale): ?CategoryInterface
+    public function findOneBySlug(string $slug): ?CategoryInterface
     {
         return $this->createQueryBuilder('o')
-            ->addSelect('translation')
-            ->innerJoin('o.translations', 'translation')
             ->andWhere('o.slug = :slug')
-            ->andWhere('translation.locale = :locale')
             ->setParameter('slug', $slug)
-            ->setParameter('locale', $locale)
             ->getQuery()
             ->getOneOrNullResult()
         ;
+    }
+
+    /**
+     * @param string $url
+     *
+     * @param bool $withChilds
+     *
+     * @return CategoryInterface|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByUrl(string $url, bool $withChilds = false): ?CategoryInterface
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->andWhere('o.url = :url')
+            ->setParameter('url', $url);
+        if ($withChilds) {
+            $qb->join('o.children', 'children');
+        }
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return null|Pagerfanta
+     */
+    public function findChildrenByUrl(string $url): ?Pagerfanta
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->addSelect('child')
+            ->innerJoin('o.parent', 'parent')
+            ->leftJoin('o.children', 'child')
+            ->andWhere('parent.url = :url')
+            ->addOrderBy('o.position')
+            ->setParameter('url', $url);
+
+        return $this->getPaginator($qb);
     }
 
     /**
@@ -105,7 +144,7 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
     {
         $this->getEntityManager()->persist($category);
         if ($flush) {
-            $this->getEntityManager()->flush($category);
+            $this->getEntityManager()->flush();
         }
     }
 

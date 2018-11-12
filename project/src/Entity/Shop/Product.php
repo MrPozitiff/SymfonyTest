@@ -8,14 +8,15 @@ use App\Component\Model\ProductInterface;
 use App\Entity\Partner\Partner;
 use App\Entity\Partner\PartnerAddress;
 use App\Entity\Traits\MetaTranslatableMethodsTrait;
-use App\Entity\Traits\NameDescriptionTranslatableMethodsTrait;
+use App\Entity\Traits\DescriptiveTranslatableMethodsTrait;
 use App\Entity\Traits\SluggableTrait;
 use App\Entity\Traits\TimestampableTrait;
+use App\Entity\Traits\UrlTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use Sylius\Component\Resource\Model\ToggleableTrait;
+use App\Entity\Traits\ToggleableTrait;
 use KunicMarko\SonataAnnotationBundle\Annotation as Admin;
 
 /**
@@ -26,7 +27,8 @@ use KunicMarko\SonataAnnotationBundle\Annotation as Admin;
  * @Admin\Admin(
  *     icon="<i class='fa fa-user'></i>",
  *     group="Shop",
- *     label="Product"
+ *     label="Product",
+ *     admin="App\Admin\Shop\ProductAdmin"
  * )
  */
 class Product implements ProductInterface
@@ -34,8 +36,9 @@ class Product implements ProductInterface
     use TimestampableTrait,
         ToggleableTrait,
         SluggableTrait,
-        NameDescriptionTranslatableMethodsTrait,
+        DescriptiveTranslatableMethodsTrait,
         MetaTranslatableMethodsTrait,
+        UrlTrait,
         Translatable;
 
     /**
@@ -44,18 +47,20 @@ class Product implements ProductInterface
      * @ORM\Id
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     *
-     * @Admin\ListField()
      */
     protected $id;
+
+    /**
+     * @var null|string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $code;
 
     /**
      * @var float
      *
      * @ORM\Column(type="float")
-     *
-     * @Admin\FormField()
-     * @Admin\ListField()
      */
     protected $price;
 
@@ -63,8 +68,6 @@ class Product implements ProductInterface
      * @var float
      *
      * @ORM\Column(type="float")
-     *
-     * @Admin\FormField()
      */
     protected $partnerPrice;
 
@@ -72,8 +75,6 @@ class Product implements ProductInterface
      * @var null|int
      *
      * @ORM\Column(type="integer")
-     *
-     * @Admin\FormField()
      */
     protected $storageCount = 0;
 
@@ -81,17 +82,20 @@ class Product implements ProductInterface
      * @var bool
      *
      * @ORM\Column(type="boolean")
-     *
-     * @Admin\FormField()
      */
     protected $storageLimited = false;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     */
+    protected $purchasedCount = 0;
 
     /**
      * @var Partner
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Partner\Partner")
-     *
-     * @Admin\ListAssociationField(field="name")
      */
     private $partner;
 
@@ -99,9 +103,6 @@ class Product implements ProductInterface
      * @var null|Category
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Shop\Category", inversedBy="products")
-     *
-     * @Admin\FormField()
-     * @Admin\ListAssociationField(field="name")
      */
     protected $category;
 
@@ -110,8 +111,6 @@ class Product implements ProductInterface
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Shop\Option", inversedBy="products")
      * @ORM\JoinTable(name="app_shop_product_option")
-     *
-     * @Admin\FormField()
      */
     protected $options;
 
@@ -129,22 +128,6 @@ class Product implements ProductInterface
      */
     protected $address;
 
-    /**
-     * @var Collection|ProductTranslation[]
-     *
-     * @Admin\FormField(
-     *     type="A2lix\TranslationFormBundle\Form\Type\TranslationsType",
-     *     options={
-     *          "fields"={
-     *              "description"={
-     *                  "field_type"="Symfony\Component\Form\Extension\Core\Type\TextareaType"
-     *              }
-     *          }
-     *     }
-     * )
-     */
-    protected $translations;
-
     /**  */
     public function __construct()
     {
@@ -158,6 +141,22 @@ class Product implements ProductInterface
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param null|string $code
+     */
+    public function setCode(?string $code): void
+    {
+        $this->code = $code;
     }
 
     /**
@@ -222,6 +221,22 @@ class Product implements ProductInterface
     public function setStorageLimited(bool $storageLimited): void
     {
         $this->storageLimited = $storageLimited;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPurchasedCount(): int
+    {
+        return $this->purchasedCount;
+    }
+
+    /**
+     * @param int $purchasedCount
+     */
+    public function setPurchasedCount(int $purchasedCount): void
+    {
+        $this->purchasedCount = $purchasedCount;
     }
 
     /**
@@ -330,5 +345,13 @@ class Product implements ProductInterface
     public function setAddress(?PartnerAddress $address): void
     {
         $this->address = $address;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return sprintf('(%s) %s', $this->code, $this->getName());
     }
 }

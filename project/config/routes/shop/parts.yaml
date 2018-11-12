@@ -1,0 +1,30 @@
+app_shop_parts_breadcrumbs:
+    path: /breadcrumbs
+    controller: App\Controller\Shop\ShopController:generateBreadCrumbs
+    options:
+        i18n: false
+
+app_shop_category_childs_by_slug:
+    path: /category/{slug}/childs
+    methods: [GET]
+    defaults:
+        _controller: app.controller.category:indexAction
+        _sylius:
+            template: $template
+            repository:
+                method: findChildren
+                arguments:
+                    - $slug
+
+app_shop_partial_product_newest:
+    path: /product/newest/{count}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.product:indexAction
+        _sylius:
+            template: $template
+            repository:
+                method: findNewest
+                arguments:
+                    - '!!int $page'
+                    - '!!int $count'

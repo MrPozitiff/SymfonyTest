@@ -6,8 +6,8 @@
  */
 namespace App\Twig;
 
+use Pagerfanta\Pagerfanta;
 use Symfony\Component\Intl\Intl;
-use Symfony\Component\Intl\ResourceBundle\LocaleBundleInterface;
 use Webmozart\Assert\Assert;
 
 /**
@@ -15,6 +15,22 @@ use Webmozart\Assert\Assert;
  */
 class ShopExtension extends \Twig_Extension
 {
+    private const PAGE_VIEW_RANGE = 3;
+    /**
+     * @var array
+     */
+    private $locales;
+
+    /**
+     * ShopExtension constructor.
+     *
+     * @param array $locales
+     */
+    public function __construct(array $locales)
+    {
+        $this->locales = $locales;
+    }
+
     /**
      * @return array|\Twig_Function[]
      */
@@ -22,7 +38,8 @@ class ShopExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFunction('shop_get_static_pages', [$this, 'getStaticPages'], ['is_safe' => ['html'], 'needs_environment' => true]),
-            new \Twig_SimpleFunction('shop_get_locale_switcher', [$this, 'getLocaleSwitcher'], ['is_safe' => ['html'], 'needs_environment' => true])
+            new \Twig_SimpleFunction('shop_get_locale_switcher', [$this, 'getLocaleSwitcher'], ['is_safe' => ['html'], 'needs_environment' => true]),
+            new \Twig_SimpleFunction('shop_get_paginator', [$this, 'getPaginator'], ['is_safe' => ['html'], 'needs_environment' => true]),
         ];
     }
 
@@ -68,7 +85,7 @@ class ShopExtension extends \Twig_Extension
     {
         return $environment->render('Shop/Fragment/_localeSwitch.html.twig', [
             'active' => $currentLocale,
-            'locales' => ['en', 'zh'],
+            'locales' => $this->locales,
         ]);
     }
 
@@ -84,5 +101,37 @@ class ShopExtension extends \Twig_Extension
         Assert::string($name, sprintf('Cannot find name for "%s" locale code', $locale));
 
         return $name;
+    }
+
+    /**
+     * @param \Twig_Environment $e
+     * @param Pagerfanta $pagerfanta
+     *
+     * @param string $urlPath
+     *
+     * @return string
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function getPaginator(\Twig_Environment $e, Pagerfanta $pagerfanta, string $urlPath): string
+    {
+        $pagesCount = ceil($pagerfanta->getAdapter()->getNbResults() / $pagerfanta->getMaxPerPage());
+        if ($pagesCount <= 1) {
+            return '';
+        }
+        $currentPage = $pagerfanta->getCurrentPage();
+
+        $min = ($currentPage - self::PAGE_VIEW_RANGE) < 2 ? 2 : ($currentPage - self::PAGE_VIEW_RANGE);
+        $max = ($currentPage + self::PAGE_VIEW_RANGE) >= ($pagesCount - 1) ? ($pagesCount - 1) : ($currentPage + self::PAGE_VIEW_RANGE);
+
+        return $e->render('Shop/Fragment/_paginator.html.twig', [
+            'min' => $min,
+            'max' => $max,
+            'paginator' => $pagerfanta,
+            'path' => $urlPath,
+            'pagesCount' => $pagesCount,
+        ]);
     }
 }

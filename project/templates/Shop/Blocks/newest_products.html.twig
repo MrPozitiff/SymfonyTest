@@ -1,0 +1,20 @@
+<div class="products-block">
+    <div class="page-title">
+        <span>{{ 'template.block.newest_products'|trans }}</span>
+        <svg>
+            <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#wave"></use>
+        </svg>
+    </div>
+    <div class="products-list">
+        {{ render(url('app_shop_partial_product_newest', {
+            'count': block_items_count,
+            'page':1,
+            'template': 'Shop/Product/_product_grid_list.html.twig'
+        })) }}
+    </div>
+    <div class="btn-line">
+        <a href="{{ path('app_shop_partial_product_newest', {'count': block_items_count }) }}" class="btn" id="more_newest" data-page="1">
+            {{ 'template.buttons.see_more'|trans }}
+        </a>
+    </div>
+</div>

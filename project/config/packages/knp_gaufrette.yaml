@@ -1,27 +1,19 @@
 knp_gaufrette:
     adapters:
-        product_adapter:
+        image_adapter:
             local:
-                directory:  '%kernel.project_dir%/public/uploads/img/products'
+                directory:  '%kernel.project_dir%/public/uploads/img'
                 create:     true
-        category_adapter:
+        root_adapter:
             local:
-                directory:  '%kernel.project_dir%/public/uploads/img/categories'
-                create:     true
-        partner_adapter:
-            local:
-                directory:  '%kernel.project_dir%/public/uploads/img/partners'
-                create:     true
+                directory: '%kernel.project_dir%/public'
 
     stream_wrapper: ~
 
     filesystems:
-        product_image_fs:
-            adapter:    product_adapter
-            alias:      product_image_fs
-        category_image_fs:
-            adapter:    category_adapter
-            alias:      category_image_fs
-        partner_image_fs:
-            adapter:    partner_adapter
-            alias:      partner_image_fs
+        image_fs:
+            adapter: image_adapter
+            alias:   image_fs
+        root_fs:
+            adapter: root_adapter
+            alias:   root_fs

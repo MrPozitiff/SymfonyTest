@@ -4,7 +4,6 @@ namespace App\Entity\Client;
 
 use App\Component\Model\ShopUserInterface;
 use Doctrine\ORM\Mapping as ORM;
-use Sylius\Component\Customer\Model\CustomerInterface as BaseCustomerInterface;
 use App\Component\Model\CustomerInterface;
 use Sylius\Component\Resource\Exception\UnexpectedTypeException;
 use Sylius\Component\User\Model\User as BaseUser;
@@ -18,7 +17,7 @@ use Sylius\Component\User\Model\User as BaseUser;
 class ShopUser extends BaseUser implements ShopUserInterface
 {
     /**
-     * @var BaseCustomerInterface|null
+     * @var CustomerInterface|null
      *
      * @ORM\OneToOne(targetEntity="App\Entity\Client\Customer", mappedBy="user")
      */
@@ -27,7 +26,7 @@ class ShopUser extends BaseUser implements ShopUserInterface
     /**
      * {@inheritdoc}
      */
-    public function getCustomer(): ?BaseCustomerInterface
+    public function getCustomer(): ?CustomerInterface
     {
         return $this->customer;
     }
@@ -35,7 +34,7 @@ class ShopUser extends BaseUser implements ShopUserInterface
     /**
      * {@inheritdoc}
      */
-    public function setCustomer(?BaseCustomerInterface $customer): void
+    public function setCustomer(?CustomerInterface $customer): void
     {
         if ($this->customer === $customer) {
             return;
@@ -71,7 +70,7 @@ class ShopUser extends BaseUser implements ShopUserInterface
     public function setEmail(?string $email): void
     {
         if (null === $this->customer) {
-            throw new UnexpectedTypeException($this->customer, BaseCustomerInterface::class);
+            throw new UnexpectedTypeException($this->customer, CustomerInterface::class);
         }
 
         $this->customer->setEmail($email);
@@ -95,7 +94,7 @@ class ShopUser extends BaseUser implements ShopUserInterface
     public function setEmailCanonical(?string $emailCanonical): void
     {
         if (null === $this->customer) {
-            throw new UnexpectedTypeException($this->customer, BaseCustomerInterface::class);
+            throw new UnexpectedTypeException($this->customer, CustomerInterface::class);
         }
 
         $this->customer->setEmailCanonical($emailCanonical);
@@ -107,11 +106,13 @@ class ShopUser extends BaseUser implements ShopUserInterface
     public function __toString(): string
     {
         $names = [];
-        if ($this->getFirstName()) {
-            $names[] = $this->getFirstName();
-        }
-        if ($this->getLastName()) {
-            $names[] = $this->getLastName();
+        if (null !== $this->customer) {
+            if ($this->customer->getFirstName()) {
+                $names[] = $this->customer->getFirstName();
+            }
+            if ($this->customer->getLastName()) {
+                $names[] = $this->customer->getLastName();
+            }
         }
         if ($names) {
             return implode(' ', $names);

@@ -1,0 +1,99 @@
+{% extends 'Shop/layout.html.twig' %}
+
+{% block title %}{{ 'template.title'|trans({'%current%': resource.name}) }}{% endblock %}
+
+{% block content %}
+    <div class="page service-page">
+        <svg class="decor-item decor-item-2">
+            <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#decor-1"></use>
+        </svg>
+        <svg class="decor-item decor-item-3">
+            <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#decor-2"></use>
+        </svg>
+        <svg class="decor-item decor-item-4">
+            <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#decor-2"></use>
+        </svg>
+        <svg class="decor-item decor-item-5">
+            <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#decor-3"></use>
+        </svg>
+        <div class="page-inner">
+            {{ render(url('app_shop_parts_breadcrumbs')) }}
+            <div class="service-thumb">
+                <div class="service-slider">
+                    {% for image in resource.images %}
+                    <div class="service-slider__item">
+                        {% include 'Shop/Fragment/_img_trumbnail.html.twig' with {'image': image, 'filter': 'product_show_slider'} %}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="service-nav">
+                    {% for image in resource.images %}
+                    <div class="service-nav__item">
+                        {% include 'Shop/Fragment/_img_trumbnail.html.twig' with {'image': image, 'filter': 'product_show_slider_nav_item'} %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="bg-section">
+            <div class="page-inner">
+                <div class="service-holder">
+                    <div class="service-content">
+                        <div class="service-info">
+                            <div class="service-content__title">{{ resource.name }}</div>
+                            <div class="service-info__line">
+                                <div class="service-info__title">
+                                    <svg>
+                                        <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#location"></use>
+                                    </svg>
+                                    {{ 'template.products_index.location'|trans }}
+                                </div>
+                                <span class="separator"></span>
+                                <div class="service-info__caption">{{ resource.address }}</div>
+                            </div>
+                            <div class="service-info__line">
+                                <div class="service-info__title">
+                                    <svg>
+                                        <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#area"></use>
+                                    </svg>
+                                    {{ 'template.products_index.area'|trans }}
+                                </div>
+                                <span class="separator"></span>
+                                <div class="service-info__caption">{{ resource.address.getProvince() }}</div>
+                            </div>
+                            {% if resource.address.getMetroStation()|default(false) %}
+                            <div class="service-info__line">
+                                <div class="service-info__title">
+                                    <svg>
+                                        <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#metro"></use>
+                                    </svg>
+                                    {{ 'template.products_index.metro_station'|trans }}
+                                </div>
+                                <span class="separator"></span>
+                                <div class="service-info__caption">{{ resource.address.getMetroStation() }}</div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="content-area">
+                            <div class="content-title">{{ 'template.products_index.description'|trans }}</div>
+                            {{ resource.description|raw }}
+                        </div>
+                    </div>
+                    <div class="service-sidebar">
+                        <div class="service-sidebar__thumb">
+                            {% include 'Shop/Fragment/_img_trumbnail.html.twig' with {'image': resource.partner.images[0], 'filter': 'product_show_slider_nav_item'} %}
+                        </div>
+                        <div class="service-sidebar__title">{{ resource.partner.name }}</div>
+                        <div class="services-price">
+                            <div class="services-price__label">{{ 'template.products_index.price_title'|trans }}</div>
+                            {{ 'template.products_index.price'|trans({'%price%': resource.price})|raw }}
+                        </div>
+                        <button class="btn btn--blue buy-btn">{{ 'template.products_index.buy_button'|trans }}</button>
+                        <div class="service-sidebar__label">{{ 'template.products_index.use_before'|trans }}</div>
+                        <div class="service-sidebar__date">{{ '+100 days'|date('d.m.Y') }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

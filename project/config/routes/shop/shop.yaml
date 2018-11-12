@@ -10,26 +10,6 @@ app_shop_user_oauth:
     resource: 'shop_user/oauth.yaml'
     prefix: /client/oauth
 
-app_shop_category_childs_by_slug:
-    path: /category/{slug}/childs
-    methods: [GET]
-    defaults:
-        _controller: app.controller.category:indexAction
-        _sylius:
-            template: $template
-            repository:
-                method: findChildren
-                arguments:
-                    - $slug
-#                    - "expr:service('sylius.context.locale').getLocaleCode()"
-
-app_shop_category_level_index:
-    path: /shop/{slug}
-    methods: [GET]
-    defaults:
-        _controller: app.controller.category:indexAction
-        _sylius:
-#            template: "@SyliusShop/Product/index.html.twig"
-            grid: sylius_shop_product
-    requirements:
-        slug: .+
+app_shop_partials:
+    resource: 'parts.yaml'
+    prefix: /parts

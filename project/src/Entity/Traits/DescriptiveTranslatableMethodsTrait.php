@@ -5,7 +5,7 @@ namespace App\Entity\Traits;
 /**
  * Trait NameDescriptionMethodsTrait
  */
-trait NameDescriptionTranslatableMethodsTrait
+trait DescriptiveTranslatableMethodsTrait
 {
     /**
      * @return null|string

@@ -1,7 +1,7 @@
 <?php
 /** */
-
 namespace App\Entity\Traits;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,13 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 trait MetaTranslationTrait
 {
-    /**
-     * @var null|string
-     *
-     * @ORM\Column(type="string", nullable=true)
-     */
-    protected $metaTitle;
-
     /**
      * @var null|string
      *
@@ -29,26 +22,6 @@ trait MetaTranslationTrait
      * @ORM\Column(type="string", nullable=true)
      */
     protected $metaDescription;
-
-    /**
-     * @return null|string
-     */
-    public function getMetaTitle(): ?string
-    {
-        return $this->metaTitle;
-    }
-
-    /**
-     * @param null|string $metaTitle
-     *
-     * @return self
-     */
-    public function setMetaTitle(?string $metaTitle): self
-    {
-        $this->metaTitle = $metaTitle;
-
-        return $this;
-    }
 
     /**
      * @return null|string

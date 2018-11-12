@@ -1,0 +1,61 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\Form\Type\Customer\CustomerType:
+        arguments: ['%app.model.customer.class%']
+        tags: ['form.type']
+
+    App\Form\Type\Customer\CustomerGuestType:
+        arguments:
+            - '%app.model.customer.class%'
+            - '@app.repository.customer'
+            - '@app.factory.customer'
+        tags: ['form.type']
+
+    App\Form\Type\Customer\CustomerRegistrationType:
+        arguments:
+            - '%app.model.customer.class%'
+        tags: ['form.type']
+
+    App\Form\Type\Customer\CustomerSimpleRegistrationType:
+        arguments:
+            - '%app.model.customer.class%'
+            - '@app.repository.customer'
+        tags: ['form.type']
+
+    App\Form\Type\User\AdminUserType:
+        arguments:
+            - '%sylius.model.admin_user.class%'
+        tags: ['form.type']
+
+    App\Form\Type\User\ShopUserRegistrationType:
+        arguments:
+            - '%sylius.model.shop_user.class%'
+        tags: ['form.type']
+
+    App\Form\Type\User\ShopUserType:
+        arguments:
+            - '%sylius.model.shop_user.class%'
+        tags: ['form.type']
+
+    App\EventListener\CategoryStatisticsListener:
+        arguments:
+            - '@app.repository.category'
+
+    App\Form\Type\Shop\CategoryImageType:
+        arguments:
+            - '%app.model.category_image.class%'
+        tags: ['form.type']
+
+    App\Form\Type\Shop\ProductImageType:
+        arguments:
+            - '%app.model.product_image.class%'
+        tags: ['form.type']
+
+    App\Form\Type\Partner\PartnerImageType:
+        arguments:
+            - '%app.model.partner_image.class%'
+        tags: ['form.type']

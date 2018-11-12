@@ -31,6 +31,13 @@ class PartnerAddressTranslation extends Address
     private $office;
 
     /**
+     * @var null|string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $metroStation;
+
+    /**
      * @return null|string
      */
     public function getCityArea(): ?string
@@ -60,5 +67,21 @@ class PartnerAddressTranslation extends Address
     public function setOffice(?string $office): void
     {
         $this->office = $office;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getMetroStation(): ?string
+    {
+        return $this->metroStation;
+    }
+
+    /**
+     * @param null|string $metroStation
+     */
+    public function setMetroStation(?string $metroStation): void
+    {
+        $this->metroStation = $metroStation;
     }
 }

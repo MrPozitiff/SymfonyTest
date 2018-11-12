@@ -1,0 +1,7 @@
+<div class="heading-slider">
+    {% for image in images %}
+        <a href="" class="heading-slider__item">
+            <img src="{{ vich_uploader_asset(image, 'file')|imagine_filter('index_slider') }}" alt="">
+        </a>
+    {% endfor %}
+</div>

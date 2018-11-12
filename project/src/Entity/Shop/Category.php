@@ -5,15 +5,15 @@ namespace App\Entity\Shop;
 use App\Component\Model\CategoryInterface;
 use App\Component\Model\ImageInterface;
 use App\Entity\Traits\MetaTranslatableMethodsTrait;
-use App\Entity\Traits\NameDescriptionTranslatableMethodsTrait;
+use App\Entity\Traits\DescriptiveTranslatableMethodsTrait;
 use App\Entity\Traits\SluggableTrait;
 use App\Entity\Traits\TimestampableTrait;
+use App\Entity\Traits\UrlTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
-use KunicMarko\SonataAnnotationBundle\Annotation as Admin;
-use Sylius\Component\Resource\Model\ToggleableTrait;
+use App\Entity\Traits\ToggleableTrait;
 
 /**
  * Class Category
@@ -22,11 +22,6 @@ use Sylius\Component\Resource\Model\ToggleableTrait;
  * @ORM\Table(name="app_shop_category")
  * @ORM\HasLifecycleCallbacks()
  *
- * @Admin\Admin(
- *     icon="<i class='fa fa-user'></i>",
- *     group="Shop",
- *     label="Category"
- * )
  * @method CategoryTranslation translate($locale = null, $fallbackToDefault = true)
  */
 class Category implements CategoryInterface
@@ -34,8 +29,9 @@ class Category implements CategoryInterface
     use TimestampableTrait,
         ToggleableTrait,
         SluggableTrait,
-        NameDescriptionTranslatableMethodsTrait,
+        DescriptiveTranslatableMethodsTrait,
         MetaTranslatableMethodsTrait,
+        UrlTrait,
         Translatable;
 
     /**
@@ -44,8 +40,6 @@ class Category implements CategoryInterface
      * @ORM\Id
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     *
-     * @Admin\ListField()
      */
     private $id;
 
@@ -54,12 +48,6 @@ class Category implements CategoryInterface
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Shop\Category", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", nullable=true)
-     *
-     * @Admin\FormField()
-     * @Admin\ListAssociationField(
-     *     type="App\Entity\Shop\Category",
-     *     field="name"
-     * )
      */
     protected $parent;
 
@@ -81,16 +69,6 @@ class Category implements CategoryInterface
      * @var ArrayCollection|CategoryImage[]
      *
      * @ORM\OneToMany(targetEntity="App\Entity\Shop\CategoryImage", mappedBy="owner", cascade={"persist"})
-     *
-     * @Admin\FormField(
-     *     type="Sonata\AdminBundle\Form\Type\CollectionType",
-     *     options={
-     *          "allow_add"=true,
-     *          "allow_delete"=true,
-     *          "by_reference"=false,
-     *          "entry_type"="App\Form\Type\Shop\CategoryImageType"
-     *     }
-     * )
      */
     private $images;
 
@@ -115,17 +93,6 @@ class Category implements CategoryInterface
 
     /**
      * @var Collection|ProductTranslation[]
-     *
-     * @Admin\FormField(
-     *     type="A2lix\TranslationFormBundle\Form\Type\TranslationsType",
-     *     options={
-     *          "fields"={
-     *              "description"={
-     *                  "field_type"="Symfony\Component\Form\Extension\Core\Type\TextareaType"
-     *              }
-     *          }
-     *     }
-     * )
      */
     protected $translations;
 

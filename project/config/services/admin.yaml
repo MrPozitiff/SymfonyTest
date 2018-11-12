@@ -1,0 +1,14 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\Admin\Shop\CategoryAdmin:
+        arguments:
+            - ~
+            - 'App\Entity\Shop\Category'
+            - ~
+            - '@app.repository.category'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Category, group: Shop }

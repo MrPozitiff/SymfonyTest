@@ -1,460 +1,59 @@
 {% extends 'Shop/layout.html.twig' %}
 
+{% block title %}{{ 'template.title'|trans({'%current%': root.name}) }}{% endblock %}
+
+{% block metatags %}
+    {% include 'Shop/Blocks/meta_tags.html.twig' with {
+        'keywords': root.metaKeywords,
+        'description': root.metaDescription
+    } %}
+{% endblock %}
+
 {% block content %}
     <div class="page home-page">
         <svg class="decor-item decor-item-1">
-            <use xlink:href="/images/sprite.svg#decor-1"></use>
+            <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#decor-1"></use>
         </svg>
         <svg class="decor-item decor-item-2">
-            <use xlink:href="/images/sprite.svg#decor-2"></use>
+            <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#decor-2"></use>
         </svg>
         <svg class="decor-item decor-item-3">
-            <use xlink:href="/images/sprite.svg#decor-3"></use>
+            <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#decor-3"></use>
         </svg>
         <svg class="decor-item decor-item-4">
-            <use xlink:href="/images/sprite.svg#decor-2"></use>
+            <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#decor-2"></use>
         </svg>
         <svg class="decor-item decor-item-5">
-            <use xlink:href="/images/sprite.svg#decor-3"></use>
+            <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#decor-3"></use>
         </svg>
         <svg class="decor-item decor-item-6">
-            <use xlink:href="/images/sprite.svg#decor-1"></use>
+            <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#decor-1"></use>
         </svg>
         <div class="page-inner ">
-
-            <div class="heading-slider">
-                <a href="" class="heading-slider__item">
-                    <img src="data/banner-1.jpg" width="842" height="349" alt="">
-                </a>
-                <a href="" class="heading-slider__item">
-                    <img src="data/banner-1.jpg" width="842" height="349" alt="">
-                </a>
-                <a href="" class="heading-slider__item">
-                    <img src="data/banner-1.jpg" width="842" height="349" alt="">
-                </a>
-            </div>
-            <div class="products-block">
-
-                <div class="products-list">
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-1.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-2.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-3.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-2.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-4.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-5.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-6.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-7.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-8.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="btn-line">
-                    <a href="" class="btn">
-                        See more
-                    </a>
-                </div>
-            </div>
-            <div class="products-block">
-                <div class="page-title">
-                    <span>Explore the Newest Certificates</span>
-                    <svg>
-                        <use xlink:href="/images/sprite.svg#wave"></use>
-                    </svg>
-                </div>
-                <div class="products-list">
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-1.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-2.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-3.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-2.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-4.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-5.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-6.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-7.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-8.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="btn-line">
-                    <a href="" class="btn">
-                        See more
-                    </a>
-                </div>
-            </div>
-            <div class="products-block">
-                <div class="page-title">
-                    <span>The Most Popular Certificates</span>
-                    <svg>
-                        <use xlink:href="/images/sprite.svg#wave"></use>
-                    </svg>
-                </div>
-                <div class="products-list">
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-1.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-2.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-3.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-2.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-4.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-5.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-6.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-7.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="product">
-                        <div class="product__thumb">
-                            <img src="data/product-8.jpg" width="265" height="175" alt="">
-                        </div>
-                        <div class="product__row">
-                            <div class="product__title">
-                                Beauty Day for her
-                            </div>
-                            <div class="product__price">
-                                from <span>$150.00</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="btn-line">
-                    <a href="" class="btn">
-                        See more
-                    </a>
-                </div>
-            </div>
+            {% include 'Shop/Fragment/_slider.html.twig' with { 'images': root.images } %}
+            {% include 'Shop/Blocks/subcategory_block.html.twig' with { 'root': root } %}
+            {% include 'Shop/Blocks/newest_products.html.twig' %}
+            {% include 'Shop/Blocks/most_popular.html.twig' %}
         </div>
         <div class="text-caption">
             <div class="text-caption__inner">
                 <svg class="decor-item decor-item-1">
-                    <use xlink:href="/images/sprite.svg#decor-1"></use>
+                    <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#decor-1"></use>
                 </svg>
                 <svg class="decor-item decor-item-2">
-                    <use xlink:href="/images/sprite.svg#decor-2"></use>
+                    <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#decor-2"></use>
                 </svg>
                 <svg class="decor-item decor-item-3">
-                    <use xlink:href="/images/sprite.svg#decor-3"></use>
+                    <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#decor-3"></use>
                 </svg>
                 <div class="page-title">
                     <span>Welcome to ziGIFTS</span>
                     <svg>
-                        <use xlink:href="/images/sprite.svg#wave"></use>
+                        <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#wave"></use>
                     </svg>
                 </div>
                 <div class="text-caption__content scrollable">
-                    <p>
-                        To impress the banal presents is very simple, but a good gift is quite expensive and not everyone can afford. Asking the culprit to celebrate directly incorrectly, handing the envelope with the money - it means to show its indifference. How to be? Sale of gift certificates is your salvation! It is such a present that will deliver a lot of positive emotions to the recipient, delight and will charge positive.
-                    </p>
-                    <p>
-                        The online impression site offers more than a hundred different certificates. To simplify the search for the perfect presentation, we made our site as simple and intuitive as possible.
-                    </p>
-                    <p>
-                        Looking for unforgettable emotions for a beautiful lady? Install the filter "Woman" and you will be available a huge list of certificates. Want to please a teenager? Do the same manipulations.
-                    </p>
-                    <p>
-                        We filled our catalog with vouchers for different occasions. They can be presented for birthday, for New Year, for a wedding and for any other event.
-                    </p>
+                    {{ root.description|raw }}
                 </div>
             </div>
         </div>

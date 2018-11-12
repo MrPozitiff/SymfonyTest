@@ -1,0 +1,42 @@
+app_shop_category_level_index:
+    path: /{urlPath}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.category:indexAction
+        _sylius:
+            template: "Shop/Category/index.html.twig"
+            repository:
+                method: findChildrenByUrl
+                arguments:
+                    - $urlPath
+            paginate: 3
+    requirements:
+        urlPath: '^(?!(admin?|client|partner)\/?)[^\/]+$'
+
+app_shop_category_products_index:
+    path: /{urlPath}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.product:indexAction
+        _sylius:
+            template: "Shop/Product/index.html.twig"
+            repository:
+                method: findByCategoryUrl
+                arguments:
+                    - $urlPath
+            paginate: 3
+    requirements:
+        urlPath: '^(?!(admin?|client|partner)\/?)[^\/]+\/[^\/]+$'
+
+app_shop_product_view_index:
+    path: /{urlPath}
+    methods: [GET]
+    defaults:
+        _controller: app.controller.product:showAction
+        _sylius:
+            template: "Shop/Product/show.html.twig"
+            criteria:
+                url: $urlPath
+                enabled: true
+    requirements:
+        urlPath: '^(?!(admin?|client|partner)\/?)[^\/]+\/[^\/]+\/[^\/]+$'

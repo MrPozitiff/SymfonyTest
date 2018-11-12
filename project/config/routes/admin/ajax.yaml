@@ -1,0 +1,6 @@
+app_admin_ajax_generate_category_slug:
+    path: category/generate-slug/
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.taxon_slug:generateAction
+        _format: json

@@ -1,0 +1,15 @@
+<a href="{{ url }}" class="product">
+    <div class="product__thumb">
+        {% if image %}
+            {% include 'Shop/Fragment/_img_trumbnail.html.twig' with {'image': image, 'filter': filter|default('index_trumbnail')} %}
+        {% else %}
+            <img src="{{ asset('assets/shop/data/item-1.jpg') }}">
+        {% endif %}
+    </div>
+    <div class="product__row">
+        <div class="product__title">
+            {{ name }}
+        </div>
+        <div class="product__price">{{ minPrice|raw }}</div>
+    </div>
+</a>

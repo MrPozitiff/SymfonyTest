@@ -2,7 +2,7 @@
 
 namespace App\Form\Type\Customer;
 
-use App\Form\Type\EventSubscriber\CustomerRegistrationFormSubscriber;
+use App\Form\EventSubscriber\CustomerRegistrationFormSubscriber;
 use App\Form\Type\User\ShopUserRegistrationType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -23,7 +23,7 @@ final class CustomerSimpleRegistrationType extends AbstractResourceType
      * @param RepositoryInterface $customerRepository
      * @param null|array $validationGroups
      */
-    public function __construct(string $dataClass, RepositoryInterface $customerRepository, ?array $validationGroups = null)
+    public function __construct(string $dataClass, RepositoryInterface $customerRepository, ?array $validationGroups = [])
     {
         parent::__construct($dataClass, $validationGroups);
 

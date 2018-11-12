@@ -3,6 +3,7 @@
 namespace App\Component\Model;
 
 use App\Entity\Shop\CategoryStatistics;
+use App\Entity\Shop\CategoryTranslation;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\SlugAwareInterface;
@@ -11,14 +12,15 @@ use Sylius\Component\Resource\Model\ToggleableInterface;
 
 /**
  * Interface CategoryInterface
+ * @method CategoryTranslation translate($locale = null, $fallbackToDefault = true)
  */
 interface CategoryInterface extends
-    ResourceInterface,
-    SlugAwareInterface,
+    SlugGeneratedResourceInterface,
     ToggleableInterface,
     TimestampableInterface,
     MetaInterface,
-    ImagesAwareInterface
+    ImagesAwareInterface,
+    UrlInterface
 {
     /**
      * @return self|null

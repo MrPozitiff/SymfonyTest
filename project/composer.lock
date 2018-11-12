@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4142367075ef7a68763ad7183bd589b2",
+    "content-hash": "ac0ed50b1df5bde607accb87ca1d8baf",
     "packages": [
         {
             "name": "a2lix/auto-form-bundle",
@@ -775,16 +775,16 @@
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
-            "version": "1.3.3",
+            "version": "1.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineCacheBundle.git",
-                "reference": "4c8e363f96427924e7e519c5b5119b4f54512697"
+                "reference": "5514c90d9fb595e1095e6d66ebb98ce9ef049927"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineCacheBundle/zipball/4c8e363f96427924e7e519c5b5119b4f54512697",
-                "reference": "4c8e363f96427924e7e519c5b5119b4f54512697",
+                "url": "https://api.github.com/repos/doctrine/DoctrineCacheBundle/zipball/5514c90d9fb595e1095e6d66ebb98ce9ef049927",
+                "reference": "5514c90d9fb595e1095e6d66ebb98ce9ef049927",
                 "shasum": ""
             },
             "require": {
@@ -797,7 +797,7 @@
                 "instaclick/coding-standard": "~1.1",
                 "instaclick/object-calisthenics-sniffs": "dev-master",
                 "instaclick/symfony2-coding-standard": "dev-remaster",
-                "phpunit/phpunit": "~4|~5",
+                "phpunit/phpunit": "~4.8.36|~5.6|~6.5|~7.0",
                 "predis/predis": "~0.8",
                 "satooshi/php-coveralls": "^1.0",
                 "squizlabs/php_codesniffer": "~1.5",
@@ -821,7 +821,10 @@
             "autoload": {
                 "psr-4": {
                     "Doctrine\\Bundle\\DoctrineCacheBundle\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -854,12 +857,12 @@
                 }
             ],
             "description": "Symfony Bundle for Doctrine Cache",
-            "homepage": "http://www.doctrine-project.org",
+            "homepage": "https://www.doctrine-project.org",
             "keywords": [
                 "cache",
                 "caching"
             ],
-            "time": "2018-03-27T09:22:12+00:00"
+            "time": "2018-11-09T06:25:35+00:00"
         },
         {
             "name": "doctrine/doctrine-migrations-bundle",
@@ -1590,6 +1593,86 @@
                 "rest"
             ],
             "time": "2016-10-17T18:31:11+00:00"
+        },
+        {
+            "name": "friendsofsymfony/ckeditor-bundle",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSCKEditorBundle.git",
+                "reference": "7d428b16154a7136e1dd4c11062573afa1bfb3df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSCKEditorBundle/zipball/7d428b16154a7136e1dd4c11062573afa1bfb3df",
+                "reference": "7d428b16154a7136e1dd4c11062573afa1bfb3df",
+                "shasum": ""
+            },
+            "require": {
+                "ext-zip": "*",
+                "php": "^5.6 || ^7.0",
+                "symfony/asset": "^2.7 || ^3.0 || ^4.0",
+                "symfony/config": "^2.7 || ^3.0 || ^4.0",
+                "symfony/dependency-injection": "^2.7 || ^3.0 || ^4.0",
+                "symfony/expression-language": "^2.7 || ^3.0 || ^4.0",
+                "symfony/form": "^2.7 || ^3.0 || ^4.0",
+                "symfony/framework-bundle": "^2.7 || ^3.0 || ^4.0",
+                "symfony/http-foundation": "^2.7 || ^3.0 || ^4.0",
+                "symfony/http-kernel": "^2.7 || ^3.0 || ^4.0",
+                "symfony/options-resolver": "^2.7 || ^3.0 || ^4.0",
+                "symfony/property-access": "^2.7 || ^3.0 || ^4.0",
+                "symfony/routing": "^2.7 || ^3.0 || ^4.0"
+            },
+            "conflict": {
+                "sebastian/environment": "<1.3.4",
+                "sebastian/exporter": "<2.0.0"
+            },
+            "require-dev": {
+                "composer/composer": "^1.0",
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "matthiasnoback/symfony-dependency-injection-test": "^1.0 || ^2.0",
+                "phpunit/phpunit": "^5.0 || ^6.0",
+                "sensio/distribution-bundle": "^3.0.12 || ^4.0 || ^5.0",
+                "symfony/console": "^2.7 || ^3.0 || ^4.0",
+                "symfony/phpunit-bridge": "^4.0",
+                "symfony/templating": "^2.7 || ^3.0 || ^4.0",
+                "symfony/twig-bridge": "^2.7 || ^3.0 || ^4.0",
+                "symfony/yaml": "^2.7 || ^3.0 || ^4.0",
+                "twig/twig": "^1.34 || ^2.0"
+            },
+            "suggest": {
+                "egeloen/form-extra-bundle": "Allows to load CKEditor asynchronously"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FOS\\CKEditorBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eric GELOEN",
+                    "email": "geloen.eric@gmail.com"
+                },
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/FriendsOfSymfony/FOSCKEditorBundle/graphs/contributors"
+                }
+            ],
+            "description": "Provides a CKEditor integration for your Symfony project.",
+            "keywords": [
+                "CKEditor"
+            ],
+            "time": "2018-10-03T20:51:58+00:00"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -2527,16 +2610,16 @@
         },
         {
             "name": "knplabs/doctrine-behaviors",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/DoctrineBehaviors.git",
-                "reference": "d27e25ff9bab8f6c0b88a2115e7fdd2d74b08fbb"
+                "reference": "9cc036ee32483c306fb32b4efbf33014ddfb654f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/DoctrineBehaviors/zipball/d27e25ff9bab8f6c0b88a2115e7fdd2d74b08fbb",
-                "reference": "d27e25ff9bab8f6c0b88a2115e7fdd2d74b08fbb",
+                "url": "https://api.github.com/repos/KnpLabs/DoctrineBehaviors/zipball/9cc036ee32483c306fb32b4efbf33014ddfb654f",
+                "reference": "9cc036ee32483c306fb32b4efbf33014ddfb654f",
                 "shasum": ""
             },
             "require": {
@@ -2589,7 +2672,7 @@
                 "translatable",
                 "tree"
             ],
-            "time": "2017-09-27T18:53:13+00:00"
+            "time": "2018-11-13T10:52:03+00:00"
         },
         {
             "name": "knplabs/gaufrette",
@@ -2866,16 +2949,16 @@
         },
         {
             "name": "kunicmarko/sonata-annotation-bundle",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kunicmarko20/SonataAnnotationBundle.git",
-                "reference": "b6b032558b57c791a764ece5d82ba1b2f7f8a42d"
+                "reference": "6694d4957358c1696637b5b19b650ca438c29edd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kunicmarko20/SonataAnnotationBundle/zipball/b6b032558b57c791a764ece5d82ba1b2f7f8a42d",
-                "reference": "b6b032558b57c791a764ece5d82ba1b2f7f8a42d",
+                "url": "https://api.github.com/repos/kunicmarko20/SonataAnnotationBundle/zipball/6694d4957358c1696637b5b19b650ca438c29edd",
+                "reference": "6694d4957358c1696637b5b19b650ca438c29edd",
                 "shasum": ""
             },
             "require": {
@@ -2891,7 +2974,17 @@
                 "sonata-project/admin-bundle": "<3.35"
             },
             "require-dev": {
+                "behat/behat": "^3.5",
+                "behat/mink": "1.7.x-dev",
+                "behat/mink-browserkit-driver": "^1.3",
+                "behat/mink-extension": "^2.3",
+                "behat/mink-goutte-driver": "^1.2",
+                "behat/mink-selenium2-driver": "^1.3",
+                "behat/symfony2-extension": "^2.1",
+                "doctrine/doctrine-fixtures-bundle": "^3.0",
                 "matthiasnoback/symfony-dependency-injection-test": "^3.0",
+                "sonata-project/doctrine-orm-admin-bundle": "^3.6",
+                "symfony/framework-bundle": "^3.4 || ^4.0",
                 "symfony/phpunit-bridge": "^4.0"
             },
             "type": "symfony-bundle",
@@ -2924,7 +3017,7 @@
                 "sonata-admin",
                 "symfony"
             ],
-            "time": "2018-04-24T19:33:12+00:00"
+            "time": "2018-11-11T21:56:32+00:00"
         },
         {
             "name": "liip/imagine-bundle",
@@ -3589,16 +3682,16 @@
         },
         {
             "name": "php-http/httplug-bundle",
-            "version": "1.12.0",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/HttplugBundle.git",
-                "reference": "210b384ded3d0f32dfd8fa80075abdb2c00ee01f"
+                "reference": "e05501862a604811108e47af9b4931256988a037"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/HttplugBundle/zipball/210b384ded3d0f32dfd8fa80075abdb2c00ee01f",
-                "reference": "210b384ded3d0f32dfd8fa80075abdb2c00ee01f",
+                "url": "https://api.github.com/repos/php-http/HttplugBundle/zipball/e05501862a604811108e47af9b4931256988a037",
+                "reference": "e05501862a604811108e47af9b4931256988a037",
                 "shasum": ""
             },
             "require": {
@@ -3685,7 +3778,7 @@
                 "message",
                 "php-http"
             ],
-            "time": "2018-10-26T07:15:01+00:00"
+            "time": "2018-11-13T09:47:58+00:00"
         },
         {
             "name": "php-http/logger-plugin",
@@ -4579,16 +4672,16 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "3.40.2",
+            "version": "3.40.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "0994f416bf85de1f83f9d657f9e578dd1eb0ca81"
+                "reference": "e82a5e4513ab9c4bfdf325ec188a38ab37aadcdd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/0994f416bf85de1f83f9d657f9e578dd1eb0ca81",
-                "reference": "0994f416bf85de1f83f9d657f9e578dd1eb0ca81",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/e82a5e4513ab9c4bfdf325ec188a38ab37aadcdd",
+                "reference": "e82a5e4513ab9c4bfdf325ec188a38ab37aadcdd",
                 "shasum": ""
             },
             "require": {
@@ -4680,7 +4773,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2018-10-17T08:36:10+00:00"
+            "time": "2018-11-10T12:39:28+00:00"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -5250,152 +5343,6 @@
                 "mailer"
             ],
             "time": "2018-09-11T07:12:52+00:00"
-        },
-        {
-            "name": "sylius/customer",
-            "version": "v1.3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Sylius/Customer.git",
-                "reference": "aca33be4e7f90678ea9d5dbc47848e42632141b9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Sylius/Customer/zipball/aca33be4e7f90678ea9d5dbc47848e42632141b9",
-                "reference": "aca33be4e7f90678ea9d5dbc47848e42632141b9",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/collections": "^1.3",
-                "php": "^7.2",
-                "sylius/resource": "^1.0"
-            },
-            "require-dev": {
-                "phpspec/phpspec": "^4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sylius\\Component\\Customer\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Community contributions",
-                    "homepage": "http://github.com/Sylius/Sylius/contributors"
-                },
-                {
-                    "name": "Paweł Jędrzejewski",
-                    "homepage": "http://pjedrzejewski.com"
-                },
-                {
-                    "name": "Łukasz Chruściel",
-                    "email": "lukasz.chrusciel@lakion.com"
-                },
-                {
-                    "name": "Michał Marcinkowski",
-                    "email": "michal.marcinkowski@lakion.com"
-                },
-                {
-                    "name": "Sylius project",
-                    "homepage": "http://sylius.com"
-                }
-            ],
-            "description": "Customer handling for PHP applications.",
-            "homepage": "http://sylius.com",
-            "keywords": [
-                "customer",
-                "groups"
-            ],
-            "time": "2018-10-03T08:07:33+00:00"
-        },
-        {
-            "name": "sylius/customer-bundle",
-            "version": "v1.3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Sylius/SyliusCustomerBundle.git",
-                "reference": "a687a7155cc242fe03faf5ba3d36512737911846"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Sylius/SyliusCustomerBundle/zipball/a687a7155cc242fe03faf5ba3d36512737911846",
-                "reference": "a687a7155cc242fe03faf5ba3d36512737911846",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/orm": "^2.5",
-                "php": "^7.2",
-                "sylius/customer": "^1.2",
-                "sylius/resource-bundle": "^1.2",
-                "symfony/framework-bundle": "^3.4|^4.1.1",
-                "webmozart/assert": "^1.0"
-            },
-            "require-dev": {
-                "phpspec/phpspec": "^4.0",
-                "phpunit/phpunit": "^6.5",
-                "polishsymfonycommunity/symfony-mocker-container": "^1.0",
-                "symfony/browser-kit": "^3.4|^4.1.1",
-                "symfony/dependency-injection": "^3.4|^4.1.1",
-                "symfony/form": "^3.4|^4.1.1"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sylius\\Bundle\\CustomerBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Community contributions",
-                    "homepage": "http://github.com/Sylius/Sylius/contributors"
-                },
-                {
-                    "name": "Paweł Jędrzejewski",
-                    "homepage": "http://pjedrzejewski.com"
-                },
-                {
-                    "name": "Łukasz Chruściel",
-                    "email": "lukasz.chrusciel@lakion.com"
-                },
-                {
-                    "name": "Michał Marcinkowski",
-                    "email": "michal.marcinkowski@lakion.com"
-                },
-                {
-                    "name": "Bartosz Siejka",
-                    "homepage": "http://bsiejka.com"
-                },
-                {
-                    "name": "Sylius project",
-                    "homepage": "http://sylius.com"
-                }
-            ],
-            "description": "Customers management for Symfony projects.",
-            "homepage": "http://sylius.com",
-            "keywords": [
-                "customer",
-                "groups"
-            ],
-            "time": "2018-10-03T09:13:23+00:00"
         },
         {
             "name": "sylius/mailer",
@@ -6586,16 +6533,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.1.1",
+            "version": "v1.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "9fb60f232af0764d58002e7872acb43a74506d25"
+                "reference": "955774ecf07b10230bb5b44e150ba078b45f68fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/9fb60f232af0764d58002e7872acb43a74506d25",
-                "reference": "9fb60f232af0764d58002e7872acb43a74506d25",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/955774ecf07b10230bb5b44e150ba078b45f68fa",
+                "reference": "955774ecf07b10230bb5b44e150ba078b45f68fa",
                 "shasum": ""
             },
             "require": {
@@ -6629,7 +6576,7 @@
                 }
             ],
             "description": "Composer plugin for Symfony",
-            "time": "2018-09-03T08:17:12+00:00"
+            "time": "2018-11-15T06:11:38+00:00"
         },
         {
             "name": "symfony/form",
@@ -8651,16 +8598,16 @@
         },
         {
             "name": "twig/extensions",
-            "version": "v1.5.2",
+            "version": "v1.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig-extensions.git",
-                "reference": "2c1a86526d0044065220d1b51ac08348bea5ca82"
+                "reference": "e187386bea539a2cc2726689d6b4d468672a8ab4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/2c1a86526d0044065220d1b51ac08348bea5ca82",
-                "reference": "2c1a86526d0044065220d1b51ac08348bea5ca82",
+                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/e187386bea539a2cc2726689d6b4d468672a8ab4",
+                "reference": "e187386bea539a2cc2726689d6b4d468672a8ab4",
                 "shasum": ""
             },
             "require": {
@@ -8702,7 +8649,7 @@
                 "i18n",
                 "text"
             ],
-            "time": "2018-05-22T13:26:07+00:00"
+            "time": "2018-11-16T03:34:09+00:00"
         },
         {
             "name": "twig/twig",

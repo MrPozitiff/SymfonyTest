@@ -1,24 +1,15 @@
 imports:
     - { resource: 'parameters.yaml' }
+    - { resource: 'services/defaults.yaml' }
+    - { resource: 'services/event_listener.yaml' }
+    - { resource: 'services/form.yaml' }
+    - { resource: 'services/admin.yaml' }
 
 services:
     _defaults:
         autowire: true
         autoconfigure: true
         public: false
-
-    App\:
-        resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
-
-    App\Controller\:
-        resource: '../src/Controller'
-        tags: ['controller.service_arguments']
-
-    App\Form\EventSubscriber\:
-        resource: '../src/Form/EventSubscriber'
-        autowire: false
-        autoconfigure: false
 
     app.admin_user_provider.email_based:
         class: Sylius\Bundle\UserBundle\Provider\EmailProvider
@@ -46,43 +37,10 @@ services:
             - "@sylius.canonicalizer"
             - "@app.repository.customer"
 
-    App\Form\Type\Customer\CustomerGuestType:
+    App\Twig\ShopExtension:
         arguments:
-            - '%app.model.customer.class%'
-            - '@app.repository.customer'
-            - '@app.factory.customer'
+            - '%app_locales%'
 
-    App\Form\Type\Customer\CustomerRegistrationType:
-        arguments:
-            - '%app.model.customer.class%'
-
-    App\Form\Type\Customer\CustomerSimpleRegistrationType:
-        arguments:
-            - '%app.model.customer.class%'
-            - '@app.repository.customer'
-
-    App\Form\Type\User\AdminUserType:
-        arguments:
-            - '%sylius.model.admin_user.class%'
-
-    App\Form\Type\User\ShopUserRegistrationType:
-        arguments:
-            - '%sylius.model.shop_user.class%'
-
-    App\Form\Type\User\ShopUserType:
-        arguments:
-            - '%sylius.model.shop_user.class%'
-
-    App\EventListener\CategoryStatisticsListener:
+    App\Twig\CategoryExtension:
         arguments:
             - '@app.repository.category'
-
-    App\Form\Type\Shop\CategoryImageType:
-        arguments:
-            - '%app.model.category_image.class%'
-        tags: ['form.type']
-
-    App\Form\Type\Shop\ProductImageType:
-        arguments:
-            - '%app.model.product_image.class%'
-        tags: ['form.type']

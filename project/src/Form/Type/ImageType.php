@@ -5,6 +5,7 @@ namespace App\Form\Type;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 abstract class ImageType extends AbstractResourceType
@@ -21,7 +22,11 @@ abstract class ImageType extends AbstractResourceType
             ])
             ->add('file', VichImageType::class, [
                 'label' => 'admin.form.image.file',
+                'allow_delete' => false,
+                'download_uri' => false,
+                'imagine_pattern' => 'admin_thumbnail',
                 'required' => false,
+                'attr' => ['class' => 'col-md-6'],
             ])
         ;
     }

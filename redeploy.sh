@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export $(cat .env.dev | xargs)
+export $(cat .env.dist | xargs)
 
 docker-compose -f docker-compose.yml stop
 docker-compose -f docker-compose.yml rm -f

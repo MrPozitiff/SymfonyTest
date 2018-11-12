@@ -13,4 +13,4 @@
 /project/phpcs.xml
 /project/.php_cs
 /project/.php_cs.cache
-/project/public/media/cache/
+/project/public/cache/images/*

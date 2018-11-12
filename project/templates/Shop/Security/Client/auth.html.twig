@@ -1,0 +1,40 @@
+{% extends 'Shop/layout.html.twig' %}
+
+{% block title %}{{ 'template.title'|trans({'%current%': 'template.security.user.title'|trans}) }}{% endblock %}
+
+{% block content %}
+    <div class="page authorization-page">
+        <div class="page-inner">
+            <ul class="breadcrumbs">
+                <li>
+                    <a href="{{ path('app_shop_homepage') }}">{{ 'template.home'|trans }}</a>
+                </li>
+                <li>
+                    <span>{{ 'template.security.user.auth'|trans }}</span>
+                </li>
+            </ul>
+            <div class="page-title">
+                <span>{{ 'template.security.user.auth'|trans }}</span>
+                <svg>
+                    <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#wave"></use>
+                </svg>
+            </div>
+            <div class="authorization">
+                <ul class="authorization-tabs tabs-list">
+                    <li>
+                        <a href="#singup-tab">{{ 'template.security.user.new_user'|trans }}</a>
+                    </li>
+                    <li>
+                        <a href="#login-tab">{{ 'template.security.user.have_account'|trans }}</a>
+                    </li>
+                </ul>
+                {{ render(url('app_shop_user_register')) }}
+                {{ render(url('app_shop_user_login')) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% include 'Shop/Fragment/_javascripts.html.twig' with {'path': 'assets/shop/js/auth.js'} %}
+{% endblock %}

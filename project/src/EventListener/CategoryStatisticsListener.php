@@ -40,7 +40,6 @@ class CategoryStatisticsListener implements EventSubscriberInterface
     public function calculateStatistics(PersistenceEvent $event): void
     {
         $subject = $event->getObject();
-        dump($subject);
         if ($subject instanceof CategoryInterface || $subject instanceof ProductInterface) {
             $root = $this->categoryRepository->findRootNodes();
             foreach ($root as $category) {
@@ -65,7 +64,6 @@ class CategoryStatisticsListener implements EventSubscriberInterface
             ->setTotalProductsCount($productStats['count'])
             ->setMaxProductPrice(empty($productStats['count']) ? null : $productStats['max'])
             ->setMinProductPrice(empty($productStats['count']) ? null : $productStats['min']);
-        dump($category->getStatistics());
         $this->categoryRepository->save($category);
     }
 

@@ -2,14 +2,19 @@
 /** */
 namespace App\Entity\Partner;
 
+use App\Component\Model\ImageInterface;
+use App\Component\Model\ImagesAwareInterface;
+use App\Entity\Traits\DescriptiveTranslatableMethodsTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
+use KunicMarko\SonataAnnotationBundle\Annotation\Admin;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
 use Sylius\Component\Resource\Model\ToggleableInterface;
 use App\Entity\Traits\TimestampableTrait;
-use Sylius\Component\Resource\Model\ToggleableTrait;
+use App\Entity\Traits\ToggleableTrait;
 
 /**
  * Class Partner
@@ -17,11 +22,24 @@ use Sylius\Component\Resource\Model\ToggleableTrait;
  * @ORM\Entity()
  * @ORM\Table(name="app_partner_partner")
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @Admin(
+ *     icon="<i class='fa fa-user'></i>",
+ *     group="Partner",
+ *     label="Partner",
+ *     admin="App\Admin\Partner\PartnerAdmin"
+ * )
  */
-class Partner implements ResourceInterface, ToggleableInterface, TimestampableInterface
+class Partner implements
+    ResourceInterface,
+    ToggleableInterface,
+    TimestampableInterface,
+    ImagesAwareInterface
 {
     use ToggleableTrait,
-        TimestampableTrait;
+        TimestampableTrait,
+        Translatable,
+        DescriptiveTranslatableMethodsTrait;
 
     /**
      * @var int|null
@@ -39,10 +57,23 @@ class Partner implements ResourceInterface, ToggleableInterface, TimestampableIn
      */
     private $images;
 
+    /**
+     * @var Collection|PartnerAddress[]
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\Partner\PartnerAddress", cascade={"persist"})
+     * @ORM\JoinTable(name="app_partner_partner_address_partner",
+     *     joinColumns={@ORM\JoinColumn(name="partner_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="address_id", referencedColumnName="id")}
+     * )
+     */
+    private $addresses;
+
     /**  */
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->addImage(new PartnerImage());
+        $this->addresses = new ArrayCollection();
     }
 
     /**
@@ -51,5 +82,85 @@ class Partner implements ResourceInterface, ToggleableInterface, TimestampableIn
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return ImageInterface[]|Collection
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasImages(): bool
+    {
+        return !$this->images->isEmpty();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasImage(ImageInterface $image): bool
+    {
+        return $this->images->contains($image);
+    }
+
+    /**
+     * @param ImageInterface $image
+     */
+    public function addImage(ImageInterface $image): void
+    {
+        $image->setOwner($this);
+        $this->images->add($image);
+    }
+
+    /**
+     * @param ImageInterface $image
+     */
+    public function removeImage(ImageInterface $image): void
+    {
+        if ($this->hasImage($image)) {
+            $image->setOwner(null);
+            $this->images->removeElement($image);
+        }
+    }
+
+    /**
+     * @return PartnerAddress[]|Collection
+     */
+    public function getAddresses()
+    {
+        return $this->addresses;
+    }
+
+    /**
+     * @param PartnerAddress $address
+     */
+    public function addAddress(PartnerAddress $address): void
+    {
+        if (!$this->addresses->contains($address)) {
+            $this->addresses->add($address);
+        }
+    }
+
+    /**
+     * @param PartnerAddress $address
+     */
+    public function removeAddress(PartnerAddress $address): void
+    {
+        if ($this->addresses->contains($address)) {
+            $this->addresses->removeElement($address);
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (string) $this->getName();
     }
 }

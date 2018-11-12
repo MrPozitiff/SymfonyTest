@@ -1,0 +1,14 @@
+<div class="category">
+    <div class="products-list">
+    {% for child in resources %}
+        {% include 'Shop/Product/_grid_item.html.twig' with {
+            'url': child.url,
+            'image': child.images[0]|default(false),
+            'name': child.name,
+            'minPrice': 'template.grid.price_from'|trans({'%price%':child.statistics.minProductPrice}),
+            'filter': 'category_trumbnail'
+        } %}
+    {% endfor %}
+    </div>
+    {{ shop_get_paginator(resources, configuration.request.attributes.get('urlPath')) }}
+</div>
