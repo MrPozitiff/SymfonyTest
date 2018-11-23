@@ -7,7 +7,7 @@ use App\Component\Model\CustomerInterface;
 use Sylius\Component\User\Canonicalizer\CanonicalizerInterface;
 use Sylius\Component\User\Model\UserInterface;
 
-final class CanonicalizerListener
+class CanonicalizerListener
 {
     /**
      * @var CanonicalizerInterface

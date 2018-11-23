@@ -4,7 +4,7 @@ namespace App\Form\Type\Customer;
 
 use App\Form\EventSubscriber\CustomerRegistrationFormSubscriber;
 use App\Form\Type\User\ShopUserRegistrationType;
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use App\Form\Type\AbstractResourceType;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,6 +25,9 @@ final class CustomerSimpleRegistrationType extends AbstractResourceType
      */
     public function __construct(string $dataClass, RepositoryInterface $customerRepository, ?array $validationGroups = [])
     {
+        if (empty($validationGroups)) {
+            $validationGroups = ['Default'];
+        }
         parent::__construct($dataClass, $validationGroups);
 
         $this->customerRepository = $customerRepository;
@@ -37,7 +40,7 @@ final class CustomerSimpleRegistrationType extends AbstractResourceType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'sylius.form.customer.email',
+                'label' => 'customer.email',
             ])
             ->add('user', ShopUserRegistrationType::class, [
                 'label' => false,
@@ -53,9 +56,10 @@ final class CustomerSimpleRegistrationType extends AbstractResourceType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
+//        parent::configureOptions($resolver);
         $resolver->setDefaults([
             'data_class' => $this->dataClass,
-            'validation_groups' => $this->validationGroups,
+//            'validation_groups' => $this->validationGroups,
         ]);
     }
 
@@ -64,6 +68,6 @@ final class CustomerSimpleRegistrationType extends AbstractResourceType
      */
     public function getBlockPrefix(): string
     {
-        return 'sylius_customer_simple_registration';
+        return 'customer_simple_registration';
     }
 }

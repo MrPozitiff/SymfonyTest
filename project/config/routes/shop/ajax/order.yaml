@@ -1,0 +1,23 @@
+shop_ajax_cart_add_item:
+    path: /add
+    methods: [POST]
+    defaults:
+        _controller: app.controller.order_item:addAction
+        _format: html
+        _sylius:
+            factory:
+                method: createForProduct
+                arguments: [expr:notFoundOnNull(service('app.repository.product').find($productId))]
+            flash: sylius.cart.add_item
+            template: Shop/Cart/_modal_cart.html.twig
+
+shop_ajax_cart_item_remove:
+    path: /{id}/remove
+    methods: [DELETE]
+    defaults:
+        _controller: app.controller.order_item:removeAction
+        _format: html
+        _sylius:
+            flash: sylius.cart.remove_item
+            csrf_protection: false
+            template: Shop/Cart/_modal_cart.html.twig

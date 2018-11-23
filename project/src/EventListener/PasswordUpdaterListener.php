@@ -7,7 +7,7 @@ use App\Component\Model\CustomerInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Webmozart\Assert\Assert;
 
-final class PasswordUpdaterListener extends BasePasswordUpdaterListener
+class PasswordUpdaterListener extends BasePasswordUpdaterListener
 {
     /**
      * @param GenericEvent $event

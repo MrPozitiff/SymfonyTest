@@ -4,7 +4,7 @@ namespace App\Form\Type\Customer;
 
 use App\Form\EventSubscriber\AddUserFormSubscriber;
 use App\Form\Type\User\ShopUserType;
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use App\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;

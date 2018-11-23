@@ -18,7 +18,7 @@
     </div>
     <div class="services-item__inner">
         <div class="services-item__title">
-            <a href="{{ path('app_shop_product_view_index', {'urlPath': item.url}) }}">{{ item.name }}</a>
+            <a href="{{ path('shop_product_' ~ item.id) }}">{{ item.name }}</a>
         </div>
         <div class="services-item__info">
             <div class="services-item__line">
@@ -31,13 +31,13 @@
             </div>
             <div class="services-item__line">
                 <div class="services-item__label">{{ 'template.products_index.description'|trans }}</div>
-                <div class="services-item__caption">{{ item.description }}</div>
+                <div class="services-item__caption">{{ item.description|raw }}</div>
             </div>
         </div>
         <div class="services-price">
             <div class="services-price__label">{{ 'template.products_index.price_title'|trans }}</div>
             {{ 'template.products_index.price'|trans({'%price%': item.price})|raw }}
         </div>
-        <button class="btn btn--blue buy-btn">{{ 'template.products_index.buy_button'|trans }}</button>
+        {% include 'Shop/Product/Parts/_buy_button.html.twig' with { 'id' : item.id } %}
     </div>
 </div>

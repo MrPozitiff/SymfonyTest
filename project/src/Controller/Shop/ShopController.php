@@ -34,7 +34,7 @@ class ShopController extends Controller
     public function authAction(Request $request)
     {
         $options = $request->attributes->get('_app_options');
-        $template = $options['template'] ?? null;
+        $template = $options['template'] ?? 'Shop/Security/Client/auth.html.twig';
         Assert::notNull($template, 'Template is not configured.');
 
         return $this->render($template);
@@ -58,15 +58,15 @@ class ShopController extends Controller
                 'title' => $this->get('translator')->trans(sprintf('template.breadcrumbs.%s', $matches[1])),
                 'url' => $this->generateUrl('app_shop_homepage'),
             ];
-        } elseif (preg_match('/^app_shop_category_\w+_index/', $route)) {
-            $category = $this->get('app.repository.category')->findOneByUrl($request->attributes->get('urlPath'));
-            $this->categoryBreadcrumbs($category, $breadcrumbs);
-        } elseif ('app_shop_product_view_index' === $route) {
-            $product = $this->get('app.repository.product')->findOneByUrl($request->attributes->get('urlPath'));
-            $this->categoryBreadcrumbs($product->getCategory(), $breadcrumbs);
+        } elseif (preg_match('/^shop_category_\d+/', $route)) {
+            $category = $this->get('app.repository.category')->find($request->attributes->get('category'));
+            $this->categoryBreadcrumbs($category, $breadcrumbs, $request->get('_locale'));
+        } elseif (preg_match('/^shop_product_\d+/', $route)) {
+            $product = $this->get('app.repository.product')->find($request->attributes->get('product'));
+            $this->categoryBreadcrumbs($product->getCategory(), $breadcrumbs, $request->get('_locale'));
             $breadcrumbs[] = [
                 'title' => $product->getName(),
-                'url' => $this->generateUrl('app_shop_product_view_index', ['urlPath' => $product->getUrl()]),
+                'url' => $this->generateUrl(sprintf('shop_product_%d', $product->getId())),
             ];
         }
 
@@ -78,21 +78,22 @@ class ShopController extends Controller
     /**
      * @param CategoryInterface $category
      * @param array $breadcrumbs
+     * @param string $locale
      */
-    private function categoryBreadcrumbs(CategoryInterface $category, array &$breadcrumbs): void
+    private function categoryBreadcrumbs(CategoryInterface $category, array &$breadcrumbs, string $locale): void
     {
-        $parent = $category->getParent();
-        $firstLevel = $category->getParent()->getSlug() === 'root';
-        if (!$firstLevel) {
-            $breadcrumbs[] = [
-                'title' => $parent->getName(),
-                'url' => $this->generateUrl('app_shop_category_level_index', ['urlPath' => $parent->getUrl()]),
-            ];
+        $anc = $category->getAncestors();
+        if ($anc->count() > 1) {
+            /** @var CategoryInterface $category */
+            foreach (array_reverse($anc->toArray()) as $category) {
+                if ('root' === $category->getSlug()) {
+                    continue;
+                }
+                $breadcrumbs[] = [
+                    'title' => $category->getName(),
+                    'url' => $this->generateUrl(sprintf('shop_category_%d', $category->getId())),
+                ];
+            }
         }
-        $route = $firstLevel ? 'app_shop_category_level_index' : 'app_shop_category_products_index';
-        $breadcrumbs[] = [
-            'title' => $category->getName(),
-            'url' => $this->generateUrl($route, ['urlPath' => $category->getUrl()]),
-        ];
     }
 }

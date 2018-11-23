@@ -42,24 +42,12 @@ interface ProductInterface extends
     public function setPartnerPrice(float $partnerPrice): void;
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getStorageCount(): ?int;
+    public function getPurchasedCount(): int;
 
-    /**
-     * @param int|null $storageCount
-     */
-    public function setStorageCount(?int $storageCount): void;
-
-    /**
-     * @return bool
-     */
-    public function isStorageLimited(): bool;
-
-    /**
-     * @param bool $storageLimited
-     */
-    public function setStorageLimited(bool $storageLimited): void;
+    /**  */
+    public function purchase(): void;
 
     /**
      * @return null|Partner

@@ -1,72 +1,74 @@
 parameters:
-    app.security.admin_regex: "^/admin"
-    app.security.shop_regex: "^(?!partner).+"
+    app.security.admin_regex: '^/admin'
+    app.security.shop_regex: '^(/\w{2})?(?!(partner|admin))'
+    app.security.partner_regex: '^(/\w{2})?/partner'
 
 security:
     providers:
-#        app_admin_user_provider:
-#            id: app.admin_user_provider.email_based
+        app_admin_user_provider:
+            id: app.admin_user_provider.email_based
         app_shop_user_provider:
             id: app.shop_user_provider.email_based
-#        app_partner_provider:
-#            id: sylius.partner_user_provider.email_based
+        app_partner_provider:
+            id: app.partner_user_provider.email_based
 
     encoders:
         Sylius\Component\User\Model\UserInterface: sha512
 
     firewalls:
-#        admin:
-#            switch_user: true
-#            context: admin
-#            pattern: "%app.security.admin_regex%"
-#            provider: app_admin_user_provider
-#            form_login:
-#                provider: app_admin_user_provider
-#                login_path: app_admin_login
-#                check_path: app_admin_login_check
-#                failure_path: app_admin_login
-#                default_target_path: sonata_admin_dashboard
-#                use_forward: false
-#                use_referer: true
-#                csrf_token_generator: security.csrf.token_manager
-##                csrf_parameter: _csrf_admin_security_token
-##                csrf_token_id: admin_authenticate
-#            remember_me:
-#                secret: "%env(APP_SECRET)%"
-#                path: /admin
-#                name: APP_ADMIN_REMEMBER_ME
-#                lifetime: 31536000
-#                remember_me_parameter: _remember_me
-#            logout:
-#                path: sylius_admin_logout
-#                target: sylius_admin_login
-#            anonymous: true
+        admin:
+            switch_user: true
+            context: admin
+            pattern: "%app.security.admin_regex%"
+            provider: app_admin_user_provider
+            form_login:
+                provider: app_admin_user_provider
+                login_path: app_admin_login
+                check_path: app_admin_login_check
+                failure_path: app_admin_login
+                default_target_path: sonata_admin_dashboard
+                use_forward: false
+                use_referer: true
+                csrf_token_generator: security.csrf.token_manager
+#                csrf_parameter: _csrf_admin_security_token
+#                csrf_token_id: admin_authenticate
+            remember_me:
+                secret: "%env(APP_SECRET)%"
+                path: /admin
+                name: APP_ADMIN_REMEMBER_ME
+                lifetime: 31536000
+                remember_me_parameter: _remember_me
+            logout:
+                path: sylius_admin_logout
+                target: sylius_admin_login
+            anonymous: true
 
-#        partner_zone:
-#            context: partner
-#            pattern: "^/partner"
-#            provider: app_partner_provider
-#            form_login:
-#                provider: app_partner_provider
-#                login_path: app_partner_login
-#                check_path: app_partner_login_check
-#                failure_path: app_partner_login
-#                default_target_path: app_partner_dashboard
-#                use_forward: false
-#                use_referer: true
-#                csrf_token_generator: security.csrf.token_manager
-#                csrf_parameter: _csrf_partner_security_token
-#                csrf_token_id: partner_authenticate
-#            remember_me:
-#                secret: "%env(APP_SECRET)%"
-#                path: /partner
-#                name: APP_PARTNER_REMEMBER_ME
-#                lifetime: 31536000
-#                remember_me_parameter: _remember_me
-#            logout:
-#                path: app_partner_logout
-#                target: app_partner_login
-#            anonymous: true
+        partner:
+            context: partner
+            pattern: "%app.security.partner_regex%"
+            provider: app_partner_provider
+            access_denied_url: app_partner_login
+            form_login:
+                provider: app_partner_provider
+                login_path: app_partner_login
+                check_path: app_partner_login_check
+                failure_path: app_partner_login
+                default_target_path: app_partner_dashboard
+                use_forward: false
+                use_referer: true
+                csrf_token_generator: security.csrf.token_manager
+                csrf_parameter: _csrf_partner_security_token
+                csrf_token_id: partner_authenticate
+            remember_me:
+                secret: "%env(APP_SECRET)%"
+                path: /partner
+                name: APP_PARTNER_REMEMBER_ME
+                lifetime: 31536000
+                remember_me_parameter: _remember_me
+            logout:
+                path: app_partner_logout
+                target: app_partner_login
+            anonymous: true
 
         shop:
             context: shop
@@ -76,18 +78,19 @@ security:
                 resource_owners:
                     wechat: hwi_oauth_wechat
                 login_path: app_shop_user_auth
+                check_path: app_shop_user_login_check
                 use_forward: false
-                failure_path: app_shop_user_auth
+                failure_path: app_shop_user_login
                 oauth_user_provider:
                     service: App\OAuth\UserProvider
             form_login:
-                success_handler: sylius.authentication.success_handler
+                success_handler: App\Routing\AuthenticationSuccessHandler
                 failure_handler: sylius.authentication.failure_handler
                 provider: app_shop_user_provider
                 login_path: app_shop_user_auth
                 check_path: app_shop_user_login_check
                 failure_path: app_shop_user_auth
-                default_target_path: app_shop_homepage # TODO: change for account
+                default_target_path: shop_user_account_dashboard
                 use_forward: false
                 use_referer: true
                 csrf_token_generator: security.csrf.token_manager
@@ -97,11 +100,11 @@ security:
                 secret: "%env(APP_SECRET)%"
                 name: APP_SHOP_REMEMBER_ME
                 lifetime: 31536000
+                path: /client
                 remember_me_parameter: _remember_me
             logout:
                 path: app_shop_user_logout
                 target: app_shop_user_auth
-                invalidate_session: false
             anonymous: true
 
         dev:
@@ -109,14 +112,12 @@ security:
             security: false
 
     access_control:
-#        - { path: "%sylius.security.shop_regex%/_partial", role: IS_AUTHENTICATED_ANONYMOUSLY, ips: [127.0.0.1, ::1] }
-#        - { path: "%sylius.security.shop_regex%/_partial", role: ROLE_NO_ACCESS }
 
 #        - { path: "%sylius.security.admin_regex%/login", role: IS_AUTHENTICATED_ANONYMOUSLY }
 #        - { path: "%sylius.security.shop_regex%/login", role: IS_AUTHENTICATED_ANONYMOUSLY }
 
-#        - { path: "^/partner/login", role: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: "^/partner", role: ROLE_PARTNER }
+        - { path: "%app.security.partner_regex%/login", role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: "%app.security.partner_regex%", role: ROLE_PARTNER }
 
         - { path: "%app.security.shop_regex%/client", role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: "%app.security.shop_regex%/account", role: ROLE_USER }
+        - { path: "%app.security.shop_regex%/client/account", role: ROLE_USER }

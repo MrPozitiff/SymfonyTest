@@ -32,7 +32,6 @@ sylius_user:
                     interface: App\Component\Model\ShopUserInterface
                     controller: Sylius\Bundle\UserBundle\Controller\UserController
                     factory: Sylius\Component\Resource\Factory\Factory
-                templates: 'SyliusUserBundle:User'
                 resetting:
                     token:
                         ttl: P1D
@@ -45,6 +44,14 @@ sylius_user:
                     token:
                         length: 16
                         field_name: emailVerificationToken
+        partner:
+            user:
+                classes:
+                    model: App\Entity\Partner\PartnerUser
+                    controller: Sylius\Bundle\UserBundle\Controller\UserController
+                    factory: Sylius\Component\Resource\Factory\Factory
+                    repository: App\Repository\Partner\PartnerUserRepository
+
         oauth:
             user:
                 classes:

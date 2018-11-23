@@ -78,7 +78,7 @@
 <div class="pop-up" id="track-form">
     <form class="pop-up__inner track-form">
         <div class="contacts-form__title">
-            <img src="images/stars.svg" alt="">
+            <img src="{{ asset('/assets/shop/images/stars.svg') }}" alt="">
             <span>Track Your Order</span>
         </div>
         <div class="pop-up__caption">
@@ -104,7 +104,7 @@
 <div class="pop-up" id="track-error">
     <form class="pop-up__inner track-confirm">
         <div class="contacts-form__title">
-            <img src="images/emoji.svg" alt="">
+            <img src="{{ asset('/assets/shop/images/emoji.svg') }}" alt="">
             <span>We can’t seem to find your order.</span>
             <div class="pop-up__caption">
                 Want to try again?
@@ -132,7 +132,7 @@
 <div class="pop-up" id="track-confirm">
     <form class="pop-up__inner track-confirm">
         <div class="contacts-form__title">
-            <img src="images/check.svg" alt="">
+            <img src="{{ asset('/assets/shop/images/check.svg') }}" alt="">
             <span>Code was sent to this
                     phone number:</span>
             <div class="pop-up__caption" id="track-phone">
@@ -165,7 +165,7 @@
 <div class="pop-up" id="success">
     <form class="pop-up__inner success-pop-up">
         <div class="contacts-form__title">
-            <img src="images/check.svg" width="93" height="93" alt="">
+            <img src="{{ asset('/assets/shop/images/check.svg') }}" width="93" height="93" alt="">
             <span>Thank You!</span>
         </div>
         <div class="pop-up__caption">
@@ -182,7 +182,7 @@
 <div class="pop-up" id="success-2">
     <form class="pop-up__inner success-pop-up">
         <div class="contacts-form__title">
-            <img src="images/check.svg" width="93" height="93" alt="">
+            <img src="{{ asset('/assets/shop/images/check.svg') }}" width="93" height="93" alt="">
             <span>Thank You!</span>
         </div>
         <div class="pop-up__caption">
@@ -202,120 +202,6 @@
             </svg>
         </div>
     </form>
-    <div class="pop-up__overlay"></div>
-</div>
-<div class="pop-up" id="cart-pop-up">
-    <div class="pop-up__inner cart-pop-up">
-        <div class="cart-pop-up__inner scrollable">
-            <div class="contacts-form__title">
-                Shopping Cart
-            </div>
-            <div class="row cart-pop-up__item">
-                <div class="checkout-cart-item__thumb">
-                    <img src="data/checkout-1.jpg" width="100" height="60" alt="">
-                </div>
-                <div class="checkout-cart-item__inner">
-                    <a href="" class="checkout-cart-item__title">
-                        Skiing Vacation
-                    </a>
-                    <div class="row options-row">
-                        <div class="cart-pop-up__price">
-                            $ 229.99
-                        </div>
-                        <div class="package-btn">
-                            <svg>
-                                <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#gift"></use>
-                            </svg>
-                            Add packaging
-                        </div>
-                        <div class="quantity cart-pop-up__item-option">
-                            <div class="services-item__label">
-                                Quantity:
-                            </div>
-                            <div class="quantity__btn dec">
-                                <svg>
-                                    <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#minus"></use>
-                                </svg>
-                            </div>
-                            <input type="number" class="quantity__field" value="1">
-                            <div class="quantity__btn inc">
-                                <svg>
-                                    <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#plus"></use>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="cart-pop-up__item-total cart-pop-up__item-option">
-                            <div class="services-item__label">
-                                Total price:
-                            </div>
-                            $ 229.99
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row cart-pop-up__item">
-                <div class="checkout-cart-item__thumb">
-                    <img src="data/checkout-1.jpg" width="100" height="60" alt="">
-                </div>
-                <div class="checkout-cart-item__inner">
-                    <a href="" class="checkout-cart-item__title">
-                        Skiing Vacation
-                    </a>
-                    <div class="row options-row">
-                        <div class="cart-pop-up__price">
-                            $ 229.99
-                        </div>
-                        <div class="package-btn">
-                            <svg>
-                                <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#gift"></use>
-                            </svg>
-                            Add packaging
-                        </div>
-                        <div class="quantity cart-pop-up__item-option">
-                            <div class="services-item__label">
-                                Quantity:
-                            </div>
-                            <div class="quantity__btn dec">
-                                <svg>
-                                    <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#minus"></use>
-                                </svg>
-                            </div>
-                            <input type="number" class="quantity__field" value="1">
-                            <div class="quantity__btn inc">
-                                <svg>
-                                    <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#plus"></use>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="cart-pop-up__item-total cart-pop-up__item-option">
-                            <div class="services-item__label">
-                                Total price:
-                            </div>
-                            $ 229.99
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="cart-pop-up__total row row--between">
-            <div class="continue-btn btn btn--line">
-                Continue Shopping
-            </div>
-            <div class="row price-row">
-                <div class="cart-pop-up__total-price">
-                    $ 229.99
-                </div>
-                <a href="" class="btn btn--blue checkout-btn">
-                    Checkout
-                </a>
-            </div>
-        </div>
-        <div class="pop-up__close pop-up__close-handler">
-            <svg>
-                <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#cross"></use>
-            </svg>
-        </div>
-    </div>
     <div class="pop-up__overlay"></div>
 </div>
 <div class="pop-up" id="order-status">

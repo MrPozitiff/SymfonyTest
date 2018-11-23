@@ -16,8 +16,9 @@ use KunicMarko\SonataAnnotationBundle\Annotation\Admin;
  *
  * @Admin(
  *     icon="<i class='fa fa-user'></i>",
- *     group="Partner",
- *     label="Partner Address"
+ *     group="Shop",
+ *     label="Product Address",
+ *     admin="App\Admin\Partner\PartnerAddressAdmin"
  * )
  *
  * @method null|string getProvince()

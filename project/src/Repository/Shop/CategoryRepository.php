@@ -68,19 +68,19 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
     }
 
     /**
-     * @param string $url
+     * @param int $id
      *
      * @return null|Pagerfanta
      */
-    public function findChildrenByUrl(string $url): ?Pagerfanta
+    public function findChildrenById(int $id): ?Pagerfanta
     {
-        $qb = $this->createQueryBuilder('o')
+        $qb = $this->getQuery('o')
             ->addSelect('child')
             ->innerJoin('o.parent', 'parent')
             ->leftJoin('o.children', 'child')
-            ->andWhere('parent.url = :url')
+            ->andWhere('parent.id = :id')
             ->addOrderBy('o.position')
-            ->setParameter('url', $url);
+            ->setParameter('id', $id);
 
         return $this->getPaginator($qb);
     }
@@ -109,10 +109,10 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
     {
         return $this->createQueryBuilder('o')
             ->andWhere('o.parent IS NULL')
+            ->join('o.children', 'children')
             ->addOrderBy('o.position')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
     /**
@@ -168,5 +168,17 @@ class CategoryRepository extends EntityRepository implements CategoryRepositoryI
         }
 
         return $queryBuilder;
+    }
+
+    /**
+     * @param string $alias
+     *
+     * @return QueryBuilder
+     */
+    private function getQuery(string $alias = 'o')
+    {
+        return $this->createQueryBuilder($alias)
+            ->where('o.enabled = :enabled')
+            ->setParameter('enabled', true);
     }
 }

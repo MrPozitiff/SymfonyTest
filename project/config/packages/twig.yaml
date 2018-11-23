@@ -4,3 +4,4 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         block_items_count: '%block_items_count%'
+        default_valid_time: '%use_before_default_modifier%'

@@ -9,7 +9,9 @@ use App\Entity\Traits\TimestampableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use KunicMarko\SonataAnnotationBundle\Annotation\Admin;
 use Sylius\Component\User\Model\UserInterface as BaseUserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Webmozart\Assert\Assert;
 
 /**
@@ -18,6 +20,16 @@ use Webmozart\Assert\Assert;
  * @ORM\Entity()
  * @ORM\Table(name="app_client_customer")
  * @ORM\HasLifecycleCallbacks()
+ *
+ * @UniqueEntity(fields={"email"})
+ * @UniqueEntity(fields={"phoneNumber"})
+ *
+ * @Admin(
+ *     label="Customer",
+ *     icon="<i class='fa fa-user'></i>",
+ *     group="Users",
+ *     admin="App\Admin\Client\CustomerAdmin"
+ * )
  */
 class Customer implements CustomerInterface
 {
@@ -70,7 +82,7 @@ class Customer implements CustomerInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, length=14, unique=true)
      */
     private $phoneNumber;
 

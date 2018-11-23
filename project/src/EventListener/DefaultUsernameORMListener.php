@@ -11,7 +11,7 @@ use App\Component\Model\CustomerInterface;
 /**
  * Keeps user's username synchronized with email.
  */
-final class DefaultUsernameORMListener
+class DefaultUsernameORMListener
 {
     /**
      * @param OnFlushEventArgs $onFlushEventArgs

@@ -6,6 +6,7 @@
  */
 namespace App\Twig;
 
+use App\Component\Model\ProductInterface;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\Intl\Intl;
 use Webmozart\Assert\Assert;
@@ -50,6 +51,7 @@ class ShopExtension extends \Twig_Extension
     {
         return [
             new \Twig_Filter('locale_name', [$this, 'getLocaleName']),
+            new \Twig_Filter('shopPrice', [$this, 'formatShopPrice'])
         ];
     }
 
@@ -101,6 +103,22 @@ class ShopExtension extends \Twig_Extension
         Assert::string($name, sprintf('Cannot find name for "%s" locale code', $locale));
 
         return $name;
+    }
+
+    /**
+     * @param float $price
+     *
+     * @return string
+     */
+    public function formatShopPrice(?float $price = null)
+    {
+        if (null === $price) {
+            $price = 0;
+        }
+        return sprintf('%s %s',
+            Intl::getCurrencyBundle()->getCurrencySymbol('USD', 'en'),
+            $price
+        );
     }
 
     /**

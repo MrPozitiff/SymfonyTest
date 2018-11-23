@@ -1,6 +1,6 @@
 {% extends 'Shop/layout.html.twig' %}
 
-{% set category = shop_get_category_by_url(app.request.attributes.get('urlPath')) %}
+{% set category = shop_get_category(app.request.attributes.get('category')) %}
 
 {% block title %}{{ 'template.title'|trans({'%current%': category.name}) }}{% endblock %}
 

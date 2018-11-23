@@ -1,0 +1,43 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\Order\CartSessionStorage:
+        public: true
+        arguments:
+            $orderRepository: '@app.repository.order'
+
+    App\Context\CustomerBasedCartContext:
+        arguments:
+            $orderRepository: '@app.repository.order'
+
+    App\Context\SessionBasedCartContext:
+
+    App\Context\NewCartContext:
+        arguments:
+            - '@app.factory.order'
+
+    App\Context\CompositeCartContext:
+        public: true
+        calls:
+            - ['addContext', ['@App\Context\CustomerBasedCartContext', 100]]
+            - ['addContext', ['@App\Context\SessionBasedCartContext', 50]]
+            - ['addContext', ['@App\Context\NewCartContext']]
+
+    App\Order\Factory\CartItemFactory:
+        decorates: app.factory.order_item
+        arguments:
+            - '%use_before_default_modifier%'
+
+    App\Order\CartManager:
+        public: true
+        arguments:
+            $orderRepository: '@app.repository.order'
+            $cartContext: '@App\Context\CompositeCartContext'
+
+    App\Order\OrderModifier:
+        public: true
+
+

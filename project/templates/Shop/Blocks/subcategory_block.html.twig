@@ -5,7 +5,7 @@
                 'url': child.url,
                 'image': child.images[0],
                 'name': child.name,
-                'minPrice': 'template.grid.price_from'|trans({'%price%':child.statistics.minProductPrice})} %}
+                'minPrice': 'template.grid.price_from'|trans({'%price%':child.statistics.minProductPrice|shopPrice})} %}
         {% endfor %}
     </div>
     {% if root.children.count > 9 %}

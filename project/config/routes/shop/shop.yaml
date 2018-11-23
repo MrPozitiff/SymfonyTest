@@ -10,6 +10,22 @@ app_shop_user_oauth:
     resource: 'shop_user/oauth.yaml'
     prefix: /client/oauth
 
+app_shop_user_account:
+    resource: 'shop_user/account.yaml'
+    prefix: /client/account
+
+app_shop_partner_security:
+    resource: 'partner/security.yaml'
+    prefix: /partner
+
+app_shop_partner_account:
+    resource: 'partner/account.yaml'
+    prefix: /partner/account
+
 app_shop_partials:
     resource: 'parts.yaml'
     prefix: /parts
+
+app_shop_ajax:
+    resource: 'ajax/order.yaml'
+    prefix: /cart

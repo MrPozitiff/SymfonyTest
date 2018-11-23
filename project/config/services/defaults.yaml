@@ -16,3 +16,16 @@ services:
         resource: '../../src/Form/EventSubscriber'
         autowire: false
         autoconfigure: false
+
+    Sylius\Component\User\Canonicalizer\CanonicalizerInterface:
+        alias: sylius.canonicalizer
+
+    Sylius\Component\User\Security\PasswordUpdaterInterface:
+        alias: sylius.security.password_updater
+
+    App\Routing\CatalogLoader:
+        arguments:
+            - '@app.repository.category'
+            - '@app.repository.product'
+        tags:
+            - { name: 'routing.loader' }

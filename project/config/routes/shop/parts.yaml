@@ -28,3 +28,11 @@ app_shop_partial_product_newest:
                 arguments:
                     - '!!int $page'
                     - '!!int $count'
+
+shop_partial_cart_summary:
+    path: /summary
+    methods: [GET]
+    defaults:
+        _controller: app.controller.order:widgetAction
+        _sylius:
+            template: $template

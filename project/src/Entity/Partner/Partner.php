@@ -1,18 +1,17 @@
 <?php
-/** */
+
 namespace App\Entity\Partner;
 
 use App\Component\Model\ImageInterface;
-use App\Component\Model\ImagesAwareInterface;
+use App\Component\Model\PartnerAddressInterface;
+use App\Component\Model\PartnerInterface;
+use App\Component\Model\ProductInterface;
 use App\Entity\Traits\DescriptiveTranslatableMethodsTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use KunicMarko\SonataAnnotationBundle\Annotation\Admin;
-use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\TimestampableInterface;
-use Sylius\Component\Resource\Model\ToggleableInterface;
 use App\Entity\Traits\TimestampableTrait;
 use App\Entity\Traits\ToggleableTrait;
 
@@ -30,11 +29,7 @@ use App\Entity\Traits\ToggleableTrait;
  *     admin="App\Admin\Partner\PartnerAdmin"
  * )
  */
-class Partner implements
-    ResourceInterface,
-    ToggleableInterface,
-    TimestampableInterface,
-    ImagesAwareInterface
+class Partner implements PartnerInterface
 {
     use ToggleableTrait,
         TimestampableTrait,
@@ -68,10 +63,18 @@ class Partner implements
      */
     private $addresses;
 
+    /**
+     * @var Collection|ProductInterface[]
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Shop\Product", mappedBy="partner")
+     */
+    private $products;
+
     /**  */
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->products = new ArrayCollection();
         $this->addImage(new PartnerImage());
         $this->addresses = new ArrayCollection();
     }
@@ -131,15 +134,15 @@ class Partner implements
     /**
      * @return PartnerAddress[]|Collection
      */
-    public function getAddresses()
+    public function getAddresses(): Collection
     {
         return $this->addresses;
     }
 
     /**
-     * @param PartnerAddress $address
+     * @param PartnerAddressInterface $address
      */
-    public function addAddress(PartnerAddress $address): void
+    public function addAddress(PartnerAddressInterface $address): void
     {
         if (!$this->addresses->contains($address)) {
             $this->addresses->add($address);
@@ -147,13 +150,21 @@ class Partner implements
     }
 
     /**
-     * @param PartnerAddress $address
+     * @param PartnerAddressInterface $address
      */
-    public function removeAddress(PartnerAddress $address): void
+    public function removeAddress(PartnerAddressInterface $address): void
     {
         if ($this->addresses->contains($address)) {
             $this->addresses->removeElement($address);
         }
+    }
+
+    /**
+     * @return ProductInterface[]|Collection
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
     }
 
     /**

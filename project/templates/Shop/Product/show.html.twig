@@ -88,12 +88,22 @@
                             <div class="services-price__label">{{ 'template.products_index.price_title'|trans }}</div>
                             {{ 'template.products_index.price'|trans({'%price%': resource.price})|raw }}
                         </div>
-                        <button class="btn btn--blue buy-btn">{{ 'template.products_index.buy_button'|trans }}</button>
+                        {% include 'Shop/Product/Parts/_buy_button.html.twig' with { 'id' : resource.id } %}
                         <div class="service-sidebar__label">{{ 'template.products_index.use_before'|trans }}</div>
-                        <div class="service-sidebar__date">{{ '+100 days'|date('d.m.Y') }}</div>
+                        <div class="service-sidebar__date">{{ default_valid_time|date('d.m.Y') }}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include 'Shop/Fragment/_javascripts.html.twig' with {'path': 'assets/shop/js/main.js'} %}
+    <script type="text/javascript">
+        window.addEventListener('load', function () {
+            App.Cart.initButtons();
+        })
+    </script>
 {% endblock %}

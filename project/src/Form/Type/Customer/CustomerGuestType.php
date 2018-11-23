@@ -2,7 +2,7 @@
 
 namespace App\Form\Type\Customer;
 
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use App\Form\Type\AbstractResourceType;
 use App\Component\Model\CustomerInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;

@@ -1,0 +1,412 @@
+{% extends 'Shop/Client/index.html.twig' %}
+
+{% block account_data %}
+<div class="account-orders">
+    <ul class="authorization-tabs tabs-list">
+        <li>
+            <a href="#tab-1" class="active">
+                My Orders
+            </a>
+        </li>
+        <li>
+            <a href="#tab-2">
+                Archive
+            </a>
+        </li>
+    </ul>
+    <div class="tab" id="tab-1">
+        <div class="row row--end account-orders__sort">
+            <div class="services-sort">
+                <span class="services-sort__label">Sort by:</span>
+                <select name="area-sort">
+                    <option value="Pudong_Xinqu">completed</option>
+                    <option value="Pudong_Xinqu">used</option>
+                    <option value="Pudong_Xinqu">paved</option>
+                </select>
+            </div>
+        </div>
+        <div class="orders-grid accordion">
+            <div class="orders-grid__heading orders-grid__row">
+                <div class="orders-grid__cell number">
+                    Order number
+                </div>
+                <div class="orders-grid__cell date">
+                    Date
+                </div>
+                <div class="orders-grid__cell status">
+                    Status
+                </div>
+                <div class="orders-grid__cell title">
+                    Title
+                </div>
+                <div class="orders-grid__cell details">
+                    Details
+                </div>
+            </div>
+            <div class="orders-item accordion-item">
+                <div class="orders-grid__row opener">
+                    <div class="orders-grid__cell number">
+                        869
+                    </div>
+                    <div class="orders-grid__cell date">
+                        11.02. 2018
+                    </div>
+                    <div class="orders-grid__cell status">
+                        <span class="status-item used">Used</span>
+                    </div>
+                    <div class="orders-grid__cell title">
+                        SPA Weekend for Her
+                    </div>
+                    <div class="orders-grid__cell details">
+                        <div class="orders__opener">
+                            <svg>
+                                <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#arrow"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="orders-item__inner slide">
+                    <div class="services-item">
+                        <div class="services-item__thumb">
+                            <img src="data/product-7.jpg" width="264" height="174" alt="">
+                        </div>
+                        <div class="services-item__inner">
+                            <div class="services-item__title">
+                                Skiing Vacation
+                            </div>
+                            <div class="services-item__info">
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Description:
+                                    </div>
+                                    <div class="services-item__caption">
+                                        The most common issue is the use of a product key for a product not currently supported by the site such as an Upgrade key, an MSDN key, product keys for pre-installed media or an Enterprise edition key.
+                                    </div>
+                                </div>
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Location:
+                                    </div>
+                                    <div class="services-item__content">
+                                        33 Fucheng Rd, LuJiaZui, Pudong Xinqu, Shanghai Shi, China, 200120
+                                    </div>
+                                </div>
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Delivery:
+                                    </div>
+                                    <div class="services-item__content">
+                                        “Express Delivery”
+                                    </div>
+                                </div>
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Gift-box:
+                                    </div>
+                                    <div class="services-item__content">
+                                        -
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout-cart-item__info">
+                                <div class="services-price">
+                                    <div class="services-price__label">
+                                        Total:
+                                    </div>
+                                    <span class="services-price__ammount">$150.00</span>
+                                </div>
+                                <div class="use-date">
+                                    <div class="services-item__label">
+                                        Paying Method:
+                                    </div>
+                                    Credit Card **** 5895
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="orders-item accordion-item">
+                <div class="orders-grid__row opener">
+                    <div class="orders-grid__cell number">
+                        869
+                    </div>
+                    <div class="orders-grid__cell date">
+                        11.02. 2018
+                    </div>
+                    <div class="orders-grid__cell status">
+                        <span class="status-item paved">Paved</span>
+                    </div>
+                    <div class="orders-grid__cell title">
+                        SPA Weekend for Her
+                    </div>
+                    <div class="orders-grid__cell details">
+                        <div class="orders__opener">
+                            <svg>
+                                <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#arrow"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="orders-item__inner slide">
+                    <div class="services-item">
+                        <div class="services-item__thumb">
+                            <img src="data/product-7.jpg" width="264" height="174" alt="">
+                        </div>
+                        <div class="services-item__inner">
+                            <div class="services-item__title">
+                                Skiing Vacation
+                            </div>
+                            <div class="services-item__info">
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Description:
+                                    </div>
+                                    <div class="services-item__caption">
+                                        The most common issue is the use of a product key for a product not currently supported by the site such as an Upgrade key, an MSDN key, product keys for pre-installed media or an Enterprise edition key.
+                                    </div>
+                                </div>
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Location:
+                                    </div>
+                                    <div class="services-item__content">
+                                        33 Fucheng Rd, LuJiaZui, Pudong Xinqu, Shanghai Shi, China, 200120
+                                    </div>
+                                </div>
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Delivery:
+                                    </div>
+                                    <div class="services-item__content">
+                                        “Express Delivery”
+                                    </div>
+                                </div>
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Gift-box:
+                                    </div>
+                                    <div class="services-item__content">
+                                        -
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout-cart-item__info">
+                                <div class="services-price">
+                                    <div class="services-price__label">
+                                        Total:
+                                    </div>
+                                    <span class="services-price__ammount">$150.00</span>
+                                </div>
+                                <div class="use-date">
+                                    <div class="services-item__label">
+                                        Paying Method:
+                                    </div>
+                                    Credit Card **** 5895
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab" id="tab-2">
+        <div class="row row--end account-orders__sort">
+            <div class="services-sort">
+                <span class="services-sort__label">Sort by:</span>
+                <select name="area-sort">
+                    <option value="Pudong_Xinqu">completed</option>
+                    <option value="Pudong_Xinqu">used</option>
+                    <option value="Pudong_Xinqu">paved</option>
+                </select>
+            </div>
+        </div>
+        <div class="orders-grid accordion">
+            <div class="orders-grid__heading orders-grid__row">
+                <div class="orders-grid__cell number">
+                    Order number
+                </div>
+                <div class="orders-grid__cell date">
+                    Date
+                </div>
+                <div class="orders-grid__cell status">
+                    Status
+                </div>
+                <div class="orders-grid__cell title">
+                    Title
+                </div>
+                <div class="orders-grid__cell details">
+                    Details
+                </div>
+            </div>
+            <div class="orders-item accordion-item">
+                <div class="orders-grid__row opener">
+                    <div class="orders-grid__cell number">
+                        869
+                    </div>
+                    <div class="orders-grid__cell date">
+                        11.02. 2018
+                    </div>
+                    <div class="orders-grid__cell status">
+                        <span class="status-item used">Used</span>
+                    </div>
+                    <div class="orders-grid__cell title">
+                        SPA Weekend for Her
+                    </div>
+                    <div class="orders-grid__cell details">
+                        <div class="orders__opener">
+                            <svg>
+                                <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#arrow"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="orders-item__inner slide">
+                    <div class="services-item">
+                        <div class="services-item__thumb">
+                            <img src="data/product-7.jpg" width="264" height="174" alt="">
+                        </div>
+                        <div class="services-item__inner">
+                            <div class="services-item__title">
+                                Skiing Vacation
+                            </div>
+                            <div class="services-item__info">
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Description:
+                                    </div>
+                                    <div class="services-item__caption">
+                                        The most common issue is the use of a product key for a product not currently supported by the site such as an Upgrade key, an MSDN key, product keys for pre-installed media or an Enterprise edition key.
+                                    </div>
+                                </div>
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Location:
+                                    </div>
+                                    <div class="services-item__content">
+                                        33 Fucheng Rd, LuJiaZui, Pudong Xinqu, Shanghai Shi, China, 200120
+                                    </div>
+                                </div>
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Delivery:
+                                    </div>
+                                    <div class="services-item__content">
+                                        “Express Delivery”
+                                    </div>
+                                </div>
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Gift-box:
+                                    </div>
+                                    <div class="services-item__content">
+                                        -
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout-cart-item__info">
+                                <div class="services-price">
+                                    <div class="services-price__label">
+                                        Price:
+                                    </div>
+                                    <span class="services-price__ammount">$150.00</span>
+                                </div>
+                                <div class="use-date">
+                                    <div class="services-item__label">
+                                        Paying Method:
+                                    </div>
+                                    Credit Card **** 5895
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="orders-item accordion-item">
+                <div class="orders-grid__row opener">
+                    <div class="orders-grid__cell number">
+                        869
+                    </div>
+                    <div class="orders-grid__cell date">
+                        11.02. 2018
+                    </div>
+                    <div class="orders-grid__cell status">
+                        <span class="status-item paved">Paved</span>
+                    </div>
+                    <div class="orders-grid__cell title">
+                        SPA Weekend for Her
+                    </div>
+                    <div class="orders-grid__cell details">
+                        <div class="orders__opener">
+                            <svg>
+                                <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#arrow"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="orders-item__inner slide">
+                    <div class="services-item">
+                        <div class="services-item__thumb">
+                            <img src="data/product-7.jpg" width="264" height="174" alt="">
+                        </div>
+                        <div class="services-item__inner">
+                            <div class="services-item__title">
+                                Skiing Vacation
+                            </div>
+                            <div class="services-item__info">
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Description:
+                                    </div>
+                                    <div class="services-item__caption">
+                                        The most common issue is the use of a product key for a product not currently supported by the site such as an Upgrade key, an MSDN key, product keys for pre-installed media or an Enterprise edition key.
+                                    </div>
+                                </div>
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Location:
+                                    </div>
+                                    <div class="services-item__content">
+                                        33 Fucheng Rd, LuJiaZui, Pudong Xinqu, Shanghai Shi, China, 200120
+                                    </div>
+                                </div>
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Delivery:
+                                    </div>
+                                    <div class="services-item__content">
+                                        “Express Delivery”
+                                    </div>
+                                </div>
+                                <div class="services-item__line">
+                                    <div class="services-item__label">
+                                        Gift-box:
+                                    </div>
+                                    <div class="services-item__content">
+                                        -
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout-cart-item__info">
+                                <div class="services-price">
+                                    <div class="services-price__label">
+                                        Price:
+                                    </div>
+                                    <span class="services-price__ammount">$150.00</span>
+                                </div>
+                                <div class="use-date">
+                                    <div class="services-item__label">
+                                        Paying Method:
+                                    </div>
+                                    Credit Card **** 5895
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

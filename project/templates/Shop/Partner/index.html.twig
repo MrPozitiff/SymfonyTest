@@ -1,0 +1,77 @@
+{% extends 'Shop/layout.html.twig' %}
+
+{% block content %}
+    <div class="page account-page">
+        <div class="page-inner">
+            <ul class="breadcrumbs">
+                <li>
+                    <a href="">Home</a>
+                </li>
+                <li>
+                    <span>Partner Area</span>
+                </li>
+            </ul>
+            <div class="page-title">
+                <span>Partner Area</span>
+                <svg>
+                    <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#wave"></use>
+                </svg>
+            </div>
+            {% set currentRoute = app.request.attributes.get('_route') %}
+            <div class="account">
+                <div class="account-sidebar">
+                    <ul class="account-nav">
+                        <li>
+                            <a href="{{ path('app_partner_dashboard') }}"
+                                    {% if currentRoute == 'app_partner_dashboard'%} class="active"{% endif %}>
+                                Certificates
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_partner_change_password') }}"
+                                    {% if currentRoute == 'app_partner_change_password'%} class="active"{% endif %}>Change Password</a>
+                        </li>
+                    </ul>
+                    <a href="{{ path('app_shop_user_logout') }}" class="btn btn--line account-log-out">
+                        Log Out
+                    </a>
+                </div>
+                <div class="account-inner">
+                    {% block account_data %}
+                    <div class="account-data">
+                        <form class="account-edit" id="personal-data">
+                            <div class="account-inner__title">
+                                Edit Personal Information
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-name" class="form-label">
+                                    Name
+                                </label>
+                                <input type="text" class="form-field" id="reg-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-phone" class="form-label">
+                                    Phone number
+                                </label>
+                                <input type="tel" class="form-field" id="reg-phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-mail" class="form-label">
+                                    Email
+                                </label>
+                                <input type="email" class="form-field" id="reg-mail">
+                            </div>
+                            <button class="btn btn--blue">
+                                Save Changes
+                            </button>
+                        </form>
+                        <div class="account-data__thumb">
+                            <img src="{{ asset('assets/shop/images/account.svg') }}" width="260" height="406" alt="">
+                        </div>
+                    </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

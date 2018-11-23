@@ -1,0 +1,62 @@
+{% extends 'Shop/layout.html.twig' %}
+
+{% block title %}{{ 'template.title'|trans({'%current%': 'template.security.partner.title'|trans}) }}{% endblock %}
+
+{% block content %}
+    <div class="page authorization-page">
+        <div class="page-inner">
+            <ul class="breadcrumbs">
+                <li>
+                    <a href="{{ path('app_shop_homepage') }}">{{ 'template.home'|trans }}</a>
+                </li>
+                <li>
+                    <span>{{ 'template.security.user.auth'|trans }}</span>
+                </li>
+            </ul>
+            <div class="page-title">
+                <span>{{ 'template.security.user.auth'|trans }}</span>
+                <svg>
+                    <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#wave"></use>
+                </svg>
+            </div>
+            <div class="authorization">
+                <div>
+                    <form class="reg-form" action="{{ path('app_partner_login_check') }}" method="post" id="log-form">
+                        {% if error|default(false) %}
+                            {{ dump(error) }}
+                        {% endif %}
+                        <div class="form-row">
+                            {{ form_errors(form._username) }}
+                            <div class="form-column">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Email
+                                    </label>
+                                    {% set attr = {'class':'form-field', 'value': last_username } %}
+                                    {{ form_widget(form._username, {'attr': {'class':'form-field'}}) }}
+                                </div>
+                            </div>
+                            {{ form_errors(form._password) }}
+                            <div class="form-column">
+                                <div class="form-group">
+                                    <label for="log-pass" class="form-label">
+                                        Password
+                                    </label>
+                                    {{ form_widget(form._password, {'attr': {'class':'form-field'}}) }}
+                                </div>
+                            </div>
+                            <input type="hidden" name="_csrf_partner_security_token" value="{{ csrf_token('partner_authenticate') }}">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn--blue" id="submit-log-form">{{ 'template.security.user.button_login'|trans }}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% include 'Shop/Fragment/_javascripts.html.twig' with {'path': 'assets/shop/js/main.js'} %}
+{% endblock %}

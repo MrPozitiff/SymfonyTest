@@ -1,7 +1,5 @@
 {% extends 'Shop/layout.html.twig' %}
 
-{% block title %}{{ 'template.title'|trans({'%current%': 'template.security.user.title'|trans}) }}{% endblock %}
-
 {% block content %}
     <div class="page authorization-page">
         <div class="page-inner">
@@ -22,19 +20,31 @@
             <div class="authorization">
                 <ul class="authorization-tabs tabs-list">
                     <li>
-                        <a href="#singup-tab">{{ 'template.security.user.new_user'|trans }}</a>
+                        <a href="#singup">
+                            {{ 'template.security.user.new_user'|trans }}
+                        </a>
                     </li>
                     <li>
-                        <a href="#login-tab">{{ 'template.security.user.have_account'|trans }}</a>
+                        <a href="#login">
+                            {{ 'template.security.user.have_account'|trans }}
+                        </a>
                     </li>
                 </ul>
-                {{ render(url('app_shop_user_register')) }}
-                {{ render(url('app_shop_user_login')) }}
+                <div id="singup" class="tab">
+                    {{ render(url('app_shop_user_register')) }}
+                </div>
+                <div id="login" class="tab">
+                    {{ render(url('app_shop_user_login')) }}
+                </div>
             </div>
         </div>
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {% include 'Shop/Fragment/_javascripts.html.twig' with {'path': 'assets/shop/js/auth.js'} %}
+    <script type="application/javascript">
+        window.addEventListener('load', function () {
+            App.Security.init();
+        })
+    </script>
 {% endblock %}

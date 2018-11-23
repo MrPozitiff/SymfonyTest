@@ -1,0 +1,44 @@
+<div id="cart_items_count" data-count="{{ cart.itemsTotal }}"></div>
+<div class="cart-pop-up__inner scrollable">
+    {% if cart.items|length > 0 %}
+    <div class="contacts-form__title">{{ 'template.cart.title'|trans }}</div>
+    {% for item in cart.items %}
+    <div class="row cart-pop-up__item">
+        {% set product = item.product %}
+        {% if product.images.first() %}
+        <div class="checkout-cart-item__thumb">
+            {% include 'Shop/Fragment/_img_trumbnail.html.twig' with {'image': product.images.first(), 'filter': 'product_show_slider_nav_item'} %}
+        </div>
+        {% endif %}
+        <div class="checkout-cart-item__inner">
+            <a href="{{ path('shop_product_' ~ product.id) }}" class="checkout-cart-item__title">{{ product.name }}</a>
+            <div class="row options-row">
+                <div class="cart-pop-up__price">{{ item.itemPrice|shopPrice }}</div>
+
+                {% include 'Shop/Cart/_add_option_button.html.twig' %}
+
+                <div class="cart-pop-up__item-total cart-pop-up__item-option">
+                    <div class="services-item__label">{{ 'template.cart.total_price'|trans }}</div>
+                    {{ item.total|shopPrice }}
+                </div>
+                <div class="checkout-cart-item__remove" onclick="App.Cart.removeItem('{{ path('shop_ajax_cart_item_remove', {'id': item.id}) }}')" style="margin-left: 30px; width: 100px;">
+                    <svg><use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#close"></use></svg>
+                    {{ 'template.cart.remove_button'|trans }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="contacts-form__title">{{ 'template.cart.empty_title'|trans }}</div>
+    {% endif %}
+</div>
+<div class="cart-pop-up__total row row--between">
+    <div class="continue-btn btn btn--line" onclick="App.Cart.closePopup()">{{ 'template.cart.continue_shopping'|trans }}</div>
+    {% if cart.items|length > 0  %}
+    <div class="row price-row">
+        <div class="cart-pop-up__total-price">{{ cart.total|shopPrice }}</div>
+        <a href="" class="btn btn--blue checkout-btn">{{ 'template.cart.checkout_button'|trans }}</a>
+    </div>
+    {% endif %}
+</div>

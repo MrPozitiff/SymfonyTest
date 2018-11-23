@@ -5,10 +5,10 @@
             'url': child.url,
             'image': child.images[0]|default(false),
             'name': child.name,
-            'minPrice': 'template.grid.price_from'|trans({'%price%':child.statistics.minProductPrice}),
+            'minPrice': 'template.grid.price_from'|trans({'%price%':child.statistics.minProductPrice|shopPrice}),
             'filter': 'category_trumbnail'
         } %}
     {% endfor %}
     </div>
-    {{ shop_get_paginator(resources, configuration.request.attributes.get('urlPath')) }}
+    {{ shop_get_paginator(resources, configuration.request.get('_route')) }}
 </div>

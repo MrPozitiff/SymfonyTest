@@ -7,12 +7,15 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Component\Model\CustomerInterface;
 use Sylius\Component\Resource\Exception\UnexpectedTypeException;
 use Sylius\Component\User\Model\User as BaseUser;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Class ShopUser
  *
  * @ORM\Entity(repositoryClass="App\Repository\Client\UserRepository")
  * @ORM\Table(name="app_shop_shop_user")
+ *
+ * @UniqueEntity(fields={"email"})
  */
 class ShopUser extends BaseUser implements ShopUserInterface
 {

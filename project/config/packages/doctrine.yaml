@@ -29,3 +29,5 @@ doctrine:
                 alias: App
         resolve_target_entities:
             Sylius\Component\User\Model\UserInterface: App\Entity\Client\ShopUser
+            App\Component\Model\ProductInterface: App\Entity\Shop\Product
+            App\Component\Model\OptionInterface: App\Entity\Shop\Option

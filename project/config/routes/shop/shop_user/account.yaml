@@ -1,0 +1,36 @@
+shop_user_account_dashboard:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: app.controller.customer:showAction
+        _sylius:
+            template: "Shop/Client/_certificates.html.twig"
+            repository:
+                method: find
+                arguments:
+                    - "expr:service('App\\\\Context\\\\CustomerContext').getCustomerSecure()"
+
+shop_user_account_profile_update:
+    path: /profile/edit
+    methods: [GET, PUT]
+    defaults:
+        _controller: app.controller.customer:updateAction
+        _sylius:
+            template: "Shop/Client/_info.html.twig"
+            form: App\Form\Type\Customer\CustomerType
+            repository:
+                method: find
+                arguments:
+                    - "expr:service('App\\\\Context\\\\CustomerContext').getCustomerSecure()"
+            redirect:
+                route: shop_user_account_profile_update
+                parameters: {}
+
+shop_user_account_change_password:
+    path: /change-password
+    methods: [GET, POST]
+    defaults:
+        _controller: sylius.controller.shop_user:changePasswordAction
+        _sylius:
+            template: "Shop/Client/_change_pass.html.twig"
+            redirect: shop_user_account_dashboard

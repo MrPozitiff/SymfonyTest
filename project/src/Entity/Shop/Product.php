@@ -72,20 +72,6 @@ class Product implements ProductInterface
     protected $partnerPrice;
 
     /**
-     * @var null|int
-     *
-     * @ORM\Column(type="integer")
-     */
-    protected $storageCount = 0;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(type="boolean")
-     */
-    protected $storageLimited = false;
-
-    /**
      * @var int
      *
      * @ORM\Column(type="integer")
@@ -95,7 +81,7 @@ class Product implements ProductInterface
     /**
      * @var Partner
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Partner\Partner")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Partner\Partner", inversedBy="products")
      */
     private $partner;
 
@@ -192,38 +178,6 @@ class Product implements ProductInterface
     }
 
     /**
-     * @return int|null
-     */
-    public function getStorageCount(): ?int
-    {
-        return $this->storageCount;
-    }
-
-    /**
-     * @param int|null $storageCount
-     */
-    public function setStorageCount(?int $storageCount): void
-    {
-        $this->storageCount = $storageCount;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isStorageLimited(): bool
-    {
-        return $this->storageLimited;
-    }
-
-    /**
-     * @param bool $storageLimited
-     */
-    public function setStorageLimited(bool $storageLimited): void
-    {
-        $this->storageLimited = $storageLimited;
-    }
-
-    /**
      * @return int
      */
     public function getPurchasedCount(): int
@@ -231,12 +185,10 @@ class Product implements ProductInterface
         return $this->purchasedCount;
     }
 
-    /**
-     * @param int $purchasedCount
-     */
-    public function setPurchasedCount(int $purchasedCount): void
+    /**  */
+    public function purchase(): void
     {
-        $this->purchasedCount = $purchasedCount;
+        $this->purchasedCount += 1;
     }
 
     /**

@@ -2,10 +2,11 @@
 
 namespace App\Form\Type\Customer;
 
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use App\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class CustomerRegistrationType extends AbstractResourceType
 {
@@ -18,20 +19,29 @@ final class CustomerRegistrationType extends AbstractResourceType
 
         $builder
             ->add('firstName', TextType::class, [
-                'label' => 'sylius.form.customer.first_name',
+                'label' => 'customer.first_name',
             ])
             ->add('lastName', TextType::class, [
-                'label' => 'sylius.form.customer.last_name',
+                'label' => 'customer.last_name',
             ])
             ->add('phoneNumber', TextType::class, [
                 'required' => false,
-                'label' => 'sylius.form.customer.phone_number',
+                'label' => 'customer.phone_number',
             ])
             ->add('subscribedToNewsletter', CheckboxType::class, [
                 'required' => false,
-                'label' => 'sylius.form.customer.subscribed_to_newsletter',
+                'label' => 'customer.subscribed_to_newsletter',
             ])
         ;
+    }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        parent::configureOptions($resolver);
+        $resolver->setDefault('translation_domain', 'form');
     }
 
     /**
@@ -40,13 +50,5 @@ final class CustomerRegistrationType extends AbstractResourceType
     public function getParent(): string
     {
         return CustomerSimpleRegistrationType::class;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix(): string
-    {
-        return 'sylius_customer_registration';
     }
 }

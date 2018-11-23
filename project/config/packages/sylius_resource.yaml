@@ -33,3 +33,16 @@ sylius_resource:
             classes:
                 model: App\Entity\Partner\PartnerImage
                 form: App\Form\Type\Partner\PartnerImageType
+        app.order:
+            classes:
+                model: App\Entity\Order\Order
+                interface: App\Component\Model\OrderInterface
+                repository: App\Repository\Order\OrderRepository
+                controller: App\Controller\Shop\OrderController
+        app.order_item:
+            classes:
+                model: App\Entity\Order\OrderItem
+                interface: App\Component\Model\OrderItemInterface
+                repository: App\Repository\Order\OrderItemRepository
+                controller: App\Controller\Shop\OrderItemController
+                form: App\Form\Type\Order\OrderItemType

@@ -5,9 +5,9 @@ namespace App\Admin\Shop;
 use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
 use App\Entity\Partner\Partner;
 use App\Entity\Partner\PartnerAddress;
-use App\Form\Type\Partner\PartnerAddressType;
 use App\Form\Type\Shop\ProductImageType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -18,8 +18,8 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\CoreBundle\Form\Type\DateRangePickerType;
 use Sonata\DoctrineORMAdminBundle\Filter\BooleanFilter;
 use Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter;
+
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -36,7 +36,9 @@ class ProductAdmin extends AbstractAdmin
             ->tab('General')
                 ->with('General', ['class' => 'col-md-6'])
                     ->add('enabled', CheckboxType::class, ['required' => false])
-                    ->add('category', ModelType::class, ['label' => 'admin.form.category'])
+                    ->add('category', ModelType::class, [
+                        'label' => 'admin.form.category',
+                        ])
                     ->add('partner', ModelType::class, [
                         'label' => 'admin.form.product.partner',
                         'class' => Partner::class,
@@ -50,7 +52,7 @@ class ProductAdmin extends AbstractAdmin
                         'label' => 'admin.form.product.code',
                     ])
                 ->end()
-                ->with('Price And Stock', ['class' => 'col-md-6'])
+                ->with('Price', ['class' => 'col-md-6'])
                     ->add('price', MoneyType::class, [
                         'label' => 'admin.form.product.price',
                         'currency' => 'USD',
@@ -58,11 +60,6 @@ class ProductAdmin extends AbstractAdmin
                     ->add('partnerPrice', MoneyType::class, [
                         'label' => 'admin.form.product.partner_price',
                         'currency' => 'USD',
-                    ])
-                    ->add('storageCount', IntegerType::class, ['label' => 'admin.form.product.stock_count'])
-                    ->add('storageLimited', CheckboxType::class, [
-                        'label' => 'admin.form.product.stock_limited',
-                        'required' => false,
                     ])
                 ->end()
                 ->with('Translatable Fields')

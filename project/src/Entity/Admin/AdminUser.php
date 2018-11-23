@@ -18,6 +18,8 @@ use Sylius\Component\User\Model\User;
  * @Admin(
  *     label="Administrators",
  *     icon="<i class='fa fa-user'></i>",
+ *     group="Users",
+ *     admin="App\Admin\AdminUserAdmin"
  * )
  */
 class AdminUser extends User implements AdminUserInterface
@@ -26,9 +28,6 @@ class AdminUser extends User implements AdminUserInterface
      * @var string
      *
      * @ORM\Column(type="string", nullable=true, length=255)
-     *
-     * @FormField()
-     * @ListField()
      */
     protected $firstName;
 
@@ -36,18 +35,8 @@ class AdminUser extends User implements AdminUserInterface
      * @var string
      *
      * @ORM\Column(type="string", nullable=true, length=255)
-     *
-     * @FormField()
-     * @ListField()
      */
     protected $lastName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true, length=255)
-     */
-    protected $localeCode;
 
     /**  */
     public function __construct()

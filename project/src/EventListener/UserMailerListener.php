@@ -11,7 +11,7 @@ use Sylius\Component\Resource\Exception\UnexpectedTypeException;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Webmozart\Assert\Assert;
 
-final class UserMailerListener extends MailerListener
+class UserMailerListener extends MailerListener
 {
     /**
      * @param SenderInterface $emailSender

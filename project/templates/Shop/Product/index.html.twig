@@ -1,6 +1,6 @@
 {% extends 'Shop/layout.html.twig' %}
 
-{% set category = shop_get_category_by_url(app.request.attributes.get('urlPath')) %}
+{% set category = shop_get_category(app.request.attributes.get('category')) %}
 
 {% block title %}{{ 'template.title'|trans({'%current%': category.name}) }}{% endblock %}
 
@@ -61,4 +61,14 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include 'Shop/Fragment/_javascripts.html.twig' with {'path': 'assets/shop/js/main.js'} %}
+    <script type="text/javascript">
+        window.addEventListener('load', function () {
+            App.Cart.initButtons();
+        })
+    </script>
 {% endblock %}

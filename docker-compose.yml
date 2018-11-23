@@ -16,6 +16,7 @@ services:
             - DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_CONTAINER_ADDRESS}:${MYSQL_CONTAINER_PORT}/${MYSQL_DATABASE}
             - APP_ENV
             - APP_SECRET
+            - MAILER_URL
             - WECHAT_APP_ID
             - WEHACHT_APP_SECRET
 

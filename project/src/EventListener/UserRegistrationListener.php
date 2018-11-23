@@ -3,6 +3,7 @@
 namespace App\EventListener;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Bundle\UserBundle\Security\UserLoginInterface;
 use Sylius\Bundle\UserBundle\UserEvents;
 use App\Component\Model\CustomerInterface;
@@ -10,9 +11,12 @@ use App\Component\Model\ShopUserInterface;
 use Sylius\Component\User\Security\Generator\GeneratorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RouterInterface;
 use Webmozart\Assert\Assert;
 
-final class UserRegistrationListener
+class UserRegistrationListener
 {
     /**
      * @var ObjectManager
@@ -40,10 +44,16 @@ final class UserRegistrationListener
     private $firewallContextName;
 
     /**
+     * @var RouterInterface
+     */
+    private $router;
+
+    /**
      * @param ObjectManager $userManager
      * @param GeneratorInterface $tokenGenerator
      * @param EventDispatcherInterface $eventDispatcher
      * @param UserLoginInterface $userLogin
+     * @param RouterInterface $router
      * @param string $firewallContextName
      */
     public function __construct(
@@ -51,6 +61,7 @@ final class UserRegistrationListener
         GeneratorInterface $tokenGenerator,
         EventDispatcherInterface $eventDispatcher,
         UserLoginInterface $userLogin,
+        RouterInterface $router,
         $firewallContextName
     ) {
         $this->userManager = $userManager;
@@ -58,12 +69,13 @@ final class UserRegistrationListener
         $this->eventDispatcher = $eventDispatcher;
         $this->userLogin = $userLogin;
         $this->firewallContextName = $firewallContextName;
+        $this->router = $router;
     }
 
     /**
-     * @param GenericEvent $event
+     * @param ResourceControllerEvent $event
      */
-    public function handleUserVerification(GenericEvent $event): void
+    public function handleUserVerification(ResourceControllerEvent $event): void
     {
         $customer = $event->getSubject();
         Assert::isInstanceOf($customer, CustomerInterface::class);
@@ -71,6 +83,7 @@ final class UserRegistrationListener
         $user = $customer->getUser();
         Assert::notNull($user);
 
+        $event->setResponse(new JsonResponse(['location' => $this->router->generate('shop_user_account_dashboard')]));
         if (!$this->isAccountVerificationRequired()) {
             $this->enableAndLogin($user);
 

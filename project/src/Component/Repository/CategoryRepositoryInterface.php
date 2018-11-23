@@ -60,11 +60,11 @@ interface CategoryRepositoryInterface extends RepositoryInterface
     public function findOneByUrl(string $url, bool $withChilds = false): ?CategoryInterface;
 
     /**
-     * @param string $url
+     * @param int $id
      *
      * @return null|Pagerfanta
      */
-    public function findChildrenByUrl(string $url): ?Pagerfanta;
+    public function findChildrenById(int $id): ?Pagerfanta;
 
     /**
      * @param CategoryInterface $category

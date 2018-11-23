@@ -3,20 +3,18 @@ app_shop_user_auth:
     methods: [GET]
     defaults:
         _controller: App\Controller\Shop\ShopController:authAction
-        _app_options:
-            template: 'Shop/Security/Client/auth.html.twig'
 
 app_shop_user_login:
-    path: /auth/login
+    path: /login_form
     methods: [GET]
     defaults:
         _controller: sylius.controller.user_security:loginAction
         _sylius:
             template: 'Shop/Security/Client/login.html.twig'
-#            logged_in_route: app_partner_account_dashboard
+            logged_in_route: shop_user_account_dashboard
 
 app_shop_user_register:
-    path: /auth/register
+    path: /register_form
     methods: [GET, POST]
     defaults:
         _controller: app.controller.customer:createAction
@@ -24,9 +22,7 @@ app_shop_user_register:
             template: "Shop/Security/Client/register.html.twig"
             form: App\Form\Type\Customer\CustomerRegistrationType
             event: register
-#            redirect:
-#                route: sylius_shop_account_dashboard
-#            flash: sylius.customer.register
+            flash: sylius.customer.register
 
 app_shop_user_login_check:
     path: /login-check
@@ -49,8 +45,8 @@ app_shop_user_verification:
     methods: [GET]
     defaults:
         _controller: sylius.controller.shop_user:verifyAction
-#        _sylius:
-#            redirect: sylius_shop_account_dashboard
+        _sylius:
+            redirect: shop_user_account_dashboard
     options:
         i18n: false
 

@@ -1,0 +1,18 @@
+app_partner_login:
+    path: /login
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.user_security:loginAction
+        _sylius:
+            template: 'Shop/Security/Partner/auth.html.twig'
+            logged_in_route: app_partner_dashboard
+
+app_partner_login_check:
+    path: /login-check
+    methods: [POST]
+    defaults:
+        _controller: sylius.controller.user_security:checkAction
+
+app_partner_logout:
+    path: /logout
+    methods: [GET]

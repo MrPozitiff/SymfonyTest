@@ -1,0 +1,14 @@
+{% macro label(formField, useTips = true) %}
+    {{ form_errors(formField) }}
+    <label class="form-label">
+        {{ formField.vars.label|trans({}, formField.vars.translation_domain|default('messages')) }}
+        {% if useTips %}
+        <span class="form-info">
+            <svg>
+                <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#info"></use>
+            </svg>
+            <span class="form-info__caption">{{ 'template.security.form.tips'|trans }}</span>
+        </span>
+        {% endif %}
+    </label>
+{% endmacro %}

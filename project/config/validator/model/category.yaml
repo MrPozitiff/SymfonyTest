@@ -1,0 +1,23 @@
+App\Entity\Shop\Category:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: url
+    properties:
+        parent:
+            - Expression:
+                expression: 'this.getId() == null or this.getId() != value.getId()'
+        translations:
+            - Count:
+                  min: 1
+                  minMessage: 'You must specify at least {{ limit }} Translation'
+        slug:
+            - Regex:
+                  pattern: '/^[\d\w\-\_]+$/iu'
+
+App\Entity\Shop\CategoryTranslation:
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                min: 2
+                max: 64
+                maxMessage: 'Your name cannot be longer than {{ limit }} characters'

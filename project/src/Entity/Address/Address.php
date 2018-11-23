@@ -121,20 +121,4 @@ abstract class Address
     {
         $this->house = $house;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPostcode(): ?string
-    {
-        return $this->postcode;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setPostcode(?string $postcode): void
-    {
-        $this->postcode = $postcode;
-    }
 }

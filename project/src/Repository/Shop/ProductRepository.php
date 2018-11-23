@@ -32,33 +32,19 @@ class ProductRepository extends EntityRepository
     }
 
     /**
-     * @param string $categoryUrl
+     * @param int $categoryId
      *
      * @return null|Pagerfanta
      */
-    public function findByCategoryUrl(string $categoryUrl): ?Pagerfanta
+    public function findByCategoryId(int $categoryId): ?Pagerfanta
     {
         $qb = $this->getQueryBuilder()
             ->addSelect('cat')
             ->join('o.category', 'cat')
-            ->andWhere('cat.url = :categoryUrl')
-            ->setParameter('categoryUrl', $categoryUrl);
+            ->andWhere('cat.id = :categoryId')
+            ->setParameter('categoryId', $categoryId);
 
         return $this->getPaginator($qb);
-    }
-
-    /**
-     * @param string $url
-     *
-     * @return ProductInterface|null
-     */
-    public function findOneByUrl(string $url): ?ProductInterface
-    {
-        return $this->getQueryBuilder()
-            ->andWhere('o.url = :url')
-            ->setParameter('url', $url)
-            ->getQuery()
-            ->getOneOrNullResult();
     }
 
     /**

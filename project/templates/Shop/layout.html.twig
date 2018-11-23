@@ -93,13 +93,8 @@
                             </div>
                         </div>
                     </a>
-                    <div class="cart-btn">
-                        <svg>
-                            <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#cart"></use>
-                        </svg>
-                        <div class="cart-btn__marker">
-                            10
-                        </div>
+                    <div id="cart_widget" data-link="{{ path('shop_partial_cart_summary') }}">
+                        {{ render(url('shop_partial_cart_summary', {'template': 'Shop/Cart/_widget.html.twig'})) }}
                     </div>
                 </div>
             </div>
@@ -118,6 +113,7 @@
 
 {% block javascripts %}
     {% include 'Shop/Fragment/_javascripts.html.twig' with {'path': 'assets/shop/js/app.js'} %}
+    {% include 'Shop/Fragment/_javascripts.html.twig' with {'path': 'assets/shop/js/main.js'} %}
 {% endblock %}
 
 {% block modal %}

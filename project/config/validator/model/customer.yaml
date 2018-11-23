@@ -1,0 +1,33 @@
+App\Entity\Client\Customer:
+    properties:
+        firstName:
+            - NotBlank:
+                message: sylius.customer.first_name.not_blank
+#                groups: [customer_profile]
+            - Length:
+                min: 2
+                minMessage: sylius.customer.first_name.min
+                max: 255
+                maxMessage: sylius.customer.first_name.max
+        lastName:
+            - NotBlank:
+                message: sylius.customer.last_name.not_blank
+#                groups: [customer_profile]
+            - Length:
+                min: 2
+                minMessage: sylius.customer.last_name.min
+                max: 255
+                maxMessage: sylius.customer.last_name.max
+        email:
+            - NotBlank:
+                message: sylius.customer.email.not_blank
+#                groups: [customer_guest]
+            - Length:
+                max: 254
+                maxMessage: sylius.customer.email.max
+#                groups: [customer_guest]
+            - Email:
+                message: sylius.customer.email.invalid
+#                groups: [customer_guest]
+        user:
+            - Valid: ~

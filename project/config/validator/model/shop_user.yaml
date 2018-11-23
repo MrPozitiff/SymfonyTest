@@ -1,0 +1,9 @@
+App\Entity\Client\ShopUser:
+    properties:
+        plainPassword:
+            - NotBlank: ~
+            - Length:
+                min: 6
+                max: 250
+        customer:
+            - Valid: ~

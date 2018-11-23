@@ -12,8 +12,8 @@ template:
     products_index:
         price_title: 'Price:'
         full_description_button: Read full description
-        price: '<span class="services-price__ammount">$%price%</span>'
-        price_from: 'from <span class="services-price__ammount">$%price%</span>'
+        price: '<span class="services-price__ammount">%price%</span>'
+        price_from: 'from <span class="services-price__ammount">%price%</span>'
         location: 'Location:'
         area: 'Area:'
         metro_station: 'Metro station'
@@ -21,6 +21,8 @@ template:
         buy_button: 'Buy'
         use_before: 'Use before:'
     security:
+        partner:
+            title: Partner Authorization
         user:
             title: Authorization
             auth: Authorization
@@ -30,6 +32,8 @@ template:
             button_register: Next
             social_login_title: Or Log in with
             social_register_title: Or registration with
+        form:
+            tips: 'We’d like to be aquainted with you'
     error:
         title: Not Found
         subtitle: Such a Disappointment
@@ -37,8 +41,8 @@ template:
         back_to_home_button: Back to Home
 
     grid:
-        price: '<span>$%price%</span>'
-        price_from: 'from <span>$%price%</span>'
+        price: '<span>%price%</span>'
+        price_from: 'from <span>%price%</span>'
     block:
         newest_products: Explore the Newest Certificates
         paginator:
@@ -46,3 +50,10 @@ template:
             previous: Previous
     buttons:
         see_more: See more
+    cart:
+        title: Shopping Cart
+        empty_title: Shopping Cart is empty
+        total_price: 'Total price:'
+        remove_button: Delete
+        continue_shopping: Continue Shopping
+        checkout_button: Checkout

@@ -1,0 +1,2 @@
+shop_user:
+    unique_email: 'Such email already registered!'

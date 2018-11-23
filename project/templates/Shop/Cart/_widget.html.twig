@@ -1,0 +1,19 @@
+<div class="cart-btn modal" data-modal="#cart-pop-up">
+    <svg>
+        <use xlink:href="{{ asset('/assets/shop/images/sprite.svg') }}#cart"></use>
+    </svg>
+    <div class="cart-btn__marker" id="cart_counter">{{ cart.itemsTotal }}</div>
+</div>
+<div class="pop-up" id="cart-pop-up">
+    <div class="pop-up__inner cart-pop-up">
+        <div id="popup_container">
+            {% include 'Shop/Cart/_modal_cart.html.twig' %}
+        </div>
+        <div class="pop-up__close pop-up__close-handler">
+            <svg>
+                <use xlink:href="{{ asset('assets/shop/images/sprite.svg') }}#cross"></use>
+            </svg>
+        </div>
+    </div>
+    <div class="pop-up__overlay"></div>
+</div>

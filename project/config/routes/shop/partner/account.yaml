@@ -1,0 +1,20 @@
+app_partner_dashboard:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: app.controller.order_item:indexAction
+        _sylius:
+            template: "Shop/Partner/_certificates.html.twig"
+            repository:
+                method: findAllForPartner
+                arguments:
+                    - "expr:service('App\\\\Context\\\\PartnerContext').getPartnerSecure()"
+
+app_partner_change_password:
+    path: /change-password
+    methods: [GET, POST]
+    defaults:
+        _controller: sylius.controller.partner_user:changePasswordAction
+        _sylius:
+            template: "Shop/Partner/_change_pass.html.twig"
+            redirect: app_partner_dashboard

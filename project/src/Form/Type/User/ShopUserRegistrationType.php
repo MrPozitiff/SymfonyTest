@@ -2,10 +2,11 @@
 
 namespace App\Form\Type\User;
 
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use App\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class ShopUserRegistrationType extends AbstractResourceType
 {
@@ -17,11 +18,20 @@ final class ShopUserRegistrationType extends AbstractResourceType
         $builder
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'sylius.form.user.password.label'],
-                'second_options' => ['label' => 'sylius.form.user.password.confirmation'],
-                'invalid_message' => 'sylius.user.plainPassword.mismatch',
+                'first_options' => ['label' => 'user.password.label'],
+                'second_options' => ['label' => 'user.password.confirmation'],
+                'invalid_message' => 'plainPassword.mismatch',
             ])
         ;
+    }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        parent::configureOptions($resolver);
+        $resolver->setDefault('translation_domain', 'form');
     }
 
     /**

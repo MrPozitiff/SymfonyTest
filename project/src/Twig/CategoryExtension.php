@@ -32,19 +32,17 @@ class CategoryExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('shop_get_category_by_url', [$this, 'getCategoryByUrl']),
+            new \Twig_SimpleFunction('shop_get_category', [$this, 'getCategoryByUrl']),
         ];
     }
 
     /**
-     * @param string $url
+     * @param int $id
      *
      * @return CategoryInterface|null
-     *
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function getCategoryByUrl(string $url): ?CategoryInterface
+    public function getCategoryByUrl(int $id): ?CategoryInterface
     {
-        return $this->categoryRepository->findOneByUrl($url);
+        return $this->categoryRepository->find($id);
     }
 }

@@ -4,6 +4,7 @@ imports:
     - { resource: 'services/event_listener.yaml' }
     - { resource: 'services/form.yaml' }
     - { resource: 'services/admin.yaml' }
+    - { resource: 'services/order.yaml' }
 
 services:
     _defaults:
@@ -15,7 +16,7 @@ services:
         class: Sylius\Bundle\UserBundle\Provider\EmailProvider
         arguments:
             - '%sylius.model.admin_user.class%'
-            - '%sylius.repository.admin_user.class%'
+            - '@sylius.repository.admin_user'
             - '@sylius.canonicalizer'
 
     app.shop_user_provider.email_based:
@@ -23,6 +24,13 @@ services:
         arguments:
             - '%sylius.model.shop_user.class%'
             - '@sylius.repository.shop_user'
+            - '@sylius.canonicalizer'
+
+    app.partner_user_provider.email_based:
+        class: Sylius\Bundle\UserBundle\Provider\EmailProvider
+        arguments:
+            - '%sylius.model.partner_user.class%'
+            - '@sylius.repository.partner_user'
             - '@sylius.canonicalizer'
 
     App\OAuth\UserProvider:
@@ -44,3 +52,15 @@ services:
     App\Twig\CategoryExtension:
         arguments:
             - '@app.repository.category'
+
+    App\Context\CustomerContext:
+        public: true
+
+    App\Context\PartnerContext:
+        public: true
+
+    App\Controller\Shop\OrderController:
+        autowire: false
+
+    App\Controller\Shop\OrderItemController:
+        autowire: false
